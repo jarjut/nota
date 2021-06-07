@@ -7,6 +7,7 @@ abstract class NotesRepository {
 
   Future<void> deleteNote(Note note);
 
+  /// Get User notes
   Stream<List<Note>> notes(String uid);
 
   Future<void> updateNote(Note note);
