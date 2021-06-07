@@ -14,7 +14,6 @@ void main() async {
   Bloc.observer = AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  setPathUrlStrategy();
 
   final authenticationRepository = AuthenticationRepository();
 
