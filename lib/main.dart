@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/app/bloc_observer.dart';
+import 'package:nota/features/notes/bloc/notes_bloc.dart';
+import 'package:nota/repositories/notes_repository.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'app/app.dart';
@@ -30,8 +32,13 @@ void main() async {
               authenticationRepository: authenticationRepository,
             ),
           ),
+          BlocProvider(
+            create: (context) => NotesBloc(
+              notesRepository: FirebaseNotesRepository(),
+            ),
+          ),
         ],
-        child: App(),
+        child: const App(),
       ),
     ),
   );

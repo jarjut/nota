@@ -26,8 +26,8 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
         labelText: widget.labelText,
         suffixIcon: IconButton(
           icon: _obscurePassword
-              ? Icon(Icons.visibility_off)
-              : Icon(Icons.visibility),
+              ? const Icon(Icons.visibility_off)
+              : const Icon(Icons.visibility),
           onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
         ),
       ),

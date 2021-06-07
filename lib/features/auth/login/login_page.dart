@@ -16,10 +16,10 @@ class LoginPage extends StatelessWidget {
         create: (context) =>
             LoginCubit(context.read<AuthenticationRepository>()),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               LoginForm(),
             ],
           ),
@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginForm extends StatefulWidget {
-  LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -67,13 +67,13 @@ class _LoginFormState extends State<LoginForm> {
               children: [
                 TextFormField(
                   controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email'),
                 ),
                 PasswordFormField(
                   controller: _passwordController,
                   labelText: 'Password',
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -84,7 +84,7 @@ class _LoginFormState extends State<LoginForm> {
                             .logInWithEmailAndPassword(
                                 email: _emailController.text,
                                 password: _passwordController.text),
-                    child: Text('LOGIN'),
+                    child: const Text('LOGIN'),
                   ),
                 ),
               ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/repositories/authentication_repository.dart';
 import 'package:vrouter/vrouter.dart';
+
+import '../../widgets/app_drawer.dart';
+import 'list_notes.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({Key? key}) : super(key: key);
@@ -10,22 +11,21 @@ class NotesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nota'),
+        title: const Text('Nota'),
       ),
-      body: Center(
+      drawer: const AppDrawer(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Notes Page'),
-            ElevatedButton(
-              onPressed: () {
-                context.read<AuthenticationRepository>().logOut();
-                context.vRouter.push('/login');
-              },
-              child: Text('LOGOUT'),
-            )
+            const ListNotes(),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.vRouter.push('/notes/add'),
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -19,7 +19,7 @@ class AuthenticationBloc
           authenticationRepository.currentUser.isNotEmpty
               ? AuthenticationState.authenticated(
                   authenticationRepository.currentUser)
-              : AuthenticationState.unauthenticated(),
+              : const AuthenticationState.unauthenticated(),
         ) {
     _userSubscription = _authenticationRepository.user.listen((_onUserChanged));
   }
