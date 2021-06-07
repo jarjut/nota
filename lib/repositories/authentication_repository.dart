@@ -22,6 +22,12 @@ class AuthenticationRepository {
     });
   }
 
+  /// Return [User.empty] if not logged in
+  Future<User> get firstUserStateChange async {
+    var firebaseUser = await _firebaseAuth.authStateChanges().first;
+    return firebaseUser == null ? User.empty : firebaseUser.toUser;
+  }
+
   /// Return the current user
   User get currentUser {
     final user = _firebaseAuth.currentUser;

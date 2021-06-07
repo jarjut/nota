@@ -21,6 +21,7 @@ void main() async {
       providers: [
         RepositoryProvider(
           create: (context) => authenticationRepository,
+          lazy: false,
         )
       ],
       child: MultiBlocProvider(

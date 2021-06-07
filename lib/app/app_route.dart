@@ -12,8 +12,16 @@ class AppRoute extends VRouteElementBuilder {
 
   final BuildContext context;
 
-  bool isLoggedIn() =>
-      context.read<AuthenticationRepository>().currentUser.isNotEmpty;
+  Future<bool> isLoggedIn() async {
+    var _authRepository =
+        RepositoryProvider.of<AuthenticationRepository>(context);
+    var user = _authRepository.currentUser;
+    if (user.isEmpty) {
+      user = await _authRepository.firstUserStateChange;
+    }
+
+    return user.isNotEmpty;
+  }
 
   @override
   List<VRouteElement> buildRoutes() {
@@ -21,7 +29,7 @@ class AppRoute extends VRouteElementBuilder {
       VWidget(path: '/login', widget: const LoginPage()),
       VGuard(
         beforeEnter: (vRedirector) async =>
-            isLoggedIn() ? null : vRedirector.push('/login'),
+            await isLoggedIn() ? null : vRedirector.push('/login'),
         stackedRoutes: [
           VWidget(
             path: '/',
