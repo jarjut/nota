@@ -22,28 +22,29 @@ class _AddNotePageState extends State<AddNotePage> {
     final _user = BlocProvider.of<AuthenticationBloc>(context).state.user;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Note'),
-      ),
+      appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 0,
-          horizontal: 16.0,
-        ),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
         child: Form(
           key: _addNoteFormKey,
           child: Column(
             children: [
               TextFormField(
                 controller: _titleFieldController,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(
+                  hintText: 'Title',
+                  border: InputBorder.none,
+                ),
+                style: Theme.of(context).textTheme.headline6,
               ),
               Expanded(
                 child: TextFormField(
                   controller: _noteFieldController,
                   maxLines: null,
-                  decoration:
-                      const InputDecoration(hintText: 'Write your notes here'),
+                  decoration: const InputDecoration(
+                    hintText: 'Write your notes here',
+                    border: InputBorder.none,
+                  ),
                 ),
               )
             ],

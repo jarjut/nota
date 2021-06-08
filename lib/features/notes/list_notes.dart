@@ -53,8 +53,30 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('${note.title}'),
+    return Card(
+      child: InkWell(
+        splashColor: Theme.of(context).primaryColor.withAlpha(30),
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${note.title}',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                '${note.note}',
+                style: Theme.of(context).textTheme.subtitle1,
+                maxLines: 15,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

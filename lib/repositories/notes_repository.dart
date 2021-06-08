@@ -38,7 +38,10 @@ class FirebaseNotesRepository implements NotesRepository {
   Stream<List<Note>> notes(String uid) {
     return noteCollection
         .where('uid', isEqualTo: uid)
-        .orderBy('createdOn')
+        .orderBy(
+          'createdOn',
+          descending: true,
+        )
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => Note.fromSnapshot(doc)).toList();

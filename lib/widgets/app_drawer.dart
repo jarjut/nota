@@ -9,20 +9,31 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSelected(String path) => context.vRouter.path == path;
+
     return Drawer(
       child: SafeArea(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Nota',
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
             const Divider(
               height: 1,
               thickness: 1,
+            ),
+            ListTile(
+              leading: const Icon(Icons.article),
+              title: const Text('Notes'),
+              onTap: () {
+                context.vRouter.push('/');
+              },
+              selected: isSelected('/'),
             ),
             ListTile(
               leading: const Icon(Icons.logout),

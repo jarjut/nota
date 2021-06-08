@@ -16,7 +16,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return VRouter(
       title: 'Nota',
-      theme: theme,
+      theme: AppTheme(),
       routes: [AppRoute(context)],
     );
   }
