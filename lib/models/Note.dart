@@ -9,13 +9,13 @@ class Note extends Equatable {
   final Timestamp updatedOn;
 
   /// User ID
-  final String uid;
+  final String? uid;
 
   Note({
     this.id,
-    required this.title,
+    this.title = '',
     this.note = '',
-    required this.uid,
+    this.uid,
     createdOn,
     updatedOn,
   })  : createdOn = createdOn ?? Timestamp.now(),
@@ -62,8 +62,7 @@ class Note extends Equatable {
   }
 
   @override
-  String toString() =>
-      'Note { id: $id, title: $title, note: $note, uid: $uid, createdOn: $createdOn, updatedOn: $updatedOn }';
+  String toString() => 'Note { id: $id, title: $title}';
 
   @override
   List<Object?> get props => [id, title, note, uid, createdOn, updatedOn];

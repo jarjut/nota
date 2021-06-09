@@ -31,7 +31,7 @@ dependencies:
   flutter_bloc: ^7.0.1
   pedantic: ^1.11.0
   url_strategy: ^0.2.0
-  vrouter: ^1.1.4+6
+  vrouter: ^1.1.4+11
 
 dev_dependencies:
   flutter_test:

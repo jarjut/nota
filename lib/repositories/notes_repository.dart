@@ -10,6 +10,8 @@ abstract class NotesRepository {
   /// Get User notes
   Stream<List<Note>> notes(String uid);
 
+  Stream<Note> note(String id);
+
   Future<void> updateNote(Note note);
 }
 
@@ -55,5 +57,13 @@ class FirebaseNotesRepository implements NotesRepository {
     } catch (e) {
       print('Failed to update note: $e');
     }
+  }
+
+  @override
+  Stream<Note> note(String id) {
+    return noteCollection
+        .doc(id)
+        .snapshots()
+        .map((snapshot) => Note.fromSnapshot(snapshot));
   }
 }

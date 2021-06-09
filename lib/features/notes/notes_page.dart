@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../widgets/app_drawer.dart';
-import 'list_notes.dart';
+import 'widgets/list_notes.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({Key? key}) : super(key: key);

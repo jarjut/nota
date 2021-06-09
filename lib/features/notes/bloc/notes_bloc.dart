@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nota/models/Note.dart';
 import 'package:nota/repositories/notes_repository.dart';
-import 'package:pedantic/pedantic.dart';
 
 part 'notes_event.dart';
 part 'notes_state.dart';
@@ -35,7 +34,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   }
 
   Stream<NotesState> _mapLoadNotesToState(LoadNotes event) async* {
-    unawaited(_notesSubscription?.cancel());
+    await _notesSubscription?.cancel();
     _notesSubscription = _notesRepository.notes(event.uid).listen(
           (notes) => add(NotesUpdated(notes)),
         );
@@ -55,5 +54,11 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
 
   Stream<NotesState> _mapNotesUpdateToState(NotesUpdated event) async* {
     yield NotesLoaded(event.notes);
+  }
+
+  @override
+  Future<void> close() {
+    _notesSubscription?.cancel();
+    return super.close();
   }
 }

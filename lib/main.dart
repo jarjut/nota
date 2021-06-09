@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/app/bloc_observer.dart';
+import 'package:nota/features/note/bloc/note_bloc.dart';
 import 'package:nota/features/notes/bloc/notes_bloc.dart';
 import 'package:nota/repositories/notes_repository.dart';
 
@@ -15,6 +16,7 @@ void main() async {
   await Firebase.initializeApp();
 
   final authenticationRepository = AuthenticationRepository();
+  final firebaseNoteRepository = FirebaseNotesRepository();
 
   runApp(
     MultiRepositoryProvider(
@@ -22,7 +24,10 @@ void main() async {
         RepositoryProvider(
           create: (context) => authenticationRepository,
           lazy: false,
-        )
+        ),
+        RepositoryProvider(
+          create: (context) => firebaseNoteRepository,
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -33,7 +38,7 @@ void main() async {
           ),
           BlocProvider(
             create: (context) => NotesBloc(
-              notesRepository: FirebaseNotesRepository(),
+              notesRepository: firebaseNoteRepository,
             ),
           ),
         ],

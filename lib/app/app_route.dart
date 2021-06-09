@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/features/note/note_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
@@ -26,16 +27,30 @@ class AppRoute extends VRouteElementBuilder {
   @override
   List<VRouteElement> buildRoutes() {
     return [
-      VWidget(path: '/login', widget: const LoginPage()),
+      VWidget(
+        path: '/login',
+        name: 'loginRoute',
+        widget: const LoginPage(),
+      ),
       VGuard(
         beforeEnter: (vRedirector) async =>
             await isLoggedIn() ? null : vRedirector.push('/login'),
         stackedRoutes: [
           VWidget(
             path: '/',
+            name: 'notesRoute',
             widget: const NotesPage(),
             stackedRoutes: [
-              VWidget(path: '/notes/add', widget: const AddNotePage()),
+              VWidget(
+                path: '/notes/add',
+                name: 'addNoteRoute',
+                widget: const AddNotePage(),
+              ),
+              VWidget(
+                path: '/note/:id',
+                name: 'noteRoute',
+                widget: const NotePage(),
+              )
             ],
           ),
         ],
