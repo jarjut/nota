@@ -17,18 +17,8 @@ class NotesPage extends StatelessWidget {
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ListNotes(
-                      notes: state.notes,
-                    ),
-                  ],
-                ),
-              ),
+            return ListNotes(
+              notes: state.notes,
             );
           } else {
             return const Center(

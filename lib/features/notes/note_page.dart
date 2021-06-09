@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
@@ -5,6 +6,10 @@ import 'package:vrouter/vrouter.dart';
 import '../../models/Note.dart';
 import '../../utils/debouncer.dart';
 import 'bloc/notes_bloc.dart';
+
+enum NoteMenuPopUp {
+  delete,
+}
 
 class NotePage extends StatefulWidget {
   const NotePage({
@@ -29,13 +34,31 @@ class _NotePageState extends State<NotePage> {
       final newNote = note.copyWith(
         title: _titleFieldController.text,
         note: _noteFieldController.text,
+        updatedOn: Timestamp.now(),
       );
       _debounce.run(
           () => BlocProvider.of<NotesBloc>(context).add(UpdateNote(newNote)));
     }
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          PopupMenuButton(
+            onSelected: (NoteMenuPopUp selected) {
+              if (selected == NoteMenuPopUp.delete) {
+                //TODO: Delete Note and Dialog Confimation
+                print('Note Delete');
+              }
+            },
+            itemBuilder: (context) => <PopupMenuEntry<NoteMenuPopUp>>[
+              const PopupMenuItem(
+                value: NoteMenuPopUp.delete,
+                child: Text('Delete Item'),
+              ),
+            ],
+          ),
+        ],
+      ),
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {

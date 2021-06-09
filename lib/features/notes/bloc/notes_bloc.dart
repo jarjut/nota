@@ -35,22 +35,22 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   }
 
   Stream<NotesState> _mapLoadNotesToState(LoadNotes event) async* {
-    await _notesSubscription?.cancel();
+    _notesSubscription?.cancel();
     _notesSubscription = _notesRepository.notes(event.uid).listen(
           (notes) => add(NotesUpdated(notes)),
         );
   }
 
   Stream<NotesState> _mapAddNoteToState(AddNote event) async* {
-    await _notesRepository.addNewNote(event.note);
+    _notesRepository.addNewNote(event.note);
   }
 
   Stream<NotesState> _mapUpdateNoteToState(UpdateNote event) async* {
-    await _notesRepository.updateNote(event.updatedNote);
+    _notesRepository.updateNote(event.updatedNote);
   }
 
   Stream<NotesState> _mapDeleteNoteToState(DeleteNote event) async* {
-    await _notesRepository.deleteNote(event.note);
+    _notesRepository.deleteNote(event.note);
   }
 
   Stream<NotesState> _mapNotesUpdateToState(NotesUpdated event) async* {

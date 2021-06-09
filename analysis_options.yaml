@@ -2,5 +2,6 @@ include: package:pedantic/analysis_options.yaml
 
 linter:
   rules:
-    - prefer_const_constructors
-    - prefer_const_declarations
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    unawaited_futures: false
