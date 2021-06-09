@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../widgets/app_drawer.dart';
+import 'bloc/notes_bloc.dart';
 import 'widgets/list_notes.dart';
 
 class NotesPage extends StatelessWidget {
@@ -12,16 +14,28 @@ class NotesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       drawer: const AppDrawer(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const ListNotes(),
-            ],
-          ),
-        ),
+      body: BlocBuilder<NotesBloc, NotesState>(
+        builder: (context, state) {
+          if (state is NotesLoaded) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ListNotes(
+                      notes: state.notes,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.vRouter.push('/notes/add'),

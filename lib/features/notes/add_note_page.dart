@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/app/bloc/authentication_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../../app/bloc/authentication_bloc.dart';
 import '../../models/Note.dart';
 import 'bloc/notes_bloc.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/note/note_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
 import '../features/notes/add_note_page.dart';
+import '../features/notes/note_page.dart';
 import '../features/notes/notes_page.dart';
 import '../repositories/authentication_repository.dart';
 

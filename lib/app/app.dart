@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/app/bloc/authentication_bloc.dart';
-import 'package:nota/features/notes/bloc/notes_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../features/notes/bloc/notes_bloc.dart';
 import 'app_route.dart';
+import 'bloc/authentication_bloc.dart';
 import 'theme.dart';
 
 class App extends StatefulWidget {

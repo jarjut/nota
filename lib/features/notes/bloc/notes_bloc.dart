@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:nota/models/Note.dart';
-import 'package:nota/repositories/notes_repository.dart';
+
+import '../../../models/Note.dart';
+import '../../../repositories/notes_repository.dart';
 
 part 'notes_event.dart';
 part 'notes_state.dart';
