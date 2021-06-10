@@ -26,6 +26,7 @@ class _AppState extends State<App> {
       child: VRouter(
         title: 'Nota',
         theme: AppTheme(),
+        darkTheme: DarkTheme(),
         routes: [AppRoute(context)],
       ),
     );

@@ -61,6 +61,21 @@ class AuthenticationRepository {
     }
   }
 
+  /// Create a new user account with the given [email] address and [password].
+  Future<void> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on fb_auth.FirebaseAuthException catch (e) {
+      throw Exception(e.message);
+    }
+  }
+
   /// Signs out the current user which will emit
   /// [User.empty] from the [user] Stream.
   ///

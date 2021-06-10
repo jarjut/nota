@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/features/auth/register/register_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
@@ -24,31 +25,49 @@ class AppRoute extends VRouteElementBuilder {
     return user.isNotEmpty;
   }
 
+  // Route Names
+  static const String LoginRoute = 'loginRoute';
+  static const String RegisterRoute = 'registerRoute';
+  static const String NotesRoute = 'notesRoute';
+  static const String AddNotesRoute = 'addNotesRoute';
+  static const String NoteRoute = 'noteRoute';
+
   @override
   List<VRouteElement> buildRoutes() {
     return [
-      VWidget(
-        path: '/login',
-        name: 'loginRoute',
-        widget: const LoginPage(),
+      VGuard(
+        beforeEnter: (vRedirector) async =>
+            await isLoggedIn() ? vRedirector.pushNamed(NotesRoute) : null,
+        stackedRoutes: [
+          VWidget(
+            path: '/login',
+            name: LoginRoute,
+            widget: const LoginPage(),
+          ),
+          VWidget(
+            path: '/register',
+            name: RegisterRoute,
+            widget: const RegisterPage(),
+          ),
+        ],
       ),
       VGuard(
         beforeEnter: (vRedirector) async =>
-            await isLoggedIn() ? null : vRedirector.push('/login'),
+            await isLoggedIn() ? null : vRedirector.pushNamed(LoginRoute),
         stackedRoutes: [
           VWidget(
             path: '/',
-            name: 'notesRoute',
+            name: NotesRoute,
             widget: const NotesPage(),
             stackedRoutes: [
               VWidget(
                 path: '/notes/add',
-                name: 'addNoteRoute',
+                name: AddNotesRoute,
                 widget: const AddNotePage(),
               ),
               VWidget(
                 path: '/note/:id',
-                name: 'noteRoute',
+                name: NoteRoute,
                 widget: const NotePage(),
               )
             ],

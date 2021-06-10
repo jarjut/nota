@@ -25,20 +25,47 @@ class _NotePageState extends State<NotePage> {
   final _titleFieldController = TextEditingController();
   final _noteFieldController = TextEditingController();
   final Debouncer _debounce = Debouncer(milliseconds: 500);
+  String? noteId;
+  Note? note;
+
+  void formOnChanged(Note note) {
+    final newNote = note.copyWith(
+      title: _titleFieldController.text,
+      note: _noteFieldController.text,
+      updatedOn: Timestamp.now(),
+    );
+    _debounce.run(
+        () => BlocProvider.of<NotesBloc>(context).add(UpdateNote(newNote)));
+  }
+
+  Future<void> _showDeleteDialog(Note note) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Delete Note'),
+            content: const Text('Are you sure you want to delete this note?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  BlocProvider.of<NotesBloc>(context).add(DeleteNote(note));
+                  Navigator.pop(context);
+                  VRouter.of(context).pop();
+                },
+                child: const Text('Delete'),
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final noteId = VRouter.of(context).pathParameters['id'];
-
-    void formOnChanged(Note note) {
-      final newNote = note.copyWith(
-        title: _titleFieldController.text,
-        note: _noteFieldController.text,
-        updatedOn: Timestamp.now(),
-      );
-      _debounce.run(
-          () => BlocProvider.of<NotesBloc>(context).add(UpdateNote(newNote)));
-    }
+    noteId = VRouter.of(context).pathParameters['id'];
 
     return Scaffold(
       appBar: AppBar(
@@ -46,8 +73,9 @@ class _NotePageState extends State<NotePage> {
           PopupMenuButton(
             onSelected: (NoteMenuPopUp selected) {
               if (selected == NoteMenuPopUp.delete) {
-                //TODO: Delete Note and Dialog Confimation
-                print('Note Delete');
+                if (note != null) {
+                  _showDeleteDialog(note!);
+                }
               }
             },
             itemBuilder: (context) => <PopupMenuEntry<NoteMenuPopUp>>[
@@ -63,6 +91,7 @@ class _NotePageState extends State<NotePage> {
         builder: (context, state) {
           if (state is NotesLoaded) {
             var note = state.notes.firstWhere((note) => note.id == noteId);
+            this.note = note;
             if (_noteFieldController.value == TextEditingValue.empty) {
               _titleFieldController.text = note.title;
               _noteFieldController.text = note.note;

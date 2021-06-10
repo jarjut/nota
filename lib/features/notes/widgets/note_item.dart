@@ -24,11 +24,7 @@ class NoteItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '${note.title}',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              const SizedBox(height: 8.0),
+              _buildTitle(context),
               Text(
                 '${note.note}',
                 style: Theme.of(context).textTheme.subtitle1,
@@ -40,5 +36,21 @@ class NoteItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildTitle(BuildContext context) {
+    if (note.title != '') {
+      return Column(
+        children: [
+          Text(
+            '${note.title}',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          const SizedBox(height: 8.0),
+        ],
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

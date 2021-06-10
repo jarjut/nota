@@ -5,30 +5,29 @@ import 'package:vrouter/vrouter.dart';
 import '../../../app/app_route.dart';
 import '../../../repositories/authentication_repository.dart';
 import '../widgets/password_form_field.dart';
-import 'cubit/login_cubit.dart';
+import 'cubit/register_cubit.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
         create: (context) =>
-            LoginCubit(context.read<AuthenticationRepository>()),
+            RegisterCubit(context.read<AuthenticationRepository>()),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const LoginForm(),
+              const RegisterForm(),
               const SizedBox(height: 16.0),
               InkWell(
-                onTap: () =>
-                    VRouter.of(context).pushNamed(AppRoute.RegisterRoute),
+                onTap: () => VRouter.of(context).pushNamed(AppRoute.LoginRoute),
                 child: const Text(
-                  'Create new account',
+                  'Already have an account',
                   style: TextStyle(color: Colors.blue),
                 ),
               ),
@@ -40,26 +39,26 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({Key? key}) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _RegisterFormState createState() => _RegisterFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _RegisterFormState extends State<RegisterForm> {
   final _loginFormKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<RegisterCubit, RegisterState>(
       listener: (context, state) {
-        if (state.status == LoginStatus.done) {
+        if (state.status == RegisterStatus.done) {
           context.vRouter.push('/');
         }
-        if (state.status == LoginStatus.error) {
+        if (state.status == RegisterStatus.error) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
@@ -70,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
             );
         }
       },
-      child: BlocBuilder<LoginCubit, LoginState>(
+      child: BlocBuilder<RegisterCubit, RegisterState>(
         builder: (context, state) {
           return Form(
             key: _loginFormKey,
@@ -88,14 +87,14 @@ class _LoginFormState extends State<LoginForm> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: state.status == LoginStatus.loading
+                    onPressed: state.status == RegisterStatus.loading
                         ? null
                         : () => context
-                            .read<LoginCubit>()
-                            .logInWithEmailAndPassword(
+                            .read<RegisterCubit>()
+                            .createUserWithEmailAndPassword(
                                 email: _emailController.text,
                                 password: _passwordController.text),
-                    child: const Text('LOGIN'),
+                    child: const Text('REGISTER'),
                   ),
                 ),
               ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../../app/app_route.dart';
 import '../../widgets/app_drawer.dart';
 import 'bloc/notes_bloc.dart';
 import 'widgets/list_notes.dart';
@@ -28,7 +29,7 @@ class NotesPage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.vRouter.push('/notes/add'),
+        onPressed: () => context.vRouter.pushNamed(AppRoute.AddNotesRoute),
         child: const Icon(Icons.add),
       ),
     );
