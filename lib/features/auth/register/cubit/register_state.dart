@@ -3,6 +3,8 @@ part of 'register_cubit.dart';
 enum RegisterStatus {
   init,
   loading,
+  googleLoading,
+  googleCancel,
   done,
   error,
 }

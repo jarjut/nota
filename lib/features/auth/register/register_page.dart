@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/features/auth/widgets/google_button.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../app/app_route.dart';
@@ -23,14 +24,6 @@ class RegisterPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const RegisterForm(),
-              const SizedBox(height: 16.0),
-              InkWell(
-                onTap: () => VRouter.of(context).pushNamed(AppRoute.LoginRoute),
-                child: const Text(
-                  'Already have an account',
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
             ],
           ),
         ),
@@ -47,7 +40,7 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  final _loginFormKey = GlobalKey<FormState>();
+  final _RegisterFormKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -72,8 +65,9 @@ class _RegisterFormState extends State<RegisterForm> {
       child: BlocBuilder<RegisterCubit, RegisterState>(
         builder: (context, state) {
           return Form(
-            key: _loginFormKey,
+            key: _RegisterFormKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
                   controller: _emailController,
@@ -86,15 +80,50 @@ class _RegisterFormState extends State<RegisterForm> {
                 const SizedBox(height: 12),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: state.status == RegisterStatus.loading
-                        ? null
-                        : () => context
-                            .read<RegisterCubit>()
-                            .createUserWithEmailAndPassword(
-                                email: _emailController.text,
-                                password: _passwordController.text),
-                    child: const Text('REGISTER'),
+                  child: _buildRegisterButton(state, context),
+                ),
+                const SizedBox(height: 16.0),
+                InkWell(
+                  onTap: () =>
+                      VRouter.of(context).pushNamed(AppRoute.LoginRoute),
+                  child: const Text(
+                    'Already have an account',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+                const SizedBox(height: 12.0),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Row(
+                    children: const [
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Text(
+                        'or',
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: GoogleButton(
+                    isLoading: state.status == RegisterStatus.googleLoading,
+                    onPressed: () => BlocProvider.of<RegisterCubit>(context)
+                        .signInWithGoogle(),
                   ),
                 ),
               ],
@@ -102,6 +131,33 @@ class _RegisterFormState extends State<RegisterForm> {
           );
         },
       ),
+    );
+  }
+
+  ElevatedButton _buildRegisterButton(
+      RegisterState state, BuildContext context) {
+    void Function()? onPressed;
+    Widget? child;
+
+    if (state.status == RegisterStatus.loading) {
+      onPressed = null;
+      child = const SizedBox(
+        height: 25,
+        width: 25,
+        child: CircularProgressIndicator(
+          strokeWidth: 3,
+        ),
+      );
+    } else {
+      onPressed = () => context
+          .read<RegisterCubit>()
+          .createUserWithEmailAndPassword(
+              email: _emailController.text, password: _passwordController.text);
+      child = const Text('REGISTER');
+    }
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: child,
     );
   }
 

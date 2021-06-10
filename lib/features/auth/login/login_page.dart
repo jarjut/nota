@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/features/auth/widgets/google_button.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../app/app_route.dart';
@@ -23,15 +24,6 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const LoginForm(),
-              const SizedBox(height: 16.0),
-              InkWell(
-                onTap: () =>
-                    VRouter.of(context).pushNamed(AppRoute.RegisterRoute),
-                child: const Text(
-                  'Create new account',
-                  style: TextStyle(color: Colors.blue),
-                ),
-              ),
             ],
           ),
         ),
@@ -75,6 +67,7 @@ class _LoginFormState extends State<LoginForm> {
           return Form(
             key: _loginFormKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
                   controller: _emailController,
@@ -87,15 +80,50 @@ class _LoginFormState extends State<LoginForm> {
                 const SizedBox(height: 12),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: state.status == LoginStatus.loading
-                        ? null
-                        : () => context
-                            .read<LoginCubit>()
-                            .logInWithEmailAndPassword(
-                                email: _emailController.text,
-                                password: _passwordController.text),
-                    child: const Text('LOGIN'),
+                  child: _buildLoginButton(state, context),
+                ),
+                const SizedBox(height: 16.0),
+                InkWell(
+                  onTap: () =>
+                      VRouter.of(context).pushNamed(AppRoute.RegisterRoute),
+                  child: const Text(
+                    'Create new account',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+                const SizedBox(height: 12.0),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  child: Row(
+                    children: const [
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Text(
+                        'or',
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Divider(
+                          thickness: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: GoogleButton(
+                    isLoading: state.status == LoginStatus.googleLoading,
+                    onPressed: () =>
+                        BlocProvider.of<LoginCubit>(context).signInWithGoogle(),
                   ),
                 ),
               ],
@@ -103,6 +131,30 @@ class _LoginFormState extends State<LoginForm> {
           );
         },
       ),
+    );
+  }
+
+  ElevatedButton _buildLoginButton(LoginState state, BuildContext context) {
+    void Function()? onPressed;
+    Widget? child;
+
+    if (state.status == LoginStatus.loading) {
+      onPressed = null;
+      child = const SizedBox(
+        height: 25,
+        width: 25,
+        child: CircularProgressIndicator(
+          strokeWidth: 3,
+        ),
+      );
+    } else {
+      onPressed = () => context.read<LoginCubit>().logInWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+      child = const Text('LOGIN');
+    }
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: child,
     );
   }
 

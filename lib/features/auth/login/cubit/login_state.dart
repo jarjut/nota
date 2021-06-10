@@ -3,6 +3,8 @@ part of 'login_cubit.dart';
 enum LoginStatus {
   init,
   loading,
+  googleLoading,
+  googleCancel,
   done,
   error,
 }
