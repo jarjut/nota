@@ -53,16 +53,21 @@ class AuthenticationRepository {
   }
 
   Future<void> signInWithGoogle() async {
-    final googleUser = await _googleSignIn.signIn();
-    if (googleUser == null) {
-      throw GoogleSignInCanceled();
+    if (kIsWeb) {
+      final googleProvider = fb_auth.GoogleAuthProvider();
+      await _firebaseAuth.signInWithPopup(googleProvider);
+    } else {
+      final googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        throw GoogleSignInCanceled();
+      }
+      final googleAuth = await googleUser.authentication;
+      final credential = fb_auth.GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await _firebaseAuth.signInWithCredential(credential);
     }
-    final googleAuth = await googleUser.authentication;
-    final credential = fb_auth.GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-    await _firebaseAuth.signInWithCredential(credential);
   }
 
   /// Create a new user account with the given [email] address and [password].
