@@ -41,7 +41,6 @@ class AppDrawer extends StatelessWidget {
               onTap: () {
                 BlocProvider.of<AuthenticationBloc>(context)
                     .add(AuthLogoutRequested());
-                context.vRouter.push('/login');
               },
             ),
           ],

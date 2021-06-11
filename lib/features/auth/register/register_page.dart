@@ -48,9 +48,6 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return BlocListener<RegisterCubit, RegisterState>(
       listener: (context, state) {
-        if (state.status == RegisterStatus.done) {
-          context.vRouter.push('/');
-        }
         if (state.status == RegisterStatus.error) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
