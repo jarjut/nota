@@ -24,7 +24,8 @@ class _NotePageState extends State<NotePage> {
   final _addNoteFormKey = GlobalKey<FormState>();
   final _titleFieldController = TextEditingController();
   final _noteFieldController = TextEditingController();
-  final Debouncer _debounce = Debouncer(milliseconds: 500);
+  final Debouncer _debounce =
+      Debouncer(duration: const Duration(milliseconds: 500));
   String? noteId;
   Note? note;
 

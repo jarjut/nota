@@ -37,6 +37,8 @@ class AuthenticationBloc
       yield _mapUserChangedToState(event, state);
     } else if (event is AuthLogoutRequested) {
       unawaited(_authenticationRepository.logOut());
+    } else if (event is AuthUserReloadRequested) {
+      yield* _mapAuthUserReloadRequestToState(event, state);
     }
   }
 
@@ -51,5 +53,15 @@ class AuthenticationBloc
   Future<void> close() {
     _userSubscription.cancel();
     return super.close();
+  }
+
+  Stream<AuthenticationState> _mapAuthUserReloadRequestToState(
+    AuthUserReloadRequested event,
+    AuthenticationState state,
+  ) async* {
+    final user = await _authenticationRepository.userReload();
+    if (state.user != user) {
+      add(AuthUserChanged(user));
+    }
   }
 }

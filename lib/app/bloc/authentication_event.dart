@@ -17,3 +17,5 @@ class AuthUserChanged extends AuthenticationEvent {
   @override
   List<Object> get props => [user];
 }
+
+class AuthUserReloadRequested extends AuthenticationEvent {}

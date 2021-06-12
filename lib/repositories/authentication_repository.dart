@@ -52,6 +52,7 @@ class AuthenticationRepository {
     );
   }
 
+  /// Sign in with Google Account
   Future<void> signInWithGoogle() async {
     if (kIsWeb) {
       final googleProvider = fb_auth.GoogleAuthProvider();
@@ -70,15 +71,22 @@ class AuthenticationRepository {
     }
   }
 
-  /// Create a new user account with the given [email] address and [password].
+  /// Create a new user account with the given [email] address and [password]
+  /// then send an email verification to the user
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    await _firebaseAuth.createUserWithEmailAndPassword(
+    final user = await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
+    await user.user?.sendEmailVerification();
+  }
+
+  /// Send Verification email to user
+  Future<void> sendEmailVerification() async {
+    await _firebaseAuth.currentUser?.sendEmailVerification();
   }
 
   /// Signs out the current user which will emit
@@ -95,10 +103,24 @@ class AuthenticationRepository {
       throw LogOutFailure();
     }
   }
+
+  /// Return refreshed current user
+  Future<User> userReload() async {
+    var user = _firebaseAuth.currentUser;
+    await user?.reload();
+    user = _firebaseAuth.currentUser;
+    return user == null ? User.empty : user.toUser;
+  }
 }
 
 extension on fb_auth.User {
   User get toUser {
-    return User(id: uid, email: email, name: displayName, photo: photoURL);
+    return User(
+      id: uid,
+      email: email,
+      name: displayName,
+      photo: photoURL,
+      emailVerified: emailVerified,
+    );
   }
 }

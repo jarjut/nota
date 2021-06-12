@@ -4,6 +4,7 @@ import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
 import '../features/auth/register/register_page.dart';
+import '../features/not_verified_page.dart';
 import '../features/notes/add_note_page.dart';
 import '../features/notes/note_page.dart';
 import '../features/notes/notes_page.dart';
@@ -32,6 +33,7 @@ class AppRoute extends VRouteElementBuilder {
   static const String NotesRoute = 'notesRoute';
   static const String AddNotesRoute = 'addNotesRoute';
   static const String NoteRoute = 'noteRoute';
+  static const String NotVerifiedRoute = 'notVerifiedRoute';
 
   @override
   List<VRouteElement> buildRoutes() {
@@ -42,7 +44,11 @@ class AppRoute extends VRouteElementBuilder {
           return BlocListener<AuthenticationBloc, AuthenticationState>(
             listener: (context, state) {
               if (state.status == AuthenticationStatus.authenticated) {
-                context.vRouter.pushNamed(NotesRoute);
+                if (state.user.emailVerified) {
+                  context.vRouter.pushNamed(NotesRoute);
+                } else {
+                  context.vRouter.pushNamed(NotVerifiedRoute);
+                }
               }
               if (state.status == AuthenticationStatus.unauthenticated) {
                 context.vRouter.pushNamed(LoginRoute);
@@ -69,8 +75,18 @@ class AppRoute extends VRouteElementBuilder {
             ],
           ),
           VGuard(
-            beforeEnter: (vRedirector) async =>
-                await isLoggedIn() ? null : vRedirector.pushNamed(LoginRoute),
+            beforeEnter: (vRedirector) async {
+              if (await isLoggedIn()) {
+                var _authRepository =
+                    RepositoryProvider.of<AuthenticationRepository>(context);
+                if (!_authRepository.currentUser.emailVerified) {
+                  return vRedirector.pushNamed(NotVerifiedRoute);
+                }
+                return null;
+              } else {
+                return vRedirector.pushNamed(LoginRoute);
+              }
+            },
             stackedRoutes: [
               VWidget(
                 path: '/',
@@ -78,7 +94,7 @@ class AppRoute extends VRouteElementBuilder {
                 widget: const NotesPage(),
                 stackedRoutes: [
                   VWidget(
-                    path: '/notes/add',
+                    path: '/note/add',
                     name: AddNotesRoute,
                     widget: const AddNotePage(),
                   ),
@@ -86,8 +102,29 @@ class AppRoute extends VRouteElementBuilder {
                     path: '/note/:id',
                     name: NoteRoute,
                     widget: const NotePage(),
-                  )
+                  ),
                 ],
+              ),
+            ],
+          ),
+          VGuard(
+            beforeEnter: (vRedirector) async {
+              if (await isLoggedIn()) {
+                var _authRepository =
+                    RepositoryProvider.of<AuthenticationRepository>(context);
+                if (_authRepository.currentUser.emailVerified) {
+                  return vRedirector.pushNamed(NotesRoute);
+                }
+                return null;
+              } else {
+                return vRedirector.pushNamed(LoginRoute);
+              }
+            },
+            stackedRoutes: [
+              VWidget(
+                path: '/user/verify',
+                name: NotVerifiedRoute,
+                widget: const NotVerifiedPage(),
               ),
             ],
           ),
