@@ -1,16 +1,13 @@
-# nota
+# 📒 Nota - Notes App
 
-A new Flutter project.
+Flutter project with Android and Web Apps ready.
 
-## Getting Started
+[🌍 Nota Website](https://nota-71534.web.app/)
 
-This project is a starting point for a Flutter application.
+## Core Package
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Package Name | Pub.dev                                                 | Documentation                                | Description                  |
+| ------------ | ------------------------------------------------------- | -------------------------------------------- | ---------------------------- |
+| Flutter Fire | [firebase_core](https://pub.dev/packages/firebase_core) | [FlutterFire](https://firebase.flutter.dev/) | Flutter Firebase Integration |
+| Flutter Bloc | [flutter_bloc](https://pub.dev/packages/flutter_bloc)   | [Bloc Library](https://bloclibrary.dev/#/)   | Bloc State Management        |
+| VRouter      | [vrouter](https://pub.dev/packages/vrouter)             | [VRouter](https://vrouter.dev/)              | Inspired by Vue Router       |
