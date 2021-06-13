@@ -39,6 +39,8 @@ class Note extends Equatable {
     );
   }
 
+  bool get isEmpty => title == '' && note == '';
+
   static Note fromSnapshot(DocumentSnapshot snapshot) {
     final data = snapshot.data() as dynamic;
     return Note(

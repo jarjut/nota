@@ -55,7 +55,6 @@ class _NotePageState extends State<NotePage> {
                 onPressed: () {
                   BlocProvider.of<NotesBloc>(context).add(DeleteNote(note));
                   Navigator.pop(context);
-                  VRouter.of(context).pop();
                 },
                 child: const Text('Delete'),
               ),
@@ -91,7 +90,9 @@ class _NotePageState extends State<NotePage> {
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {
-            var note = state.notes.firstWhere((note) => note.id == noteId);
+            var note = state.notes
+                .firstWhere((note) => note.id == noteId, orElse: () => Note());
+            if (note.isEmpty) VRouter.of(context).pop();
             this.note = note;
             if (_noteFieldController.value == TextEditingValue.empty) {
               _titleFieldController.text = note.title;
