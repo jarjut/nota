@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:nota/models/User.dart';
+
+import '../models/User.dart';
 
 /// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}

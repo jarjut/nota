@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/repositories/authentication_repository.dart';
-import 'package:nota/utils/debouncer.dart';
 
 import '../app/bloc/authentication_bloc.dart';
+import '../repositories/authentication_repository.dart';
+import '../utils/debouncer.dart';
 
 class NotVerifiedPage extends StatefulWidget {
   const NotVerifiedPage({Key? key}) : super(key: key);
