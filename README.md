@@ -2,6 +2,8 @@
 
 Flutter project with Android and Web Apps ready.
 
+Notes UI inspired by Google Keep.
+
 [🌍 Nota Website](https://nota-71534.web.app/)
 
 ## Core Package

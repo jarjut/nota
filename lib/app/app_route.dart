@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/features/notes/search_notes_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
@@ -34,6 +35,7 @@ class AppRoute extends VRouteElementBuilder {
   static const String AddNotesRoute = 'addNotesRoute';
   static const String NoteRoute = 'noteRoute';
   static const String NotVerifiedRoute = 'notVerifiedRoute';
+  static const String SearchNotesRoute = 'searchNotesRoute';
 
   @override
   List<VRouteElement> buildRoutes() {
@@ -97,6 +99,11 @@ class AppRoute extends VRouteElementBuilder {
                     path: '/note/add',
                     name: AddNotesRoute,
                     widget: const AddNotePage(),
+                  ),
+                  VWidget(
+                    path: '/note/search',
+                    name: SearchNotesRoute,
+                    widget: const SearchNotesPage(),
                   ),
                   VWidget(
                     path: '/note/:id',

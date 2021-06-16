@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/app/app_route.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../app/bloc/authentication_bloc.dart';
@@ -9,7 +10,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected(String path) => context.vRouter.path == path;
+    bool isSelected(String routeName) => context.vRouter.names.first == routeName;
 
     return Drawer(
       child: SafeArea(
@@ -31,9 +32,9 @@ class AppDrawer extends StatelessWidget {
               leading: const Icon(Icons.article),
               title: const Text('Notes'),
               onTap: () {
-                context.vRouter.push('/');
+                context.vRouter.pushNamed(AppRoute.NotesRoute);
               },
-              selected: isSelected('/'),
+              selected: isSelected(AppRoute.NotesRoute),
             ),
             ListTile(
               leading: const Icon(Icons.logout),
