@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/notes/search_notes_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../app/app_route.dart';

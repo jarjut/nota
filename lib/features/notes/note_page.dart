@@ -1,11 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 import 'package:vrouter/vrouter.dart';
 
 import '../../models/Note.dart';
-import '../../utils/debouncer.dart';
 import 'bloc/notes_bloc.dart';
+import 'widgets/note_form.dart';
 
 enum NoteMenuPopUp {
   delete,
@@ -21,23 +21,11 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
-  final _addNoteFormKey = GlobalKey<FormState>();
-  final _titleFieldController = TextEditingController();
-  final _noteFieldController = TextEditingController();
-  final Debouncer _debounce =
-      Debouncer(duration: const Duration(milliseconds: 500));
+  late TextEditingController _titleFieldController;
+  late flutter_quill.QuillController _noteQuillController;
+  bool controllerInitialized = false;
   String? noteId;
   Note? note;
-
-  void formOnChanged(Note note) {
-    final newNote = note.copyWith(
-      title: _titleFieldController.text,
-      note: _noteFieldController.text,
-      updatedOn: Timestamp.now(),
-    );
-    _debounce.run(
-        () => BlocProvider.of<NotesBloc>(context).add(UpdateNote(newNote)));
-  }
 
   Future<void> _showDeleteDialog(Note note) async {
     return showDialog(
@@ -67,72 +55,82 @@ class _NotePageState extends State<NotePage> {
   Widget build(BuildContext context) {
     noteId = VRouter.of(context).pathParameters['id'];
 
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          PopupMenuButton(
-            onSelected: (NoteMenuPopUp selected) {
-              if (selected == NoteMenuPopUp.delete) {
-                if (note != null) {
-                  _showDeleteDialog(note!);
+    void safeNote() {
+      var note = this.note!.copyWith(
+            title: _titleFieldController.text,
+            note: _noteQuillController.document.toPlainText().trim(),
+            noteQuillDelta: _noteQuillController.document.toDelta().toJson(),
+          );
+      if (!note.isEmpty) {
+        this.note = note;
+        BlocProvider.of<NotesBloc>(context).add(
+          UpdateNote(note),
+        );
+      }
+    }
+
+    return VWidgetGuard(
+      onPop: (vRedirector) async {
+        safeNote();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            PopupMenuButton(
+              onSelected: (NoteMenuPopUp selected) {
+                if (selected == NoteMenuPopUp.delete) {
+                  if (note != null) {
+                    _showDeleteDialog(note!);
+                  }
                 }
+              },
+              itemBuilder: (context) => <PopupMenuEntry<NoteMenuPopUp>>[
+                const PopupMenuItem(
+                  value: NoteMenuPopUp.delete,
+                  child: Text('Delete Item'),
+                ),
+              ],
+            ),
+          ],
+        ),
+        body: BlocListener<NotesBloc, NotesState>(
+          listener: (context, state) {
+            if (state is NotesLoaded) {
+              if (!state.notes.contains(note)) {
+                Navigator.pop(context);
+              }
+            }
+          },
+          child: BlocBuilder<NotesBloc, NotesState>(
+            builder: (context, state) {
+              if (state is NotesLoaded) {
+                var note = state.notes.firstWhere((note) => note.id == noteId,
+                    orElse: () => Note());
+                this.note = note;
+
+                if (!controllerInitialized) {
+                  controllerInitialized = true;
+                  _titleFieldController =
+                      TextEditingController(text: note.title);
+                  _noteQuillController = flutter_quill.QuillController(
+                    document:
+                        flutter_quill.Document.fromJson(note.noteQuillDelta),
+                    selection: const TextSelection.collapsed(offset: 0),
+                  );
+                }
+
+                return NoteForm(
+                  titleFieldController: _titleFieldController,
+                  noteQuillController: _noteQuillController,
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
             },
-            itemBuilder: (context) => <PopupMenuEntry<NoteMenuPopUp>>[
-              const PopupMenuItem(
-                value: NoteMenuPopUp.delete,
-                child: Text('Delete Item'),
-              ),
-            ],
           ),
-        ],
-      ),
-      body: BlocBuilder<NotesBloc, NotesState>(
-        builder: (context, state) {
-          if (state is NotesLoaded) {
-            var note = state.notes
-                .firstWhere((note) => note.id == noteId, orElse: () => Note());
-            if (note.isEmpty) VRouter.of(context).pop();
-            this.note = note;
-            if (_noteFieldController.value == TextEditingValue.empty) {
-              _titleFieldController.text = note.title;
-              _noteFieldController.text = note.note;
-            }
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-              child: Form(
-                key: _addNoteFormKey,
-                onChanged: () => formOnChanged(note),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _titleFieldController,
-                      decoration: const InputDecoration(
-                        hintText: 'Title',
-                        border: InputBorder.none,
-                      ),
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        controller: _noteFieldController,
-                        maxLines: null,
-                        decoration: const InputDecoration(
-                          hintText: 'Write your notes here',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+        ),
       ),
     );
   }
@@ -140,8 +138,7 @@ class _NotePageState extends State<NotePage> {
   @override
   void dispose() {
     _titleFieldController.dispose();
-    _noteFieldController.dispose();
-    _debounce.cancel();
+    _noteQuillController.dispose();
     super.dispose();
   }
 }

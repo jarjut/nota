@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../app/bloc/authentication_bloc.dart';
 import '../../models/Note.dart';
 import 'bloc/notes_bloc.dart';
+import 'widgets/note_form.dart';
 
 class AddNotePage extends StatefulWidget {
   const AddNotePage({Key? key}) : super(key: key);
@@ -14,9 +16,8 @@ class AddNotePage extends StatefulWidget {
 }
 
 class _AddNotePageState extends State<AddNotePage> {
-  final _addNoteFormKey = GlobalKey<FormState>();
   final _titleFieldController = TextEditingController();
-  final _noteFieldController = TextEditingController();
+  final _noteQuillController = QuillController.basic();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,8 @@ class _AddNotePageState extends State<AddNotePage> {
     void safeNote() {
       final note = Note(
         title: _titleFieldController.text,
-        note: _noteFieldController.text,
+        note: _noteQuillController.document.toPlainText().trim(),
+        noteQuillDelta: _noteQuillController.document.toDelta().toJson(),
         uid: _user.id,
       );
       if (!note.isEmpty) {
@@ -41,35 +43,18 @@ class _AddNotePageState extends State<AddNotePage> {
       },
       child: Scaffold(
         appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-          child: Form(
-            key: _addNoteFormKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  controller: _titleFieldController,
-                  decoration: const InputDecoration(
-                    hintText: 'Title',
-                    border: InputBorder.none,
-                  ),
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Expanded(
-                  child: TextFormField(
-                    controller: _noteFieldController,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                      hintText: 'Write your notes here',
-                      border: InputBorder.none,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+        body: NoteForm(
+          titleFieldController: _titleFieldController,
+          noteQuillController: _noteQuillController,
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _titleFieldController.dispose();
+    _noteQuillController.dispose();
+    super.dispose();
   }
 }

@@ -5,6 +5,7 @@ class Note extends Equatable {
   final String? id;
   final String title;
   final String note;
+  final List<dynamic> noteQuillDelta;
   final Timestamp createdOn;
   final Timestamp updatedOn;
 
@@ -15,16 +16,19 @@ class Note extends Equatable {
     this.id,
     this.title = '',
     this.note = '',
+    List<dynamic>? noteQuillDelta,
     this.uid,
-    createdOn,
-    updatedOn,
+    Timestamp? createdOn,
+    Timestamp? updatedOn,
   })  : createdOn = createdOn ?? Timestamp.now(),
-        updatedOn = createdOn ?? Timestamp.now();
+        updatedOn = createdOn ?? Timestamp.now(),
+        noteQuillDelta = noteQuillDelta ?? [];
 
   Note copyWith({
     String? id,
     String? title,
     String? note,
+    List<dynamic>? noteQuillDelta,
     String? uid,
     Timestamp? createdOn,
     Timestamp? updatedOn,
@@ -34,6 +38,7 @@ class Note extends Equatable {
       title: title ?? this.title,
       note: note ?? this.note,
       uid: uid ?? this.uid,
+      noteQuillDelta: noteQuillDelta ?? this.noteQuillDelta,
       createdOn: createdOn ?? this.createdOn,
       updatedOn: updatedOn ?? this.updatedOn,
     );
@@ -47,6 +52,7 @@ class Note extends Equatable {
       id: snapshot.id,
       title: data['title'],
       note: data['note'],
+      noteQuillDelta: data['noteQuillDelta'],
       uid: data['uid'],
       createdOn: data['createdOn'],
       updatedOn: data['updatedOn'],
@@ -57,6 +63,7 @@ class Note extends Equatable {
     return {
       'title': title,
       'note': note,
+      'noteQuillDelta': noteQuillDelta,
       'uid': uid,
       'createdOn': createdOn,
       'updatedOn': updatedOn,
@@ -64,8 +71,9 @@ class Note extends Equatable {
   }
 
   @override
-  String toString() => 'Note { id: $id, title: $title}';
+  String toString() => 'Note { title: $title, note: $note }';
 
   @override
-  List<Object?> get props => [id, title, note, uid, createdOn, updatedOn];
+  List<Object?> get props =>
+      [id, title, note, noteQuillDelta, uid, createdOn, updatedOn];
 }
