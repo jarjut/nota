@@ -47,13 +47,13 @@ class AppRoute extends VRouteElementBuilder {
             listener: (context, state) {
               if (state.status == AuthenticationStatus.authenticated) {
                 if (state.user.emailVerified) {
-                  context.vRouter.pushNamed(NotesRoute);
+                  context.vRouter.toNamed(NotesRoute);
                 } else {
-                  context.vRouter.pushNamed(NotVerifiedRoute);
+                  context.vRouter.toNamed(NotVerifiedRoute);
                 }
               }
               if (state.status == AuthenticationStatus.unauthenticated) {
-                context.vRouter.pushNamed(LoginRoute);
+                context.vRouter.toNamed(LoginRoute);
               }
             },
             child: child,
@@ -62,7 +62,7 @@ class AppRoute extends VRouteElementBuilder {
         nestedRoutes: [
           VGuard(
             beforeEnter: (vRedirector) async =>
-                await isLoggedIn() ? vRedirector.pushNamed(NotesRoute) : null,
+                await isLoggedIn() ? vRedirector.toNamed(NotesRoute) : null,
             stackedRoutes: [
               VWidget(
                 path: '/login',
@@ -82,11 +82,11 @@ class AppRoute extends VRouteElementBuilder {
                 var _authRepository =
                     RepositoryProvider.of<AuthenticationRepository>(context);
                 if (!_authRepository.currentUser.emailVerified) {
-                  return vRedirector.pushNamed(NotVerifiedRoute);
+                  return vRedirector.toNamed(NotVerifiedRoute);
                 }
                 return null;
               } else {
-                return vRedirector.pushNamed(LoginRoute);
+                return vRedirector.toNamed(LoginRoute);
               }
             },
             stackedRoutes: [
@@ -120,11 +120,11 @@ class AppRoute extends VRouteElementBuilder {
                 var _authRepository =
                     RepositoryProvider.of<AuthenticationRepository>(context);
                 if (_authRepository.currentUser.emailVerified) {
-                  return vRedirector.pushNamed(NotesRoute);
+                  return vRedirector.toNamed(NotesRoute);
                 }
                 return null;
               } else {
-                return vRedirector.pushNamed(LoginRoute);
+                return vRedirector.toNamed(LoginRoute);
               }
             },
             stackedRoutes: [

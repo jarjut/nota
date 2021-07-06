@@ -82,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
                 const SizedBox(height: 16.0),
                 InkWell(
                   onTap: () =>
-                      VRouter.of(context).pushNamed(AppRoute.RegisterRoute),
+                      VRouter.of(context).toNamed(AppRoute.RegisterRoute),
                   child: const Text(
                     'Create new account',
                     style: TextStyle(color: Colors.blue),

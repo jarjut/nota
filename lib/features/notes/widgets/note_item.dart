@@ -18,7 +18,7 @@ class NoteItem extends StatelessWidget {
       child: InkWell(
         splashColor: Theme.of(context).primaryColor.withAlpha(30),
         onTap: () =>
-            router.pushNamed('noteRoute', pathParameters: {'id': '${note.id}'}),
+            router.toNamed('noteRoute', pathParameters: {'id': '${note.id}'}),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

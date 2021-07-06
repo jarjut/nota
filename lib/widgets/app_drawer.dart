@@ -10,7 +10,8 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected(String routeName) => context.vRouter.names.first == routeName;
+    bool isSelected(String routeName) =>
+        context.vRouter.names.first == routeName;
 
     return Drawer(
       child: SafeArea(
@@ -32,7 +33,7 @@ class AppDrawer extends StatelessWidget {
               leading: const Icon(Icons.article),
               title: const Text('Notes'),
               onTap: () {
-                context.vRouter.pushNamed(AppRoute.NotesRoute);
+                context.vRouter.toNamed(AppRoute.NotesRoute);
               },
               selected: isSelected(AppRoute.NotesRoute),
             ),

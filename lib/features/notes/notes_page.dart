@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/notes/search_notes_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../app/app_route.dart';
@@ -17,7 +16,7 @@ class NotesPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: InkWell(
-          onTap: () => context.vRouter.pushNamed(AppRoute.SearchNotesRoute),
+          onTap: () => context.vRouter.toNamed(AppRoute.SearchNotesRoute),
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
@@ -71,7 +70,7 @@ class NotesPage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.vRouter.pushNamed(AppRoute.AddNotesRoute),
+        onPressed: () => context.vRouter.toNamed(AppRoute.AddNotesRoute),
         child: const Icon(Icons.add),
       ),
     );

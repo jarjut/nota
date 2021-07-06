@@ -72,7 +72,7 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
         ),
       );
     } else {
-      VRouter.of(context).pushNamed(AppRoute.NotesRoute);
+      VRouter.of(context).toNamed(AppRoute.NotesRoute);
       return Container();
     }
   }

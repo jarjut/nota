@@ -81,8 +81,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
                 const SizedBox(height: 16.0),
                 InkWell(
-                  onTap: () =>
-                      VRouter.of(context).pushNamed(AppRoute.LoginRoute),
+                  onTap: () => VRouter.of(context).toNamed(AppRoute.LoginRoute),
                   child: const Text(
                     'Already have an account',
                     style: TextStyle(color: Colors.blue),
