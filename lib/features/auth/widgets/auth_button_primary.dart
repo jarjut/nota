@@ -25,8 +25,8 @@ class AuthButtonPrimary extends StatelessWidget {
       ),
       child: isLoading
           ? const SizedBox(
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
               child: CircularProgressIndicator(
                 color: Color(0xFF323040),
                 strokeWidth: 3.0,
