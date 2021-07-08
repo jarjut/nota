@@ -44,6 +44,7 @@ ThemeData AppTheme() => ThemeData(
     );
 
 ThemeData DarkTheme() => ThemeData(
+      primarySwatch: Colors.amber,
       brightness: Brightness.dark,
       appBarTheme: const AppBarTheme(
         elevation: appBarElevation,

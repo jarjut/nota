@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nota/app/app_route.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../models/Note.dart';
@@ -17,8 +18,15 @@ class NoteItem extends StatelessWidget {
     return Card(
       child: InkWell(
         splashColor: Theme.of(context).primaryColor.withAlpha(30),
-        onTap: () =>
-            router.toNamed('noteRoute', pathParameters: {'id': '${note.id}'}),
+        onTap: () {
+          if (router.names.first == AppRoute.SearchNotesRoute) {
+            router.toNamed(AppRoute.SearchedNoteRoute,
+                pathParameters: {'id': '${note.id}'});
+          } else {
+            router.toNamed(AppRoute.NoteRoute,
+                pathParameters: {'id': '${note.id}'});
+          }
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

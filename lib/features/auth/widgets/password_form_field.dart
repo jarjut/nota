@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:nota/features/auth/widgets/auth_text_form_field.dart';
 
-class PasswordFormField extends StatefulWidget {
-  PasswordFormField({
+class AuthPasswordFormField extends StatefulWidget {
+  AuthPasswordFormField({
     Key? key,
     this.controller,
-    this.labelText = 'Password',
+    this.hintText = 'Password',
   }) : super(key: key);
 
   final TextEditingController? controller;
-  final String labelText;
+  final String hintText;
 
   @override
-  _PasswordFormFieldState createState() => _PasswordFormFieldState();
+  _AuthPasswordFormFieldState createState() => _AuthPasswordFormFieldState();
 }
 
-class _PasswordFormFieldState extends State<PasswordFormField> {
+class _AuthPasswordFormFieldState extends State<AuthPasswordFormField> {
   bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return AuthTextFormField(
       controller: widget.controller,
       obscureText: _obscurePassword,
-      decoration: InputDecoration(
-        labelText: widget.labelText,
-        suffixIcon: IconButton(
-          icon: _obscurePassword
-              ? const Icon(Icons.visibility_off)
-              : const Icon(Icons.visibility),
-          onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
-        ),
+      hintText: widget.hintText,
+      suffixIcon: IconButton(
+        color: Colors.white38,
+        icon: _obscurePassword
+            ? const Icon(Icons.visibility_off)
+            : const Icon(Icons.visibility),
+        onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
       ),
     );
   }

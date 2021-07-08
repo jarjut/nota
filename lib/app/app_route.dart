@@ -36,6 +36,7 @@ class AppRoute extends VRouteElementBuilder {
   static const String NoteRoute = 'noteRoute';
   static const String NotVerifiedRoute = 'notVerifiedRoute';
   static const String SearchNotesRoute = 'searchNotesRoute';
+  static const String SearchedNoteRoute = 'searchedNoteRoute';
 
   @override
   List<VRouteElement> buildRoutes() {
@@ -64,15 +65,26 @@ class AppRoute extends VRouteElementBuilder {
             beforeEnter: (vRedirector) async =>
                 await isLoggedIn() ? vRedirector.toNamed(NotesRoute) : null,
             stackedRoutes: [
-              VWidget(
-                path: '/login',
-                name: LoginRoute,
-                widget: const LoginPage(),
-              ),
-              VWidget(
-                path: '/register',
-                name: RegisterRoute,
-                widget: const RegisterPage(),
+              VPopHandler(
+                onPop: (vRedirector) async {
+                  if (vRedirector.historyCanBack()) {
+                    vRedirector.historyBack();
+                  } else {
+                    vRedirector.pop();
+                  }
+                },
+                stackedRoutes: [
+                  VWidget(
+                    path: '/login',
+                    name: LoginRoute,
+                    widget: const LoginPage(),
+                  ),
+                  VWidget(
+                    path: '/register',
+                    name: RegisterRoute,
+                    widget: const RegisterPage(),
+                  ),
+                ],
               ),
             ],
           ),
@@ -104,6 +116,13 @@ class AppRoute extends VRouteElementBuilder {
                     path: '/note/search',
                     name: SearchNotesRoute,
                     widget: const SearchNotesPage(),
+                    stackedRoutes: [
+                      VWidget(
+                        path: ':id',
+                        name: SearchedNoteRoute,
+                        widget: const NotePage(),
+                      ),
+                    ],
                   ),
                   VWidget(
                     path: '/note/:id',
