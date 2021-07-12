@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
@@ -29,6 +30,12 @@ class _AppState extends State<App> {
         themeMode: ThemeMode.system,
         theme: AppTheme(),
         darkTheme: DarkTheme(),
+        buildTransition: (animation1, _, child) {
+          return FadeTransition(
+            opacity: animation1,
+            child: child,
+          );
+        },
         routes: [AppRoute(context)],
       ),
     );
