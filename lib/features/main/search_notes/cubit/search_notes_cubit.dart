@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../models/Note.dart';
+import '../../../../models/Note.dart';
 
 part 'search_notes_state.dart';
 

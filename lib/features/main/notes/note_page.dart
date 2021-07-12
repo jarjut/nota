@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/features/main/main_wrapper.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../../models/Note.dart';
-import '../../utils/debouncer.dart';
+import '../../../models/Note.dart';
+import '../../../utils/debouncer.dart';
 import 'bloc/notes_bloc.dart';
 
 enum NoteMenuPopUp {
@@ -67,7 +68,7 @@ class _NotePageState extends State<NotePage> {
   Widget build(BuildContext context) {
     noteId = VRouter.of(context).pathParameters['id'];
 
-    return Scaffold(
+    return MainWrapper(
       appBar: AppBar(
         actions: [
           PopupMenuButton(
@@ -87,6 +88,7 @@ class _NotePageState extends State<NotePage> {
           ),
         ],
       ),
+      drawer: null,
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {

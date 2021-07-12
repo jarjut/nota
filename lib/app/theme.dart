@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 
 const double appBarElevation = 1;
 
+// Colors
+Color primaryColor = Colors.amber;
+// <====== Light Colors ======>
+Color lightBackgroundColor = Colors.grey.shade50;
+// <====== Dark Colors ======>
+const Color darkBackgroundColor = Color(0xFF24232F);
+const Color darkCardColor = Color(0xFF1E1D26);
+const Color darkAppBarColor = Color(0xFF1B1A24);
+
 CardTheme _cardTheme({
   Color borderColor = const Color(0xFFE0E0E0),
   Color color = Colors.white,
@@ -44,14 +53,21 @@ ThemeData AppTheme() => ThemeData(
     );
 
 ThemeData DarkTheme() => ThemeData(
-      primarySwatch: Colors.amber,
       brightness: Brightness.dark,
+      // Colors
+      primarySwatch: Colors.amber,
+      scaffoldBackgroundColor: darkBackgroundColor,
+      canvasColor: darkAppBarColor,
+      cardColor: darkCardColor,
+      dialogBackgroundColor: darkCardColor,
+      //
       appBarTheme: const AppBarTheme(
         elevation: appBarElevation,
+        color: darkAppBarColor,
       ),
       cardTheme: _cardTheme(
         borderColor: Colors.grey,
-        color: Colors.grey[850]!,
+        color: darkCardColor,
       ),
       textTheme: _textTheme(),
     );

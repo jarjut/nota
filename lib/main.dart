@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app/app.dart';
 import 'app/bloc/authentication_bloc.dart';
 import 'app/bloc_observer.dart';
-import 'features/notes/bloc/notes_bloc.dart';
+import 'features/main/notes/bloc/notes_bloc.dart';
 import 'repositories/authentication_repository.dart';
 import 'repositories/notes_repository.dart';
 

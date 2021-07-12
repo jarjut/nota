@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/app/app_route.dart';
-import 'package:nota/features/notes/bloc/notes_bloc.dart';
-import 'package:nota/features/notes/widgets/list_notes.dart';
-import 'package:nota/utils/debouncer.dart';
+import 'package:nota/features/main/main_wrapper.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../../../app/app_route.dart';
+import '../../../utils/debouncer.dart';
+import '../notes/bloc/notes_bloc.dart';
+import '../notes/widgets/list_notes.dart';
 import 'cubit/search_notes_cubit.dart';
 
 class SearchNotesPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
   Widget build(BuildContext context) {
     final _notesState = BlocProvider.of<NotesBloc>(context).state;
     if (_notesState is NotesLoaded) {
-      return Scaffold(
+      return MainWrapper(
         appBar: AppBar(
           title: TextField(
             controller: _searchFieldController,
@@ -52,6 +53,7 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
             ),
           ),
         ),
+        drawer: null,
         body: BlocBuilder<SearchNotesCubit, SearchNotesState>(
           bloc: _searchCubit,
           builder: (context, state) {

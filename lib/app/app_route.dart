@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/notes/search_notes_page.dart';
+import 'package:nota/features/not_found_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
 import '../features/auth/register/register_page.dart';
-import '../features/not_verified_page.dart';
-import '../features/notes/add_note_page.dart';
-import '../features/notes/note_page.dart';
-import '../features/notes/notes_page.dart';
+import '../features/main/notes/add_note_page.dart';
+import '../features/main/notes/note_page.dart';
+import '../features/main/notes/notes_page.dart';
+import '../features/main/search_notes/search_notes_page.dart';
+import '../features/not_verified/not_verified_page.dart';
 import '../repositories/authentication_repository.dart';
 import 'bloc/authentication_bloc.dart';
 
@@ -77,11 +78,21 @@ class AppRoute extends VRouteElementBuilder {
                   VWidget(
                     path: '/login',
                     name: LoginRoute,
+                    buildTransition: (animation1, _, child) => FadeTransition(
+                      opacity: animation1,
+                      child: child,
+                    ),
+                    transitionDuration: const Duration(milliseconds: 400),
                     widget: const LoginPage(),
                   ),
                   VWidget(
                     path: '/register',
                     name: RegisterRoute,
+                    buildTransition: (animation1, _, child) => FadeTransition(
+                      opacity: animation1,
+                      child: child,
+                    ),
+                    transitionDuration: const Duration(milliseconds: 400),
                     widget: const RegisterPage(),
                   ),
                 ],
@@ -155,6 +166,11 @@ class AppRoute extends VRouteElementBuilder {
             ],
           ),
         ],
+      ),
+      VWidget(path: '/404', widget: const NotFoundPage()),
+      VRouteRedirector(
+        path: r':_(.+)',
+        redirectTo: '/404',
       ),
     ];
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../features/notes/bloc/notes_bloc.dart';
+import '../features/main/notes/bloc/notes_bloc.dart';
 import 'app_route.dart';
 import 'bloc/authentication_bloc.dart';
 import 'theme.dart';
@@ -24,7 +24,9 @@ class _AppState extends State<App> {
         }
       },
       child: VRouter(
+        debugShowCheckedModeBanner: false,
         title: 'Nota',
+        themeMode: ThemeMode.system,
         theme: AppTheme(),
         darkTheme: DarkTheme(),
         routes: [AppRoute(context)],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nota/app/app_route.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../../../models/Note.dart';
+import '../../../../app/app_route.dart';
+import '../../../../models/Note.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({

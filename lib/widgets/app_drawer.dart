@@ -18,8 +18,10 @@ class AppDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            Container(
+              height: kToolbarHeight,
+              padding: const EdgeInsets.only(left: 16.0),
+              alignment: Alignment.centerLeft,
               child: Text(
                 'Nota',
                 style: Theme.of(context).textTheme.headline5,

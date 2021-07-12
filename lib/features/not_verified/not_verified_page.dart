@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/constants/breakpoints.dart';
 
-import '../app/bloc/authentication_bloc.dart';
-import '../repositories/authentication_repository.dart';
-import '../utils/debouncer.dart';
+import '../../../app/bloc/authentication_bloc.dart';
+import 'resend_email.dart';
 
 class NotVerifiedPage extends StatefulWidget {
   const NotVerifiedPage({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class NotVerifiedPage extends StatefulWidget {
 
 class _NotVerifiedPageState extends State<NotVerifiedPage> {
   Timer? timer;
-  Debouncer resendDebouncer = Debouncer(duration: const Duration(seconds: 60));
   @override
   void initState() {
     timer = Timer.periodic(const Duration(seconds: 5), (Timer t) {
@@ -28,7 +27,6 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
 
   @override
   void dispose() {
-    resendDebouncer.cancel();
     timer?.cancel();
     super.dispose();
   }
@@ -42,7 +40,8 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
         body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             return Center(
-              child: Padding(
+              child: Container(
+                width: kMobileBreakpoint,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                 child: Column(
@@ -65,21 +64,7 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
                       ),
                     ),
                     const SizedBox(height: 24.0),
-                    InkWell(
-                      onTap: () {
-                        resendDebouncer.run(() {
-                          RepositoryProvider.of<AuthenticationRepository>(
-                                  context)
-                              .sendEmailVerification();
-                        });
-                      },
-                      child: const Text(
-                        'Resend email',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ),
+                    const ResendEmail(),
                     const SizedBox(height: 40.0),
                     SizedBox(
                       width: double.infinity,
@@ -87,7 +72,12 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
                         onPressed: () =>
                             BlocProvider.of<AuthenticationBloc>(context)
                                 .add(AuthLogoutRequested()),
-                        child: const Text('Return to Sign In'),
+                        child: const Text(
+                          'Return to Sign In',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ],

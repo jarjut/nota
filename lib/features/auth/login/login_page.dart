@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/auth/auth_wrapper.dart';
+import 'package:nota/features/auth/wrapper/auth_wrapper.dart';
 
 import '../../../repositories/authentication_repository.dart';
 import 'cubit/login_cubit.dart';
@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginCubit(context.read<AuthenticationRepository>()),
       child: const AuthWrapper(
-        child: LoginForm(),
+        body: LoginForm(),
       ),
     );
   }
