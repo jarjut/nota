@@ -22,9 +22,18 @@ class AppDrawer extends StatelessWidget {
               height: kToolbarHeight,
               padding: const EdgeInsets.only(left: 16.0),
               alignment: Alignment.centerLeft,
-              child: Text(
-                'Nota',
-                style: Theme.of(context).textTheme.headline5,
+              child: Row(
+                children: [
+                  SizedBox(
+                    height: 36.0,
+                    child: Image.asset('assets/icons/nota-icon.png'),
+                  ),
+                  const SizedBox(width: 12.0),
+                  Text(
+                    'Nota',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ],
               ),
             ),
             const Divider(

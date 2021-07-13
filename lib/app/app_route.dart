@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/not_found_page.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
@@ -9,6 +11,7 @@ import '../features/main/notes/add_note_page.dart';
 import '../features/main/notes/note_page.dart';
 import '../features/main/notes/notes_page.dart';
 import '../features/main/search_notes/search_notes_page.dart';
+import '../features/not_found_page.dart';
 import '../features/not_verified/not_verified_page.dart';
 import '../repositories/authentication_repository.dart';
 import 'bloc/authentication_bloc.dart';
@@ -38,6 +41,34 @@ class AppRoute extends VRouteElementBuilder {
   static const String NotVerifiedRoute = 'notVerifiedRoute';
   static const String SearchNotesRoute = 'searchNotesRoute';
   static const String SearchedNoteRoute = 'searchedNoteRoute';
+
+  Widget AppSlideRightTransition(
+    Animation<double> animation,
+    Animation<double> secondAnimation,
+    Widget child,
+  ) {
+    var begin = const Offset(-1, 0);
+    var end = Offset.zero;
+    var curve = Curves.easeInOut;
+    var tween = Tween(begin: begin, end: end);
+    var curvedAnimation = CurvedAnimation(
+      parent: animation,
+      curve: curve,
+    );
+
+    return SlideTransition(
+      position: tween.animate(curvedAnimation),
+      child: child,
+    );
+  }
+
+  bool platformIsMobile() {
+    if (!kIsWeb) {
+      return Platform.isAndroid || Platform.isIOS;
+    } else {
+      return false;
+    }
+  }
 
   @override
   List<VRouteElement> buildRoutes() {
@@ -131,6 +162,8 @@ class AppRoute extends VRouteElementBuilder {
                       VWidget(
                         path: ':id',
                         name: SearchedNoteRoute,
+                        buildTransition:
+                            platformIsMobile() ? AppSlideRightTransition : null,
                         widget: const NotePage(),
                       ),
                     ],
@@ -138,6 +171,8 @@ class AppRoute extends VRouteElementBuilder {
                   VWidget(
                     path: '/note/:id',
                     name: NoteRoute,
+                    buildTransition:
+                        platformIsMobile() ? AppSlideRightTransition : null,
                     widget: const NotePage(),
                   ),
                 ],

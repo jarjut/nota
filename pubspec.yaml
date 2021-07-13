@@ -40,7 +40,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.0.4
-# For information on the generic Dart part of this file, see the
+  flutter_launcher_icons: ^0.9.0
+
+flutter_icons:
+  image_path: "assets/icons/nota-icon.png"
+  android: true
+  ios: true
+
+  # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
