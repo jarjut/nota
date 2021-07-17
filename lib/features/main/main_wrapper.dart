@@ -25,14 +25,15 @@ class MainWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isDesktop = size.width >= kDesktopBreakpoint;
+    final isDesktop = size.width > kDesktopBreakpoint;
     return Scaffold(
       appBar: isDesktop
           ? null
           : appBar != null
               ? PreferredSize(
                   preferredSize: const Size.fromHeight(kToolbarHeight),
-                  child: appBar!)
+                  child: appBar!,
+                )
               : null,
       drawer: isDesktop ? null : drawer,
       backgroundColor: backgroundColor,

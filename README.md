@@ -1,4 +1,4 @@
-# 📒 Nota - Notes App
+# ![Nota](assets/icons/nota-icon-32x32.png "Nota") Nota - Notes App
 
 Flutter project with Android and Web Apps ready.
 

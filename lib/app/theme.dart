@@ -56,6 +56,7 @@ ThemeData DarkTheme() => ThemeData(
       brightness: Brightness.dark,
       // Colors
       primarySwatch: Colors.amber,
+      accentColor: Colors.amber,
       scaffoldBackgroundColor: darkBackgroundColor,
       canvasColor: darkAppBarColor,
       cardColor: darkCardColor,

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/features/main/main_wrapper.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../../../app/bloc/authentication_bloc.dart';
-import '../../../models/Note.dart';
-import 'bloc/notes_bloc.dart';
+import '../../../../app/bloc/authentication_bloc.dart';
+import '../../../../models/Note.dart';
+import '../bloc/notes_bloc.dart';
 
 class AddNotePage extends StatefulWidget {
   const AddNotePage({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _AddNotePageState extends State<AddNotePage> {
     }
 
     return VWidgetGuard(
-      onPop: (vRedirector) async {
+      beforeLeave: (vRedirector, _) async {
         safeNote();
       },
       child: MainWrapper(

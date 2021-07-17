@@ -13,6 +13,31 @@ class AppDrawer extends StatelessWidget {
     bool isSelected(String routeName) =>
         context.vRouter.names.first == routeName;
 
+    Future<void> _showLogoutDialog() async {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Logout'),
+              content: const Text('Are you sure you want to logout?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    BlocProvider.of<AuthenticationBloc>(context)
+                        .add(AuthLogoutRequested());
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Delete'),
+                ),
+              ],
+            );
+          });
+    }
+
     return Drawer(
       child: SafeArea(
         child: ListView(
@@ -49,11 +74,26 @@ class AppDrawer extends StatelessWidget {
               selected: isSelected(AppRoute.NotesRoute),
             ),
             ListTile(
+              leading: const Icon(Icons.archive),
+              title: const Text('Archive'),
+              onTap: () {
+                context.vRouter.toNamed(AppRoute.ArchiveRoute);
+              },
+              selected: isSelected(AppRoute.ArchiveRoute),
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete),
+              title: const Text('Trash'),
+              onTap: () {
+                context.vRouter.toNamed(AppRoute.TrashRoute);
+              },
+              selected: isSelected(AppRoute.TrashRoute),
+            ),
+            ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Logout'),
               onTap: () {
-                BlocProvider.of<AuthenticationBloc>(context)
-                    .add(AuthLogoutRequested());
+                _showLogoutDialog();
               },
             ),
           ],

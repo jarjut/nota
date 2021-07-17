@@ -7,6 +7,10 @@ class Note extends Equatable {
   final String note;
   final Timestamp createdOn;
   final Timestamp updatedOn;
+  final bool archived;
+  final Timestamp? archivedOn;
+  final bool deleted;
+  final Timestamp? deletedOn;
 
   /// User ID
   final String? uid;
@@ -18,6 +22,10 @@ class Note extends Equatable {
     this.uid,
     createdOn,
     updatedOn,
+    this.archivedOn,
+    this.archived = false,
+    this.deleted = false,
+    this.deletedOn,
   })  : createdOn = createdOn ?? Timestamp.now(),
         updatedOn = createdOn ?? Timestamp.now();
 
@@ -28,6 +36,10 @@ class Note extends Equatable {
     String? uid,
     Timestamp? createdOn,
     Timestamp? updatedOn,
+    bool? archived,
+    Timestamp? archivedOn,
+    bool? deleted,
+    Timestamp? deletedOn,
   }) {
     return Note(
       id: id ?? this.id,
@@ -36,6 +48,10 @@ class Note extends Equatable {
       uid: uid ?? this.uid,
       createdOn: createdOn ?? this.createdOn,
       updatedOn: updatedOn ?? this.updatedOn,
+      archived: archived ?? this.archived,
+      archivedOn: archivedOn ?? this.archivedOn,
+      deleted: deleted ?? this.deleted,
+      deletedOn: deletedOn ?? this.deletedOn,
     );
   }
 
@@ -50,6 +66,10 @@ class Note extends Equatable {
       uid: data['uid'],
       createdOn: data['createdOn'],
       updatedOn: data['updatedOn'],
+      archived: data['archived'],
+      archivedOn: data['archivedOn'],
+      deleted: data['deleted'],
+      deletedOn: data['deletedOn'],
     );
   }
 
@@ -60,12 +80,27 @@ class Note extends Equatable {
       'uid': uid,
       'createdOn': createdOn,
       'updatedOn': updatedOn,
+      'archived': archived,
+      'archivedOn': archivedOn,
+      'deleted': deleted,
+      'deletedOn': deletedOn,
     };
   }
 
   @override
-  String toString() => 'Note { id: $id, title: $title}';
+  String toString() => 'Note { id: $id, title: $title, note: $note}}';
 
   @override
-  List<Object?> get props => [id, title, note, uid, createdOn, updatedOn];
+  List<Object?> get props => [
+        id,
+        title,
+        note,
+        uid,
+        createdOn,
+        updatedOn,
+        archived,
+        archivedOn,
+        deleted,
+        deletedOn,
+      ];
 }

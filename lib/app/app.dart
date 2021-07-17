@@ -36,6 +36,7 @@ class _AppState extends State<App> {
             child: child,
           );
         },
+        mode: VRouterMode.history,
         routes: [AppRoute(context)],
       ),
     );

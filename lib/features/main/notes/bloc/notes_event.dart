@@ -52,7 +52,55 @@ class DeleteNote extends NotesEvent {
   List<Object> get props => [note];
 
   @override
+  String toString() => 'DeleteNotePermanent { Note: $note }';
+}
+
+class ArchiveNote extends NotesEvent {
+  final Note note;
+
+  const ArchiveNote(this.note);
+
+  @override
+  List<Object> get props => [note];
+
+  @override
+  String toString() => 'ArchiveNote { Note: $note }';
+}
+
+class UnArchiveNote extends NotesEvent {
+  final Note note;
+
+  const UnArchiveNote(this.note);
+
+  @override
+  List<Object> get props => [note];
+
+  @override
+  String toString() => 'UnArchiveNote { Note: $note }';
+}
+
+class TrashNote extends NotesEvent {
+  final Note note;
+
+  const TrashNote(this.note);
+
+  @override
+  List<Object> get props => [note];
+
+  @override
   String toString() => 'DeleteNote { Note: $note }';
+}
+
+class RestoreNote extends NotesEvent {
+  final Note note;
+
+  const RestoreNote(this.note);
+
+  @override
+  List<Object> get props => [note];
+
+  @override
+  String toString() => 'RestoreDeletedNote { Note: $note }';
 }
 
 class NotesUpdated extends NotesEvent {
@@ -62,4 +110,7 @@ class NotesUpdated extends NotesEvent {
 
   @override
   List<Object> get props => [notes];
+
+  @override
+  String toString() => 'Notes Updated';
 }

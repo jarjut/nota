@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../models/Note.dart';
@@ -23,34 +24,32 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   ) async* {
     if (event is LoadNotes) {
       yield* _mapLoadNotesToState(event);
-    } else if (event is AddNote) {
-      yield* _mapAddNoteToState(event);
-    } else if (event is UpdateNote) {
-      yield* _mapUpdateNoteToState(event);
-    } else if (event is DeleteNote) {
-      yield* _mapDeleteNoteToState(event);
     } else if (event is NotesUpdated) {
       yield* _mapNotesUpdateToState(event);
+    } else if (event is AddNote) {
+      _notesRepository.addNewNote(event.note);
+    } else if (event is UpdateNote) {
+      final updatedNote =
+          event.updatedNote.copyWith(updatedOn: Timestamp.now());
+      _notesRepository.updateNote(updatedNote);
+    } else if (event is DeleteNote) {
+      _notesRepository.deleteNote(event.note);
+    } else if (event is ArchiveNote) {
+      _notesRepository.archiveNote(event.note);
+    } else if (event is TrashNote) {
+      _notesRepository.trashNote(event.note);
+    } else if (event is UnArchiveNote) {
+      _notesRepository.unArchiveNote(event.note);
+    } else if (event is RestoreNote) {
+      _notesRepository.restoreNote(event.note);
     }
   }
 
   Stream<NotesState> _mapLoadNotesToState(LoadNotes event) async* {
     _notesSubscription?.cancel();
-    _notesSubscription = _notesRepository.notes(event.uid).listen(
+    _notesSubscription = _notesRepository.allNotes(event.uid).listen(
           (notes) => add(NotesUpdated(notes)),
         );
-  }
-
-  Stream<NotesState> _mapAddNoteToState(AddNote event) async* {
-    _notesRepository.addNewNote(event.note);
-  }
-
-  Stream<NotesState> _mapUpdateNoteToState(UpdateNote event) async* {
-    _notesRepository.updateNote(event.updatedNote);
-  }
-
-  Stream<NotesState> _mapDeleteNoteToState(DeleteNote event) async* {
-    _notesRepository.deleteNote(event.note);
   }
 
   Stream<NotesState> _mapNotesUpdateToState(NotesUpdated event) async* {

@@ -7,9 +7,11 @@ import 'package:vrouter/vrouter.dart';
 
 import '../features/auth/login/login_page.dart';
 import '../features/auth/register/register_page.dart';
-import '../features/main/notes/add_note_page.dart';
-import '../features/main/notes/note_page.dart';
-import '../features/main/notes/notes_page.dart';
+import '../features/main/notes/pages/add_note_page.dart';
+import '../features/main/notes/pages/archive_page.dart';
+import '../features/main/notes/pages/note_page.dart';
+import '../features/main/notes/pages/notes_page.dart';
+import '../features/main/notes/pages/trash_page.dart';
 import '../features/main/search_notes/search_notes_page.dart';
 import '../features/not_found_page.dart';
 import '../features/not_verified/not_verified_page.dart';
@@ -41,6 +43,8 @@ class AppRoute extends VRouteElementBuilder {
   static const String NotVerifiedRoute = 'notVerifiedRoute';
   static const String SearchNotesRoute = 'searchNotesRoute';
   static const String SearchedNoteRoute = 'searchedNoteRoute';
+  static const String ArchiveRoute = 'archiveRoute';
+  static const String TrashRoute = 'trashRoute';
 
   Widget AppSlideRightTransition(
     Animation<double> animation,
@@ -155,7 +159,7 @@ class AppRoute extends VRouteElementBuilder {
                     widget: const AddNotePage(),
                   ),
                   VWidget(
-                    path: '/note/search',
+                    path: '/search',
                     name: SearchNotesRoute,
                     widget: const SearchNotesPage(),
                     stackedRoutes: [
@@ -167,6 +171,16 @@ class AppRoute extends VRouteElementBuilder {
                         widget: const NotePage(),
                       ),
                     ],
+                  ),
+                  VWidget(
+                    path: '/archive',
+                    name: ArchiveRoute,
+                    widget: const ArchivePage(),
+                  ),
+                  VWidget(
+                    path: '/trash',
+                    name: TrashRoute,
+                    widget: const TrashPage(),
                   ),
                   VWidget(
                     path: '/note/:id',

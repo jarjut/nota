@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:nota/constants/breakpoints.dart';
 
 import '../../../../models/Note.dart';
 import 'note_item.dart';
@@ -10,19 +11,25 @@ class ListNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width <= kMobileBreakpoint;
     if (notes.isEmpty) {
       // TODO: Empty Note View
-      return Container();
+      return const Center(
+        child: Text('Empty Notes'),
+      );
     } else {
       return CustomScrollView(
         slivers: [
           SliverPadding(
-            padding: const EdgeInsets.all(4),
+            padding: EdgeInsets.all(isMobile ? 4 : 12),
             sliver: SliverStaggeredGrid.extentBuilder(
-              maxCrossAxisExtent: 200,
+              maxCrossAxisExtent: 300,
               itemCount: notes.length,
               itemBuilder: (context, index) => NoteItem(note: notes[index]),
               staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
+              mainAxisSpacing: isMobile ? 0 : 4,
+              crossAxisSpacing: isMobile ? 0 : 4,
             ),
           )
         ],
