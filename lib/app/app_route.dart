@@ -158,38 +158,38 @@ class AppRoute extends VRouteElementBuilder {
                     name: AddNotesRoute,
                     widget: const AddNotePage(),
                   ),
+                ],
+              ),
+              VWidget(
+                path: '/search',
+                name: SearchNotesRoute,
+                widget: const SearchNotesPage(),
+                stackedRoutes: [
                   VWidget(
-                    path: '/search',
-                    name: SearchNotesRoute,
-                    widget: const SearchNotesPage(),
-                    stackedRoutes: [
-                      VWidget(
-                        path: ':id',
-                        name: SearchedNoteRoute,
-                        buildTransition:
-                            platformIsMobile() ? AppSlideRightTransition : null,
-                        widget: const NotePage(),
-                      ),
-                    ],
-                  ),
-                  VWidget(
-                    path: '/archive',
-                    name: ArchiveRoute,
-                    widget: const ArchivePage(),
-                  ),
-                  VWidget(
-                    path: '/trash',
-                    name: TrashRoute,
-                    widget: const TrashPage(),
-                  ),
-                  VWidget(
-                    path: '/note/:id',
-                    name: NoteRoute,
+                    path: ':id',
+                    name: SearchedNoteRoute,
                     buildTransition:
                         platformIsMobile() ? AppSlideRightTransition : null,
                     widget: const NotePage(),
                   ),
                 ],
+              ),
+              VWidget(
+                path: '/archive',
+                name: ArchiveRoute,
+                widget: const ArchivePage(),
+              ),
+              VWidget(
+                path: '/trash',
+                name: TrashRoute,
+                widget: const TrashPage(),
+              ),
+              VWidget(
+                path: '/note/:id',
+                name: NoteRoute,
+                buildTransition:
+                    platformIsMobile() ? AppSlideRightTransition : null,
+                widget: const NotePage(),
               ),
             ],
           ),

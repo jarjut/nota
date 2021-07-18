@@ -5,8 +5,10 @@ import '../../constants/breakpoints.dart';
 import '../../widgets/app_drawer.dart';
 
 class MainWrapper extends StatelessWidget {
-  final Widget? appBar;
-  final Widget? drawer;
+  final Widget appBar;
+
+  /// Enable Drawer for mobile screen
+  final bool drawer;
   final Widget body;
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
@@ -14,42 +16,45 @@ class MainWrapper extends StatelessWidget {
 
   const MainWrapper({
     Key? key,
-    this.appBar,
+    required this.appBar,
     required this.body,
     this.floatingActionButton,
     this.backgroundColor,
     this.floatingActionButtonLocation,
-    this.drawer = const AppDrawer(),
+    this.drawer = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isDesktop = size.width > kDesktopBreakpoint;
+    const appDrawer = AppDrawer();
     return Scaffold(
       appBar: isDesktop
           ? null
-          : appBar != null
-              ? PreferredSize(
-                  preferredSize: const Size.fromHeight(kToolbarHeight),
-                  child: appBar!,
-                )
+          : PreferredSize(
+              preferredSize: const Size.fromHeight(kToolbarHeight),
+              child: appBar,
+            ),
+      drawer: isDesktop
+          ? null
+          : drawer
+              ? appDrawer
               : null,
-      drawer: isDesktop ? null : drawer,
       backgroundColor: backgroundColor,
       body: ResponsiveLayout(
         mobileBody: body,
-        desktopBody: Row(
+        desktopBody: Column(
           children: [
-            const AppDrawer(),
+            appBar,
+            const Divider(
+              height: 1,
+              thickness: 1,
+            ),
             Expanded(
-              child: Column(
+              child: Row(
                 children: [
-                  appBar ?? const SizedBox.shrink(),
-                  const Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
+                  appDrawer,
                   Expanded(
                     child: body,
                   ),

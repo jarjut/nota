@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const double appBarElevation = 1;
 
 // Colors
-Color primaryColor = Colors.amber;
+MaterialColor primaryColor = Colors.amber;
 // <====== Light Colors ======>
 Color lightBackgroundColor = Colors.grey.shade50;
 // <====== Dark Colors ======>

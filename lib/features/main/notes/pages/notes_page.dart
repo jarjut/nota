@@ -7,7 +7,7 @@ import '../../../../app/app_route.dart';
 import '../../main_wrapper.dart';
 import '../bloc/notes_bloc.dart';
 import '../widgets/list_notes.dart';
-import '../widgets/notes_app_bar.dart';
+import '../../search_app_bar.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class NotesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainWrapper(
-      appBar: const NotesAppBar(),
+      appBar: const SearchAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.vRouter.toNamed(AppRoute.AddNotesRoute),
         child: const Icon(Icons.add),

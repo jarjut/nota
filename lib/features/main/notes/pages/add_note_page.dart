@@ -42,7 +42,7 @@ class _AddNotePageState extends State<AddNotePage> {
       },
       child: MainWrapper(
         appBar: AppBar(),
-        drawer: null,
+        drawer: false,
         body: Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
           child: Form(

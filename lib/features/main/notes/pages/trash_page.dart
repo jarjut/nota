@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vrouter/vrouter.dart';
 
+import '../../../../app/app_route.dart';
+import '../../../../constants/constants.dart';
 import '../../../../repositories/authentication_repository.dart';
 import '../../main_appbar.dart';
 import '../../main_wrapper.dart';
@@ -12,9 +15,20 @@ class TrashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isDesktop = size.width > kDesktopBreakpoint;
     return MainWrapper(
-      appBar: const MainAppBar(
-        title: Text('Trash Notes'),
+      appBar: MainAppBar(
+        title: const Text('Trash Notes'),
+        actions: isDesktop
+            ? null
+            : [
+                IconButton(
+                  onPressed: () =>
+                      VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
+                  icon: const Icon(Icons.search),
+                ),
+              ],
       ),
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {

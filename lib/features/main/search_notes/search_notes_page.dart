@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/constants/breakpoints.dart';
 import 'package:nota/features/main/main_wrapper.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -25,52 +26,61 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
   Widget build(BuildContext context) {
     final _notesState = BlocProvider.of<NotesBloc>(context).state;
     if (_notesState is NotesLoaded) {
-      return MainWrapper(
-        appBar: AppBar(
-          title: TextField(
-            controller: _searchFieldController,
-            autofocus: true,
-            onChanged: (value) {
-              _debouncer.run(
-                  () => _searchCubit.searchNotes(_notesState.notes, value));
-            },
-            textAlignVertical: TextAlignVertical.top,
-            style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  fontSize: 18,
-                ),
-            decoration: InputDecoration(
-              hintText: 'Search notes',
-              border: InputBorder.none,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  _searchFieldController.value = TextEditingValue.empty;
-                },
-                icon: Icon(
-                  Icons.cancel,
-                  color: Theme.of(context).hintColor,
+      return VWidgetGuard(
+        onPop: (vRedirector) async {
+          if (vRedirector.historyCanBack()) {
+            vRedirector.historyBack();
+          } else {
+            vRedirector.pop();
+          }
+        },
+        child: MainWrapper(
+          appBar: AppBar(
+            title: TextField(
+              controller: _searchFieldController,
+              autofocus: true,
+              onChanged: (value) {
+                _debouncer.run(
+                    () => _searchCubit.searchNotes(_notesState.notes, value));
+              },
+              textAlignVertical: TextAlignVertical.top,
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    fontSize: 18,
+                  ),
+              decoration: InputDecoration(
+                hintText: 'Search notes',
+                border: InputBorder.none,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    _searchFieldController.value = TextEditingValue.empty;
+                  },
+                  icon: Icon(
+                    Icons.cancel,
+                    color: Theme.of(context).hintColor,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        drawer: null,
-        body: BlocBuilder<SearchNotesCubit, SearchNotesState>(
-          bloc: _searchCubit,
-          builder: (context, state) {
-            if (state is SearchNotesLoaded) {
-              if (state.notes.isEmpty) {
-                return const Center(
-                  child: Text('Notes not found'),
-                );
+          drawer: MediaQuery.of(context).size.width > kDesktopBreakpoint,
+          body: BlocBuilder<SearchNotesCubit, SearchNotesState>(
+            bloc: _searchCubit,
+            builder: (context, state) {
+              if (state is SearchNotesLoaded) {
+                if (state.notes.isEmpty) {
+                  return const Center(
+                    child: Text('Notes not found'),
+                  );
+                } else {
+                  return ListNotes(notes: state.notes);
+                }
               } else {
-                return ListNotes(notes: state.notes);
+                return const Center(
+                  child: Text('Search notes'),
+                );
               }
-            } else {
-              return const Center(
-                child: Text('Search notes'),
-              );
-            }
-          },
+            },
+          ),
         ),
       );
     } else {

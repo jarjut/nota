@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../../models/Note.dart';
+import '../../main_appbar.dart';
 import '../../main_wrapper.dart';
 import '../bloc/notes_bloc.dart';
 
@@ -83,7 +84,11 @@ class _NotePageState extends State<NotePage> {
         }
       },
       child: MainWrapper(
-        appBar: AppBar(
+        appBar: MainAppBar(
+          leading: IconButton(
+            onPressed: () => VRouter.of(context).pop(),
+            icon: const Icon(Icons.arrow_back),
+          ),
           actions: [
             PopupMenuButton(
               onSelected: (NoteMenuPopUp selected) {
@@ -175,7 +180,7 @@ class _NotePageState extends State<NotePage> {
             ),
           ],
         ),
-        drawer: null,
+        drawer: false,
         body: BlocBuilder<NotesBloc, NotesState>(
           builder: (context, state) {
             if (state is NotesLoaded) {
