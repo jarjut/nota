@@ -15,7 +15,7 @@ class AppDrawer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     bool isSelected(String routeName) =>
         context.vRouter.names.first == routeName;
-    bool isDesktop = size.width > kDesktopBreakpoint;
+    final isDesktop = size.width > kDesktopBreakpoint;
 
     Future<void> _showLogoutDialog() async {
       return showDialog(

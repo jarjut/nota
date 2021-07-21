@@ -90,6 +90,10 @@ class _NotePageState extends State<NotePage> {
             icon: const Icon(Icons.arrow_back),
           ),
           actions: [
+            IconButton(
+              onPressed: () => VRouter.of(context).pop(),
+              icon: const Icon(Icons.done),
+            ),
             PopupMenuButton(
               onSelected: (NoteMenuPopUp selected) {
                 if (note != null) {
@@ -203,32 +207,35 @@ class _NotePageState extends State<NotePage> {
               _noteFieldController =
                   TextEditingController(text: noteLoaded.note);
 
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                child: Form(
-                  key: _addNoteFormKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: _titleFieldController,
-                        decoration: const InputDecoration(
-                          hintText: 'Title',
-                          border: InputBorder.none,
-                        ),
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          controller: _noteFieldController,
-                          onEditingComplete: () => print('edit complete'),
-                          maxLines: null,
+              return Container(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: Form(
+                    key: _addNoteFormKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _titleFieldController,
                           decoration: const InputDecoration(
-                            hintText: 'Write your notes here',
+                            hintText: 'Title',
                             border: InputBorder.none,
                           ),
+                          style: Theme.of(context).textTheme.headline6,
                         ),
-                      )
-                    ],
+                        Expanded(
+                          child: TextFormField(
+                            controller: _noteFieldController,
+                            onEditingComplete: () => print('edit complete'),
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              hintText: 'Write your notes here',
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );

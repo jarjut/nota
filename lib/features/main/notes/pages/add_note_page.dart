@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/features/main/main_wrapper.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../../app/bloc/authentication_bloc.dart';
 import '../../../../models/Note.dart';
+import '../../main_appbar.dart';
+import '../../main_wrapper.dart';
 import '../bloc/notes_bloc.dart';
 
 class AddNotePage extends StatefulWidget {
@@ -41,7 +42,18 @@ class _AddNotePageState extends State<AddNotePage> {
         safeNote();
       },
       child: MainWrapper(
-        appBar: AppBar(),
+        appBar: MainAppBar(
+          leading: IconButton(
+            onPressed: () => VRouter.of(context).pop(),
+            icon: const Icon(Icons.arrow_back),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () => VRouter.of(context).pop(),
+              icon: const Icon(Icons.done),
+            ),
+          ],
+        ),
         drawer: false,
         body: Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
