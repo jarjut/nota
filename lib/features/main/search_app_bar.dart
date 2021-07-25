@@ -27,18 +27,27 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                   width: 230.0,
                   alignment: Alignment.centerLeft,
                   child: title ??
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 36.0,
-                            child: Image.asset('assets/icons/nota-icon.png'),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () =>
+                              VRouter.of(context).toNamed(AppRoute.NotesRoute),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: 36.0,
+                                child:
+                                    Image.asset('assets/icons/nota-icon.png'),
+                              ),
+                              const SizedBox(width: 12.0),
+                              Text(
+                                'Nota',
+                                style: Theme.of(context).textTheme.headline5,
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 12.0),
-                          Text(
-                            'Nota',
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                        ],
+                        ),
                       ),
                 )
               : const SizedBox.shrink(),
