@@ -18,6 +18,7 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final _RegisterFormKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -44,6 +45,11 @@ class _RegisterFormState extends State<RegisterForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AuthTextFormField(
+                  controller: _nameController,
+                  hintText: 'Full Name',
+                ),
+                const SizedBox(height: 12),
+                AuthTextFormField(
                   controller: _emailController,
                   hintText: 'Email',
                 ),
@@ -60,6 +66,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     onPressed: () => context
                         .read<RegisterCubit>()
                         .createUserWithEmailAndPassword(
+                            name: _nameController.text,
                             email: _emailController.text,
                             password: _passwordController.text),
                     label: 'REGISTER',
@@ -124,6 +131,7 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   void dispose() {
     super.dispose();
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
   }

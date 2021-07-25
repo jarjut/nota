@@ -35,7 +35,7 @@ class AppDrawer extends StatelessWidget {
                         .add(AuthLogoutRequested());
                     Navigator.pop(context);
                   },
-                  child: const Text('Delete'),
+                  child: const Text('Logout'),
                 ),
               ],
             );

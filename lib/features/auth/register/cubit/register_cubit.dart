@@ -13,13 +13,17 @@ class RegisterCubit extends Cubit<RegisterState> {
   final AuthenticationRepository _authenticationRepository;
 
   Future<void> createUserWithEmailAndPassword({
+    required String name,
     required String email,
     required String password,
   }) async {
     emit(state.copyWith(status: RegisterStatus.loading));
     try {
       await _authenticationRepository.createUserWithEmailAndPassword(
-          email: email, password: password);
+        name: name,
+        email: email,
+        password: password,
+      );
       emit(state.copyWith(status: RegisterStatus.done));
     } on FirebaseException catch (e) {
       emit(state.copyWith(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -18,6 +19,7 @@ class AuthenticationRepository {
 
   final fb_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final userCollection = FirebaseFirestore.instance.collection('users');
 
   /// Stream of [User] which will emit the current user when
   /// the authentication state changes.
@@ -55,9 +57,10 @@ class AuthenticationRepository {
 
   /// Sign in with Google Account
   Future<void> signInWithGoogle() async {
+    fb_auth.UserCredential userCred;
     if (kIsWeb) {
       final googleProvider = fb_auth.GoogleAuthProvider();
-      await _firebaseAuth.signInWithPopup(googleProvider);
+      userCred = await _firebaseAuth.signInWithPopup(googleProvider);
     } else {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
@@ -68,21 +71,39 @@ class AuthenticationRepository {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      await _firebaseAuth.signInWithCredential(credential);
+      userCred = await _firebaseAuth.signInWithCredential(credential);
+    }
+    final user = userCred.user?.toUser;
+
+    if (user != null) {
+      await userCollection.doc(user.id).get().then((doc) async {
+        if (!doc.exists) {
+          await userCollection.doc(user.id).set(user.toDocument());
+        }
+      });
     }
   }
 
   /// Create a new user account with the given [email] address and [password]
   /// then send an email verification to the user
   Future<void> createUserWithEmailAndPassword({
+    required String name,
     required String email,
     required String password,
   }) async {
-    final user = await _firebaseAuth.createUserWithEmailAndPassword(
+    final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
-    await user.user?.sendEmailVerification();
+    final user = userCred.user?.toUser;
+
+    if (user != null) {
+      await userCollection
+          .doc(user.id)
+          .set(user.copyWith(name: name).toDocument());
+    }
+
+    await userCred.user?.sendEmailVerification();
   }
 
   /// Send Verification email to user
@@ -111,6 +132,12 @@ class AuthenticationRepository {
     await user?.reload();
     user = _firebaseAuth.currentUser;
     return user == null ? User.empty : user.toUser;
+  }
+
+  Future<void> updateUserVerificationStatus(User user) async {
+    await userCollection
+        .doc(user.id)
+        .update({'emailVerified': user.emailVerified});
   }
 }
 
