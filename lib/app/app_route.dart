@@ -13,6 +13,7 @@ import '../features/main/notes/pages/note_page.dart';
 import '../features/main/notes/pages/notes_page.dart';
 import '../features/main/notes/pages/trash_page.dart';
 import '../features/main/search_notes/search_notes_page.dart';
+import '../features/main/settings/settings_page.dart';
 import '../features/not_found_page.dart';
 import '../features/not_verified/not_verified_page.dart';
 import '../repositories/authentication_repository.dart';
@@ -45,6 +46,7 @@ class AppRoute extends VRouteElementBuilder {
   static const String SearchedNoteRoute = 'searchedNoteRoute';
   static const String ArchiveRoute = 'archiveRoute';
   static const String TrashRoute = 'trashRoute';
+  static const String SettingsRoute = 'settingsRoute';
 
   Widget AppSlideRightTransition(
     Animation<double> animation,
@@ -183,6 +185,11 @@ class AppRoute extends VRouteElementBuilder {
                 path: '/trash',
                 name: TrashRoute,
                 widget: const TrashPage(),
+              ),
+              VWidget(
+                path: '/settings',
+                name: SettingsRoute,
+                widget: const SettingsPage(),
               ),
               VWidget(
                 path: '/note/:id',

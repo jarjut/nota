@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../features/main/notes/bloc/notes_bloc.dart';
+import '../features/main/settings/theme_cubit.dart';
 import 'app_route.dart';
 import 'bloc/authentication_bloc.dart';
 import 'theme.dart';
@@ -24,20 +25,24 @@ class _AppState extends State<App> {
           BlocProvider.of<NotesBloc>(context).add(LoadNotes(state.user.id));
         }
       },
-      child: VRouter(
-        debugShowCheckedModeBanner: false,
-        title: 'Nota',
-        themeMode: ThemeMode.system,
-        theme: AppTheme(),
-        darkTheme: DarkTheme(),
-        buildTransition: (animation1, _, child) {
-          return FadeTransition(
-            opacity: animation1,
-            child: child,
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, state) {
+          return VRouter(
+            debugShowCheckedModeBanner: false,
+            title: 'Nota',
+            themeMode: state,
+            theme: AppTheme(),
+            darkTheme: DarkTheme(),
+            buildTransition: (animation1, _, child) {
+              return FadeTransition(
+                opacity: animation1,
+                child: child,
+              );
+            },
+            mode: VRouterMode.history,
+            routes: [AppRoute(context)],
           );
         },
-        mode: VRouterMode.history,
-        routes: [AppRoute(context)],
       ),
     );
   }
