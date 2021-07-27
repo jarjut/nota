@@ -7,7 +7,17 @@ class MediaQueryUtil {
 
   MediaQueryUtil(this.context) : mediaQuery = MediaQuery.of(context);
 
-  bool isDesktop() => mediaQuery.size.width > kDesktopBreakpoint;
+  Size get size => mediaQuery.size;
 
-  bool isTablet() => mediaQuery.size.width > kTabletBreakpoint;
+  double get width => mediaQuery.size.width;
+
+  double get hight => mediaQuery.size.height;
+
+  bool isMobile() => mediaQuery.size.width <= kMobileBreakpoint;
+
+  bool isTablet() =>
+      mediaQuery.size.width > kMobileBreakpoint &&
+      mediaQuery.size.width <= kTabletBreakpoint;
+
+  bool isDesktop() => mediaQuery.size.width > kTabletBreakpoint;
 }

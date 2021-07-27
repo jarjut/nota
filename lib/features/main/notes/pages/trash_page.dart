@@ -37,6 +37,8 @@ class TrashPage extends StatelessWidget {
 
             return ListNotes(
               notes: notes,
+              emptyIconData: Icons.delete,
+              emptyText: 'No notes in Trash',
             );
           } else {
             final uid = RepositoryProvider.of<AuthenticationRepository>(context)

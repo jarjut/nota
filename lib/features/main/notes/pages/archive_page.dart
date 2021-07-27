@@ -39,6 +39,8 @@ class ArchivePage extends StatelessWidget {
 
             return ListNotes(
               notes: notes,
+              emptyIconData: Icons.archive,
+              emptyText: 'Your archived notes appear here',
             );
           } else {
             final uid = RepositoryProvider.of<AuthenticationRepository>(context)

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/app/app_route.dart';
-import 'package:nota/app/theme.dart';
-import 'package:nota/constants/breakpoints.dart';
 import 'package:vrouter/vrouter.dart';
 
+import '../app/app_route.dart';
 import '../app/bloc/authentication_bloc.dart';
+import '../app/theme.dart';
+import '../features/main/settings/settings.dart';
+import '../utils/mediaquery_util.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final mediaQuery = MediaQueryUtil(context);
     bool isSelected(String routeName) =>
         context.vRouter.names.first == routeName;
-    final isDesktop = size.width > kDesktopBreakpoint;
 
     Future<void> _showLogoutDialog() async {
       return showDialog(
@@ -42,8 +42,39 @@ class AppDrawer extends StatelessWidget {
           });
     }
 
+    Future<void> _showSettingsDialog() async {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              elevation: 3.0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              child: Container(
+                width: 400,
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Settings',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                        ),
+                      ),
+                    ),
+                    const SettingsColumn(),
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+
     return Drawer(
-      elevation: isDesktop ? 0 : 16.0,
+      elevation: mediaQuery.isDesktop() ? 0 : 16.0,
       child: SafeArea(
         child: ListTileTheme(
           selectedColor: Theme.of(context).textTheme.bodyText1!.color,
@@ -62,7 +93,7 @@ class AppDrawer extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              !isDesktop
+              !mediaQuery.isDesktop()
                   ? Container(
                       height: kToolbarHeight,
                       padding: const EdgeInsets.only(left: 16.0),
@@ -82,7 +113,7 @@ class AppDrawer extends StatelessWidget {
                       ),
                     )
                   : const SizedBox.shrink(),
-              !isDesktop
+              !mediaQuery.isDesktop()
                   ? const Divider(
                       height: 1,
                       thickness: 1,
@@ -113,12 +144,28 @@ class AppDrawer extends StatelessWidget {
                 },
                 selected: isSelected(AppRoute.TrashRoute),
               ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                onTap: () {
+                  if (!mediaQuery.isMobile()) {
+                    _showSettingsDialog();
+                  } else {
+                    VRouter.of(context).toNamed(AppRoute.SettingsRoute);
+                  }
+                },
+              ),
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('Logout'),
-                onTap: () {
-                  _showLogoutDialog();
-                },
+                onTap: () => _showLogoutDialog(),
               ),
             ],
           ),

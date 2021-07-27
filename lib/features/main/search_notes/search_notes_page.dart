@@ -38,7 +38,6 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
           }
         },
         child: MainWrapper(
-          // TODO: Search Note AppBar
           appBar: Builder(
             builder: (context) {
               if (mediaQuery.isDesktop()) {
