@@ -26,7 +26,7 @@ class _SettingsColumnState extends State<SettingsColumn> {
                 return DropdownButton(
                   underline: Container(
                     height: 2,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).primaryColor,
                   ),
                   value: state,
                   onChanged: (ThemeMode? value) {

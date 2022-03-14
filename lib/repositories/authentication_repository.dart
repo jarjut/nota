@@ -3,7 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../models/User.dart';
+import '../models/user.dart';
+
+/// Thrown if during the sign up process if a failure occurs.
+class CreateUserFailure implements Exception {}
 
 /// Thrown during the logout process if a failure occurs.
 class LogOutFailure implements Exception {}
@@ -91,19 +94,23 @@ class AuthenticationRepository {
     required String email,
     required String password,
   }) async {
-    final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    final user = userCred.user?.toUser;
+    try {
+      final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = userCred.user?.toUser;
 
-    if (user != null) {
-      await userCollection
-          .doc(user.id)
-          .set(user.copyWith(name: name).toDocument());
+      if (user != null) {
+        await userCollection
+            .doc(user.id)
+            .set(user.copyWith(name: name).toDocument());
+      }
+
+      await userCred.user?.sendEmailVerification();
+    } on Exception {
+      throw CreateUserFailure();
     }
-
-    await userCred.user?.sendEmailVerification();
   }
 
   /// Send Verification email to user

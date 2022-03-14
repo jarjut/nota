@@ -12,7 +12,10 @@ import 'repositories/authentication_repository.dart';
 import 'repositories/notes_repository.dart';
 
 void main() async {
-  Bloc.observer = AppBlocObserver();
+  BlocOverrides.runZoned(
+    () => null,
+    blocObserver: AppBlocObserver(),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 

@@ -17,7 +17,7 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  final _RegisterFormKey = GlobalKey<FormState>();
+  final _registerFormKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -40,7 +40,7 @@ class _RegisterFormState extends State<RegisterForm> {
       child: BlocBuilder<RegisterCubit, RegisterState>(
         builder: (context, state) {
           return Form(
-            key: _RegisterFormKey,
+            key: _registerFormKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

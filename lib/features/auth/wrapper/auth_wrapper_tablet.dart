@@ -25,7 +25,7 @@ class AuthWrapperTablet extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.center,
-          child: Container(
+          child: SizedBox(
             height: 500,
             width: 700,
             child: Card(

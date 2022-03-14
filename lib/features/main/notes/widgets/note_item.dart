@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../../app/app_route.dart';
-import '../../../../models/Note.dart';
+import '../../../../models/note.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({
@@ -34,7 +34,7 @@ class NoteItem extends StatelessWidget {
             children: [
               _buildTitle(context),
               Text(
-                '${note.note}',
+                note.note,
                 style: Theme.of(context).textTheme.subtitle1,
                 maxLines: 15,
                 overflow: TextOverflow.ellipsis,
@@ -51,7 +51,7 @@ class NoteItem extends StatelessWidget {
       return Column(
         children: [
           Text(
-            '${note.title}',
+            note.title,
             style: Theme.of(context).textTheme.headline6,
           ),
           const SizedBox(height: 8.0),

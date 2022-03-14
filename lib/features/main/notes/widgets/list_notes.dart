@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nota/constants/breakpoints.dart';
 
-import '../../../../models/Note.dart';
+import '../../../../models/note.dart';
 import 'note_item.dart';
 
 class ListNotes extends StatelessWidget {
@@ -52,13 +52,11 @@ class ListNotes extends StatelessWidget {
         slivers: [
           SliverPadding(
             padding: EdgeInsets.all(isMobile ? 4 : 12),
-            sliver: SliverStaggeredGrid.extentBuilder(
+            sliver: StaggeredGrid.extent(
               maxCrossAxisExtent: 300,
-              itemCount: notes.length,
-              itemBuilder: (context, index) => NoteItem(note: notes[index]),
-              staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
               mainAxisSpacing: isMobile ? 0 : 4,
               crossAxisSpacing: isMobile ? 0 : 4,
+              children: notes.map((note) => NoteItem(note: note)).toList(),
             ),
           )
         ],

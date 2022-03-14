@@ -56,8 +56,8 @@ class AppDrawer extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Center(
+                  children: const [
+                    Center(
                       child: Text(
                         'Settings',
                         style: TextStyle(
@@ -65,7 +65,7 @@ class AppDrawer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SettingsColumn(),
+                    SettingsColumn(),
                   ],
                 ),
               ),

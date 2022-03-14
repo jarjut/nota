@@ -53,6 +53,7 @@ class MainWrapper extends StatelessWidget {
             ),
             Expanded(
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   appDrawer,
                   Expanded(

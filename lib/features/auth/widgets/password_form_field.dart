@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nota/features/auth/widgets/auth_text_form_field.dart';
 
 class AuthPasswordFormField extends StatefulWidget {
-  AuthPasswordFormField({
+  const AuthPasswordFormField({
     Key? key,
     this.controller,
     this.hintText = 'Password',
