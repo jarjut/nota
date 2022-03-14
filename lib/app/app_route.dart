@@ -48,7 +48,7 @@ class AppRoute extends VRouteElementBuilder {
   static const String TrashRoute = 'trashRoute';
   static const String SettingsRoute = 'settingsRoute';
 
-  Widget AppSlideRightTransition(
+  Widget appSlideRightTransition(
     Animation<double> animation,
     Animation<double> secondAnimation,
     Widget child,
@@ -144,7 +144,7 @@ class AppRoute extends VRouteElementBuilder {
                 if (!_authRepository.currentUser.emailVerified) {
                   return vRedirector.toNamed(NotVerifiedRoute);
                 }
-                return null;
+                return;
               } else {
                 return vRedirector.toNamed(LoginRoute);
               }
@@ -171,7 +171,7 @@ class AppRoute extends VRouteElementBuilder {
                     path: ':id',
                     name: SearchedNoteRoute,
                     buildTransition:
-                        platformIsMobile() ? AppSlideRightTransition : null,
+                        platformIsMobile() ? appSlideRightTransition : null,
                     widget: const NotePage(),
                   ),
                 ],
@@ -195,7 +195,7 @@ class AppRoute extends VRouteElementBuilder {
                 path: '/note/:id',
                 name: NoteRoute,
                 buildTransition:
-                    platformIsMobile() ? AppSlideRightTransition : null,
+                    platformIsMobile() ? appSlideRightTransition : null,
                 widget: const NotePage(),
               ),
             ],
@@ -208,7 +208,7 @@ class AppRoute extends VRouteElementBuilder {
                 if (_authRepository.currentUser.emailVerified) {
                   return vRedirector.toNamed(NotesRoute);
                 }
-                return null;
+                return;
               } else {
                 return vRedirector.toNamed(LoginRoute);
               }

@@ -4,21 +4,18 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pedantic/pedantic.dart';
 
-import '../../models/User.dart';
+import '../../models/user.dart';
 import '../../repositories/authentication_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc(
-      {required AuthenticationRepository authenticationRepository})
+class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+  AuthenticationBloc({required AuthenticationRepository authenticationRepository})
       : _authenticationRepository = authenticationRepository,
         super(
           authenticationRepository.currentUser.isNotEmpty
-              ? AuthenticationState.authenticated(
-                  authenticationRepository.currentUser)
+              ? AuthenticationState.authenticated(authenticationRepository.currentUser)
               : const AuthenticationState.unauthenticated(),
         ) {
     _userSubscription = _authenticationRepository.user.listen((_onUserChanged));
@@ -42,8 +39,7 @@ class AuthenticationBloc
     }
   }
 
-  AuthenticationState _mapUserChangedToState(
-      AuthUserChanged event, AuthenticationState state) {
+  AuthenticationState _mapUserChangedToState(AuthUserChanged event, AuthenticationState state) {
     if (event.user.isNotEmpty) {
       _authenticationRepository.updateUserVerificationStatus(event.user);
       return AuthenticationState.authenticated(event.user);

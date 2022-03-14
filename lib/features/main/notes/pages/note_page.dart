@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
-import '../../../../models/Note.dart';
+import '../../../../models/note.dart';
 import '../../main_appbar.dart';
 import '../../main_wrapper.dart';
 import '../bloc/notes_bloc.dart';
@@ -226,7 +228,7 @@ class _NotePageState extends State<NotePage> {
                         Expanded(
                           child: TextFormField(
                             controller: _noteFieldController,
-                            onEditingComplete: () => print('edit complete'),
+                            onEditingComplete: () => log('edit complete'),
                             maxLines: null,
                             decoration: const InputDecoration(
                               hintText: 'Write your notes here',

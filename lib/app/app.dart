@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
@@ -31,8 +30,8 @@ class _AppState extends State<App> {
             debugShowCheckedModeBanner: false,
             title: 'Nota',
             themeMode: state,
-            theme: AppTheme(),
-            darkTheme: DarkTheme(),
+            theme: appTheme(),
+            darkTheme: darkTheme(),
             buildTransition: (animation1, _, child) {
               return FadeTransition(
                 opacity: animation1,

@@ -10,7 +10,7 @@ abstract class NotesEvent extends Equatable {
 class LoadNotes extends NotesEvent {
   final String uid;
 
-  LoadNotes(this.uid);
+  const LoadNotes(this.uid);
 
   @override
   List<Object> get props => [uid];

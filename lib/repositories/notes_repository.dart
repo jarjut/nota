@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/Note.dart';
+import '../models/note.dart';
 
 abstract class NotesRepository {
   /// Create new [Note]
@@ -49,7 +51,7 @@ class FirebaseNotesRepository implements NotesRepository {
     try {
       await noteCollection.add(note.toDocument());
     } catch (e) {
-      print('Failed to add note: $e');
+      log('Failed to add note', error: e);
     }
   }
 
@@ -58,7 +60,7 @@ class FirebaseNotesRepository implements NotesRepository {
     try {
       return noteCollection.doc(note.id).delete();
     } catch (e) {
-      print('Failed to delete note: $e');
+      log('Failed to delete note', error: e);
     }
   }
 
@@ -128,7 +130,7 @@ class FirebaseNotesRepository implements NotesRepository {
     try {
       return noteCollection.doc(note.id).update(note.toDocument());
     } catch (e) {
-      print('Failed to update note: $e');
+      log('Failed to update note', error: e);
     }
   }
 

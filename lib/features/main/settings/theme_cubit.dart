@@ -9,9 +9,9 @@ class ThemeCubit extends Cubit<ThemeMode> {
 
   ThemeCubit({required this.prefs}) : super(ThemeMode.system);
 
-  ThemeMode ThemeModeFromString(String theme) {
+  ThemeMode themeModeFromString(String theme) {
     return ThemeMode.values.firstWhere(
-      (e) => e.toString() == 'ThemeMode.$theme',
+      (e) => e.toString() == theme,
       orElse: () => ThemeMode.system,
     );
   }
@@ -24,7 +24,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
   void getTheme() {
     final prefTheme = prefs.getString(kThemeKey);
     final theme =
-        prefTheme != null ? ThemeModeFromString(prefTheme) : ThemeMode.system;
+        prefTheme != null ? themeModeFromString(prefTheme) : ThemeMode.system;
     emit(theme);
   }
 }

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../models/Note.dart';
+import '../../../../models/note.dart';
 import '../../../../repositories/notes_repository.dart';
 
 part 'notes_event.dart';

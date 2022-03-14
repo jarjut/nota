@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../app/app_route.dart';
-import '../../../constants/breakpoints.dart';
 import '../../../constants/constants.dart';
 import '../../../utils/debouncer.dart';
 import '../../../utils/mediaquery_util.dart';

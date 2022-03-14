@@ -58,7 +58,9 @@ class _ResendEmailState extends State<ResendEmail> {
         text: 'Resend Email ',
         style: TextStyle(
           decoration: TextDecoration.underline,
-          color: canResend ? Colors.amber : Theme.of(context).disabledColor,
+          color: canResend
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).disabledColor,
         ),
         children: [
           canResend

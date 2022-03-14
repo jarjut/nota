@@ -38,8 +38,8 @@ TextTheme _textTheme() {
   );
 }
 
-ThemeData AppTheme() => ThemeData(
-      primarySwatch: Colors.amber,
+ThemeData appTheme() => ThemeData(
+      primarySwatch: primaryColor,
       scaffoldBackgroundColor: Colors.grey.shade50,
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.grey.shade50,
@@ -52,11 +52,14 @@ ThemeData AppTheme() => ThemeData(
       textTheme: _textTheme(),
     );
 
-ThemeData DarkTheme() => ThemeData(
+ThemeData darkTheme() => ThemeData(
       brightness: Brightness.dark,
       // Colors
-      primarySwatch: Colors.amber,
-      accentColor: Colors.amber,
+      primarySwatch: primaryColor,
+      primaryColor: primaryColor,
+      // ignore: deprecated_member_use
+      accentColor: primaryColor,
+      toggleableActiveColor: primaryColor[800],
       scaffoldBackgroundColor: darkBackgroundColor,
       canvasColor: darkAppBarColor,
       cardColor: darkCardColor,
