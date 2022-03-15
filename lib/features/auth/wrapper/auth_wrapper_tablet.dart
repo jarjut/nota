@@ -48,8 +48,7 @@ class AuthWrapperTablet extends StatelessWidget {
                             bottomLeft: Radius.circular(16.0),
                           ),
                           image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/desk_illustration_filled.jpg'),
+                            image: AssetImage('assets/images/desk_illustration_filled.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),

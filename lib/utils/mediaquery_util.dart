@@ -15,9 +15,7 @@ class MediaQueryUtil {
 
   bool isMobile() => mediaQuery.size.width <= kMobileBreakpoint;
 
-  bool isTablet() =>
-      mediaQuery.size.width > kMobileBreakpoint &&
-      mediaQuery.size.width <= kTabletBreakpoint;
+  bool isTablet() => mediaQuery.size.width > kMobileBreakpoint && mediaQuery.size.width <= kTabletBreakpoint;
 
   bool isDesktop() => mediaQuery.size.width > kTabletBreakpoint;
 }

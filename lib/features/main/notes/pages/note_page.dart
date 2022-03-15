@@ -41,8 +41,7 @@ class _NotePageState extends State<NotePage> {
         builder: (context) {
           return AlertDialog(
             title: const Text('Delete Note Permanently'),
-            content: const Text(
-                "You can't restore this note after deleting permanently"),
+            content: const Text("You can't restore this note after deleting permanently"),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -104,19 +103,16 @@ class _NotePageState extends State<NotePage> {
                       BlocProvider.of<NotesBloc>(context).add(TrashNote(note!));
                       break;
                     case NoteMenuPopUp.archive:
-                      BlocProvider.of<NotesBloc>(context)
-                          .add(ArchiveNote(note!));
+                      BlocProvider.of<NotesBloc>(context).add(ArchiveNote(note!));
                       break;
                     case NoteMenuPopUp.unarchive:
-                      BlocProvider.of<NotesBloc>(context)
-                          .add(UnArchiveNote(note!));
+                      BlocProvider.of<NotesBloc>(context).add(UnArchiveNote(note!));
                       break;
                     case NoteMenuPopUp.deletePermanent:
                       _showDeletePermanentDialog(note!);
                       break;
                     case NoteMenuPopUp.restore:
-                      BlocProvider.of<NotesBloc>(context)
-                          .add(RestoreNote(note!));
+                      BlocProvider.of<NotesBloc>(context).add(RestoreNote(note!));
                       break;
                     default:
                   }
@@ -190,24 +186,19 @@ class _NotePageState extends State<NotePage> {
         body: BlocBuilder<NotesBloc, NotesState>(
           builder: (context, state) {
             if (state is NotesLoaded) {
-              var noteLoaded = state.notes.firstWhere(
-                  (note) => note.id == noteId,
-                  orElse: () => Note());
+              var noteLoaded = state.notes.firstWhere((note) => note.id == noteId, orElse: () => Note());
 
               if (noteLoaded.isEmpty) {
                 VRouter.of(context).pop();
               } else if (note != null) {
-                if (note!.archived != noteLoaded.archived ||
-                    note!.deleted != noteLoaded.deleted) {
+                if (note!.archived != noteLoaded.archived || note!.deleted != noteLoaded.deleted) {
                   VRouter.of(context).pop();
                 }
               }
 
               note = noteLoaded;
-              _titleFieldController =
-                  TextEditingController(text: noteLoaded.title);
-              _noteFieldController =
-                  TextEditingController(text: noteLoaded.note);
+              _titleFieldController = TextEditingController(text: noteLoaded.title);
+              _noteFieldController = TextEditingController(text: noteLoaded.note);
 
               return Container(
                 constraints: const BoxConstraints(maxWidth: 600),

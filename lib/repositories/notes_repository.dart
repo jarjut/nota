@@ -136,18 +136,12 @@ class FirebaseNotesRepository implements NotesRepository {
 
   @override
   Stream<Note> streamNote(String id) {
-    return noteCollection
-        .doc(id)
-        .snapshots()
-        .map((snapshot) => Note.fromSnapshot(snapshot));
+    return noteCollection.doc(id).snapshots().map((snapshot) => Note.fromSnapshot(snapshot));
   }
 
   @override
   Future<Note> getNote(String id) {
-    return noteCollection
-        .doc(id)
-        .get()
-        .then((snapshot) => Note.fromSnapshot(snapshot));
+    return noteCollection.doc(id).get().then((snapshot) => Note.fromSnapshot(snapshot));
   }
 
   @override

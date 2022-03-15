@@ -19,8 +19,7 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
   @override
   void initState() {
     timer = Timer.periodic(const Duration(seconds: 5), (Timer t) {
-      BlocProvider.of<AuthenticationBloc>(context)
-          .add(AuthUserReloadRequested());
+      BlocProvider.of<AuthenticationBloc>(context).add(AuthUserReloadRequested());
     });
     super.initState();
   }
@@ -43,8 +42,7 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
               return Center(
                 child: Container(
                   width: kMobileBreakpoint,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24.0, vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -70,9 +68,7 @@ class _NotVerifiedPageState extends State<NotVerifiedPage> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () =>
-                              BlocProvider.of<AuthenticationBloc>(context)
-                                  .add(AuthLogoutRequested()),
+                          onPressed: () => BlocProvider.of<AuthenticationBloc>(context).add(AuthLogoutRequested()),
                           child: const Text(
                             'Return to Sign In',
                             style: TextStyle(

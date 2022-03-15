@@ -70,13 +70,11 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
                             controller: _searchFieldController,
                             autofocus: true,
                             onChanged: (value) {
-                              _debouncer.run(() => _searchCubit.searchNotes(
-                                  _notesState.notes, value));
+                              _debouncer.run(() => _searchCubit.searchNotes(_notesState.notes, value));
                             },
-                            style:
-                                Theme.of(context).textTheme.bodyText2?.copyWith(
-                                      fontSize: 18,
-                                    ),
+                            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                                  fontSize: 18,
+                                ),
                             decoration: InputDecoration(
                               hintText: 'Search notes',
                               prefixIcon: Padding(
@@ -86,23 +84,18 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
                                 ),
                                 child: Icon(
                                   Icons.search,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .color,
+                                  color: Theme.of(context).textTheme.bodyText1!.color,
                                 ),
                               ),
                               filled: true,
                               fillColor: Colors.grey.withOpacity(0.15),
                               border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
+                                borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                 borderSide: BorderSide.none,
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  _searchFieldController.value =
-                                      TextEditingValue.empty;
+                                  _searchFieldController.value = TextEditingValue.empty;
                                 },
                                 icon: Icon(
                                   Icons.cancel,
@@ -126,8 +119,7 @@ class _SearchNotesPageState extends State<SearchNotesPage> {
                     controller: _searchFieldController,
                     autofocus: true,
                     onChanged: (value) {
-                      _debouncer.run(() =>
-                          _searchCubit.searchNotes(_notesState.notes, value));
+                      _debouncer.run(() => _searchCubit.searchNotes(_notesState.notes, value));
                     },
                     textAlignVertical: TextAlignVertical.top,
                     style: Theme.of(context).textTheme.bodyText2?.copyWith(

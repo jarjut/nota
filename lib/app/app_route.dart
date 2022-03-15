@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -25,8 +27,7 @@ class AppRoute extends VRouteElementBuilder {
   final BuildContext context;
 
   Future<bool> isLoggedIn() async {
-    var _authRepository =
-        RepositoryProvider.of<AuthenticationRepository>(context);
+    var _authRepository = RepositoryProvider.of<AuthenticationRepository>(context);
     var user = _authRepository.currentUser;
     if (user.isEmpty) {
       user = await _authRepository.firstUserStateChange;
@@ -100,8 +101,7 @@ class AppRoute extends VRouteElementBuilder {
         },
         nestedRoutes: [
           VGuard(
-            beforeEnter: (vRedirector) async =>
-                await isLoggedIn() ? vRedirector.toNamed(NotesRoute) : null,
+            beforeEnter: (vRedirector) async => await isLoggedIn() ? vRedirector.toNamed(NotesRoute) : null,
             stackedRoutes: [
               VPopHandler(
                 onPop: (vRedirector) async {
@@ -139,8 +139,7 @@ class AppRoute extends VRouteElementBuilder {
           VGuard(
             beforeEnter: (vRedirector) async {
               if (await isLoggedIn()) {
-                var _authRepository =
-                    RepositoryProvider.of<AuthenticationRepository>(context);
+                var _authRepository = RepositoryProvider.of<AuthenticationRepository>(context);
                 if (!_authRepository.currentUser.emailVerified) {
                   return vRedirector.toNamed(NotVerifiedRoute);
                 }
@@ -170,8 +169,7 @@ class AppRoute extends VRouteElementBuilder {
                   VWidget(
                     path: ':id',
                     name: SearchedNoteRoute,
-                    buildTransition:
-                        platformIsMobile() ? appSlideRightTransition : null,
+                    buildTransition: platformIsMobile() ? appSlideRightTransition : null,
                     widget: const NotePage(),
                   ),
                 ],
@@ -194,8 +192,7 @@ class AppRoute extends VRouteElementBuilder {
               VWidget(
                 path: '/note/:id',
                 name: NoteRoute,
-                buildTransition:
-                    platformIsMobile() ? appSlideRightTransition : null,
+                buildTransition: platformIsMobile() ? appSlideRightTransition : null,
                 widget: const NotePage(),
               ),
             ],
@@ -203,8 +200,7 @@ class AppRoute extends VRouteElementBuilder {
           VGuard(
             beforeEnter: (vRedirector) async {
               if (await isLoggedIn()) {
-                var _authRepository =
-                    RepositoryProvider.of<AuthenticationRepository>(context);
+                var _authRepository = RepositoryProvider.of<AuthenticationRepository>(context);
                 if (_authRepository.currentUser.emailVerified) {
                   return vRedirector.toNamed(NotesRoute);
                 }

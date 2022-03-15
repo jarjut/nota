@@ -16,8 +16,7 @@ class AuthWrapperMobile extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image:
-                      AssetImage('assets/images/desk_illustration_filled.jpg'),
+                  image: AssetImage('assets/images/desk_illustration_filled.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -26,8 +25,7 @@ class AuthWrapperMobile extends StatelessWidget {
             ),
           ),
           Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             child: child,
           ),
         ],
@@ -42,10 +40,8 @@ class AuthMobileLoginClipper extends CustomClipper<Path> {
     final path = Path();
     final deep = size.width / 8;
     path.lineTo(0, size.height - deep);
-    path.quadraticBezierTo(size.width / 3, size.height - (deep * 2),
-        size.width / 2, size.height - deep);
-    path.quadraticBezierTo(size.width - size.width / 3, size.height, size.width,
-        size.height - deep);
+    path.quadraticBezierTo(size.width / 3, size.height - (deep * 2), size.width / 2, size.height - deep);
+    path.quadraticBezierTo(size.width - size.width / 3, size.height, size.width, size.height - deep);
     path.lineTo(size.width, 0);
     path.close();
     return path;

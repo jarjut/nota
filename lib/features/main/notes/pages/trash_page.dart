@@ -24,8 +24,7 @@ class TrashPage extends StatelessWidget {
             ? null
             : [
                 IconButton(
-                  onPressed: () =>
-                      VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
+                  onPressed: () => VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
                   icon: const Icon(Icons.search),
                 ),
               ],
@@ -41,9 +40,7 @@ class TrashPage extends StatelessWidget {
               emptyText: 'No notes in Trash',
             );
           } else {
-            final uid = RepositoryProvider.of<AuthenticationRepository>(context)
-                .currentUser
-                .id;
+            final uid = RepositoryProvider.of<AuthenticationRepository>(context).currentUser.id;
             BlocProvider.of<NotesBloc>(context).add(LoadNotes(uid));
 
             return const Center(

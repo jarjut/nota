@@ -18,8 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
   }) async {
     emit(state.copyWith(status: LoginStatus.loading));
     try {
-      await _authenticationRepository.logInWithEmailAndPassword(
-          email: email, password: password);
+      await _authenticationRepository.logInWithEmailAndPassword(email: email, password: password);
       emit(state.copyWith(status: LoginStatus.done));
     } on FirebaseException catch (e) {
       emit(state.copyWith(

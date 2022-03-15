@@ -102,9 +102,7 @@ class AuthenticationRepository {
       final user = userCred.user?.toUser;
 
       if (user != null) {
-        await userCollection
-            .doc(user.id)
-            .set(user.copyWith(name: name).toDocument());
+        await userCollection.doc(user.id).set(user.copyWith(name: name).toDocument());
       }
 
       await userCred.user?.sendEmailVerification();
@@ -142,9 +140,7 @@ class AuthenticationRepository {
   }
 
   Future<void> updateUserVerificationStatus(User user) async {
-    await userCollection
-        .doc(user.id)
-        .update({'emailVerified': user.emailVerified});
+    await userCollection.doc(user.id).update({'emailVerified': user.emailVerified});
   }
 }
 

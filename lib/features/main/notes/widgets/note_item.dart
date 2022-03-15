@@ -20,11 +20,9 @@ class NoteItem extends StatelessWidget {
         splashColor: Theme.of(context).primaryColor.withAlpha(30),
         onTap: () {
           if (router.names.first == AppRoute.SearchNotesRoute) {
-            router.toNamed(AppRoute.SearchedNoteRoute,
-                pathParameters: {'id': '${note.id}'});
+            router.toNamed(AppRoute.SearchedNoteRoute, pathParameters: {'id': '${note.id}'});
           } else {
-            router.toNamed(AppRoute.NoteRoute,
-                pathParameters: {'id': '${note.id}'});
+            router.toNamed(AppRoute.NoteRoute, pathParameters: {'id': '${note.id}'});
           }
         },
         child: Padding(

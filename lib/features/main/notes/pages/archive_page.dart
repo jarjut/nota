@@ -24,8 +24,7 @@ class ArchivePage extends StatelessWidget {
             ? null
             : [
                 IconButton(
-                  onPressed: () =>
-                      VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
+                  onPressed: () => VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
                   icon: const Icon(Icons.search),
                 ),
               ],
@@ -33,9 +32,7 @@ class ArchivePage extends StatelessWidget {
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {
-            final notes = state.notes
-                .where((note) => note.archived && !note.deleted)
-                .toList();
+            final notes = state.notes.where((note) => note.archived && !note.deleted).toList();
 
             return ListNotes(
               notes: notes,
@@ -43,9 +40,7 @@ class ArchivePage extends StatelessWidget {
               emptyText: 'Your archived notes appear here',
             );
           } else {
-            final uid = RepositoryProvider.of<AuthenticationRepository>(context)
-                .currentUser
-                .id;
+            final uid = RepositoryProvider.of<AuthenticationRepository>(context).currentUser.id;
             BlocProvider.of<NotesBloc>(context).add(LoadNotes(uid));
 
             return const Center(

@@ -14,8 +14,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQueryUtil(context);
-    bool isSelected(String routeName) =>
-        context.vRouter.names.first == routeName;
+    bool isSelected(String routeName) => context.vRouter.names.first == routeName;
 
     Future<void> _showLogoutDialog() async {
       return showDialog(
@@ -31,8 +30,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    BlocProvider.of<AuthenticationBloc>(context)
-                        .add(AuthLogoutRequested());
+                    BlocProvider.of<AuthenticationBloc>(context).add(AuthLogoutRequested());
                     Navigator.pop(context);
                   },
                   child: const Text('Logout'),
@@ -87,9 +85,7 @@ class AppDrawer extends StatelessWidget {
               bottomRight: Radius.circular(50),
             ),
           ),
-          textColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white70
-              : Colors.black87,
+          textColor: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.black87,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[

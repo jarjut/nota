@@ -23,17 +23,13 @@ class NotesPage extends StatelessWidget {
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {
-            final notes = state.notes
-                .where((note) => !note.archived && !note.deleted)
-                .toList();
+            final notes = state.notes.where((note) => !note.archived && !note.deleted).toList();
 
             return ListNotes(
               notes: notes,
             );
           } else {
-            final uid = RepositoryProvider.of<AuthenticationRepository>(context)
-                .currentUser
-                .id;
+            final uid = RepositoryProvider.of<AuthenticationRepository>(context).currentUser.id;
             BlocProvider.of<NotesBloc>(context).add(LoadNotes(uid));
 
             return const Center(

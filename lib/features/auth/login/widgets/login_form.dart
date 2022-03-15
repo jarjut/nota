@@ -59,16 +59,13 @@ class _LoginFormState extends State<LoginForm> {
                     isLoading: state.status == LoginStatus.loading,
                     onPressed: () => context
                         .read<LoginCubit>()
-                        .logInWithEmailAndPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text),
+                        .logInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text),
                     label: 'LOGIN',
                   ),
                 ),
                 const SizedBox(height: 16.0),
                 InkWell(
-                  onTap: () =>
-                      VRouter.of(context).toNamed(AppRoute.RegisterRoute),
+                  onTap: () => VRouter.of(context).toNamed(AppRoute.RegisterRoute),
                   child: Text(
                     'Create new account',
                     style: TextStyle(
@@ -79,8 +76,7 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 const SizedBox(height: 12.0),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                   child: Row(
                     children: const [
                       Expanded(
@@ -110,8 +106,7 @@ class _LoginFormState extends State<LoginForm> {
                   width: double.infinity,
                   child: GoogleButtonPrimary(
                     isLoading: state.status == LoginStatus.googleLoading,
-                    onPressed: () =>
-                        BlocProvider.of<LoginCubit>(context).signInWithGoogle(),
+                    onPressed: () => BlocProvider.of<LoginCubit>(context).signInWithGoogle(),
                   ),
                 ),
               ],
