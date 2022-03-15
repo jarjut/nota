@@ -13,45 +13,46 @@ import 'repositories/notes_repository.dart';
 
 void main() async {
   BlocOverrides.runZoned(
-    () => null,
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp();
+
+      final authenticationRepository = AuthenticationRepository();
+      final firebaseNoteRepository = FirebaseNotesRepository();
+      final prefs = await SharedPreferences.getInstance();
+
+      runApp(
+        MultiRepositoryProvider(
+          providers: [
+            RepositoryProvider(
+              create: (context) => authenticationRepository,
+              lazy: false,
+            ),
+            RepositoryProvider(
+              create: (context) => firebaseNoteRepository,
+            ),
+          ],
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AuthenticationBloc(
+                  authenticationRepository: authenticationRepository,
+                ),
+              ),
+              BlocProvider(
+                create: (context) => NotesBloc(
+                  notesRepository: firebaseNoteRepository,
+                ),
+              ),
+              BlocProvider(
+                create: (context) => ThemeCubit(prefs: prefs)..getTheme(),
+              ),
+            ],
+            child: const App(),
+          ),
+        ),
+      );
+    },
     blocObserver: AppBlocObserver(),
-  );
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  final authenticationRepository = AuthenticationRepository();
-  final firebaseNoteRepository = FirebaseNotesRepository();
-  final prefs = await SharedPreferences.getInstance();
-
-  runApp(
-    MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(
-          create: (context) => authenticationRepository,
-          lazy: false,
-        ),
-        RepositoryProvider(
-          create: (context) => firebaseNoteRepository,
-        ),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => AuthenticationBloc(
-              authenticationRepository: authenticationRepository,
-            ),
-          ),
-          BlocProvider(
-            create: (context) => NotesBloc(
-              notesRepository: firebaseNoteRepository,
-            ),
-          ),
-          BlocProvider(
-            create: (context) => ThemeCubit(prefs: prefs)..getTheme(),
-          ),
-        ],
-        child: const App(),
-      ),
-    ),
   );
 }

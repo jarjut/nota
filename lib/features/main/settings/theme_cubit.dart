@@ -23,8 +23,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
 
   void getTheme() {
     final prefTheme = prefs.getString(kThemeKey);
-    final theme =
-        prefTheme != null ? themeModeFromString(prefTheme) : ThemeMode.system;
+    final theme = prefTheme != null ? themeModeFromString(prefTheme) : ThemeMode.system;
     emit(theme);
   }
 }

@@ -30,15 +30,13 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
-                          onTap: () =>
-                              VRouter.of(context).toNamed(AppRoute.NotesRoute),
+                          onTap: () => VRouter.of(context).toNamed(AppRoute.NotesRoute),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               SizedBox(
                                 height: 36.0,
-                                child:
-                                    Image.asset('assets/icons/nota-icon.png'),
+                                child: Image.asset('assets/icons/nota-icon.png'),
                               ),
                               const SizedBox(width: 12.0),
                               Text(
@@ -53,8 +51,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
               : const SizedBox.shrink(),
           Expanded(
             child: InkWell(
-              onTap: () =>
-                  VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
+              onTap: () => VRouter.of(context).toNamed(AppRoute.SearchNotesRoute),
               child: Container(
                 height: toolbarHeight - 12.0,
                 decoration: BoxDecoration(
@@ -88,8 +85,10 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     Text(
                       'Search notes',
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                          fontSize: 18, color: Theme.of(context).hintColor),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(fontSize: 18, color: Theme.of(context).hintColor),
                     ),
                   ],
                 ),

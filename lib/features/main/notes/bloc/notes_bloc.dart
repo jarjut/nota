@@ -11,49 +11,44 @@ part 'notes_event.dart';
 part 'notes_state.dart';
 
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
-  NotesBloc({required NotesRepository notesRepository})
-      : _notesRepository = notesRepository,
-        super(NotesLoading());
-
   final NotesRepository _notesRepository;
   StreamSubscription? _notesSubscription;
 
-  @override
-  Stream<NotesState> mapEventToState(
-    NotesEvent event,
-  ) async* {
-    if (event is LoadNotes) {
-      yield* _mapLoadNotesToState(event);
-    } else if (event is NotesUpdated) {
-      yield* _mapNotesUpdateToState(event);
-    } else if (event is AddNote) {
+  NotesBloc({required NotesRepository notesRepository})
+      : _notesRepository = notesRepository,
+        super(NotesLoading()) {
+    on<LoadNotes>(((event, emit) {
+      _notesSubscription?.cancel();
+      _notesSubscription = _notesRepository.allNotes(event.uid).listen(
+            (notes) => add(NotesUpdated(notes)),
+          );
+    }));
+    on<NotesUpdated>(((event, emit) {
+      emit(NotesLoaded(event.notes));
+    }));
+
+    on<AddNote>(((event, emit) {
       _notesRepository.addNewNote(event.note);
-    } else if (event is UpdateNote) {
-      final updatedNote =
-          event.updatedNote.copyWith(updatedOn: Timestamp.now());
+    }));
+    on<UpdateNote>(((event, emit) {
+      final updatedNote = event.updatedNote.copyWith(updatedOn: Timestamp.now());
       _notesRepository.updateNote(updatedNote);
-    } else if (event is DeleteNote) {
+    }));
+    on<DeleteNote>(((event, emit) {
       _notesRepository.deleteNote(event.note);
-    } else if (event is ArchiveNote) {
+    }));
+    on<ArchiveNote>(((event, emit) {
       _notesRepository.archiveNote(event.note);
-    } else if (event is TrashNote) {
+    }));
+    on<TrashNote>(((event, emit) {
       _notesRepository.trashNote(event.note);
-    } else if (event is UnArchiveNote) {
+    }));
+    on<UnArchiveNote>(((event, emit) {
       _notesRepository.unArchiveNote(event.note);
-    } else if (event is RestoreNote) {
+    }));
+    on<RestoreNote>(((event, emit) {
       _notesRepository.restoreNote(event.note);
-    }
-  }
-
-  Stream<NotesState> _mapLoadNotesToState(LoadNotes event) async* {
-    _notesSubscription?.cancel();
-    _notesSubscription = _notesRepository.allNotes(event.uid).listen(
-          (notes) => add(NotesUpdated(notes)),
-        );
-  }
-
-  Stream<NotesState> _mapNotesUpdateToState(NotesUpdated event) async* {
-    yield NotesLoaded(event.notes);
+    }));
   }
 
   @override

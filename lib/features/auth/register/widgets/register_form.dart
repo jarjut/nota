@@ -63,12 +63,8 @@ class _RegisterFormState extends State<RegisterForm> {
                   width: double.infinity,
                   child: AuthButtonPrimary(
                     isLoading: state.status == RegisterStatus.loading,
-                    onPressed: () => context
-                        .read<RegisterCubit>()
-                        .createUserWithEmailAndPassword(
-                            name: _nameController.text,
-                            email: _emailController.text,
-                            password: _passwordController.text),
+                    onPressed: () => context.read<RegisterCubit>().createUserWithEmailAndPassword(
+                        name: _nameController.text, email: _emailController.text, password: _passwordController.text),
                     label: 'REGISTER',
                   ),
                 ),
@@ -85,8 +81,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
                 const SizedBox(height: 12.0),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                   child: Row(
                     children: const [
                       Expanded(
@@ -116,8 +111,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   width: double.infinity,
                   child: GoogleButtonPrimary(
                     isLoading: state.status == RegisterStatus.googleLoading,
-                    onPressed: () => BlocProvider.of<RegisterCubit>(context)
-                        .signInWithGoogle(),
+                    onPressed: () => BlocProvider.of<RegisterCubit>(context).signInWithGoogle(),
                   ),
                 ),
               ],

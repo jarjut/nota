@@ -34,15 +34,10 @@ class _SettingsColumnState extends State<SettingsColumn> {
                       BlocProvider.of<ThemeCubit>(context).setTheme(value);
                     }
                   },
-                  items: <ThemeMode>[
-                    ThemeMode.system,
-                    ThemeMode.light,
-                    ThemeMode.dark
-                  ]
+                  items: <ThemeMode>[ThemeMode.system, ThemeMode.light, ThemeMode.dark]
                       .map((value) => DropdownMenuItem(
                             value: value,
-                            child: Text(
-                                value.toString().substring(10).capitalize()),
+                            child: Text(value.toString().substring(10).capitalize()),
                           ))
                       .toList(),
                 );

@@ -49,8 +49,7 @@ class _ResendEmailState extends State<ResendEmail> {
       onPressed: canResend
           ? () {
               startTimer();
-              RepositoryProvider.of<AuthenticationRepository>(context)
-                  .sendEmailVerification();
+              RepositoryProvider.of<AuthenticationRepository>(context).sendEmailVerification();
             }
           : null,
       child: RichText(
@@ -58,14 +57,10 @@ class _ResendEmailState extends State<ResendEmail> {
         text: 'Resend Email ',
         style: TextStyle(
           decoration: TextDecoration.underline,
-          color: canResend
-              ? Theme.of(context).primaryColor
-              : Theme.of(context).disabledColor,
+          color: canResend ? Theme.of(context).primaryColor : Theme.of(context).disabledColor,
         ),
         children: [
-          canResend
-              ? const TextSpan()
-              : TextSpan(text: currentCount.toString()),
+          canResend ? const TextSpan() : TextSpan(text: currentCount.toString()),
         ],
       )),
     );

@@ -26,9 +26,7 @@ class _AuthPasswordFormFieldState extends State<AuthPasswordFormField> {
       hintText: widget.hintText,
       suffixIcon: IconButton(
         color: Colors.white38,
-        icon: _obscurePassword
-            ? const Icon(Icons.visibility_off)
-            : const Icon(Icons.visibility),
+        icon: _obscurePassword ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
         onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
       ),
     );

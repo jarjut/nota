@@ -18,6 +18,22 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
               ? AuthenticationState.authenticated(authenticationRepository.currentUser)
               : const AuthenticationState.unauthenticated(),
         ) {
+    on<AuthUserChanged>((event, emit) {
+      emit(
+        event.user.isNotEmpty
+            ? AuthenticationState.authenticated(event.user)
+            : const AuthenticationState.unauthenticated(),
+      );
+    });
+    on<AuthLogoutRequested>((event, emit) {
+      unawaited(_authenticationRepository.logOut());
+    });
+    on<AuthUserReloadRequested>((event, emit) async {
+      final user = await _authenticationRepository.userReload();
+      if (state.user != user) {
+        add(AuthUserChanged(user));
+      }
+    });
     _userSubscription = _authenticationRepository.user.listen((_onUserChanged));
   }
 
@@ -27,40 +43,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   void _onUserChanged(User user) => add(AuthUserChanged(user));
 
   @override
-  Stream<AuthenticationState> mapEventToState(
-    AuthenticationEvent event,
-  ) async* {
-    if (event is AuthUserChanged) {
-      yield _mapUserChangedToState(event, state);
-    } else if (event is AuthLogoutRequested) {
-      unawaited(_authenticationRepository.logOut());
-    } else if (event is AuthUserReloadRequested) {
-      yield* _mapAuthUserReloadRequestToState(event, state);
-    }
-  }
-
-  AuthenticationState _mapUserChangedToState(AuthUserChanged event, AuthenticationState state) {
-    if (event.user.isNotEmpty) {
-      _authenticationRepository.updateUserVerificationStatus(event.user);
-      return AuthenticationState.authenticated(event.user);
-    } else {
-      return const AuthenticationState.unauthenticated();
-    }
-  }
-
-  @override
   Future<void> close() {
     _userSubscription.cancel();
     return super.close();
-  }
-
-  Stream<AuthenticationState> _mapAuthUserReloadRequestToState(
-    AuthUserReloadRequested event,
-    AuthenticationState state,
-  ) async* {
-    final user = await _authenticationRepository.userReload();
-    if (state.user != user) {
-      add(AuthUserChanged(user));
-    }
   }
 }

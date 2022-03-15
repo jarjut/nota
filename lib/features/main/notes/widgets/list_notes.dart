@@ -52,11 +52,12 @@ class ListNotes extends StatelessWidget {
         slivers: [
           SliverPadding(
             padding: EdgeInsets.all(isMobile ? 4 : 12),
-            sliver: StaggeredGrid.extent(
+            sliver: SliverMasonryGrid.extent(
               maxCrossAxisExtent: 300,
               mainAxisSpacing: isMobile ? 0 : 4,
               crossAxisSpacing: isMobile ? 0 : 4,
-              children: notes.map((note) => NoteItem(note: note)).toList(),
+              childCount: notes.length,
+              itemBuilder: (context, index) => NoteItem(note: notes[index]),
             ),
           )
         ],

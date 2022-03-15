@@ -28,8 +28,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       );
     } else {
       return AppBar(
-        automaticallyImplyLeading:
-            isDesktop ? false : automaticallyImplyLeading,
+        automaticallyImplyLeading: isDesktop ? false : automaticallyImplyLeading,
         leading: leading,
         title: title,
         actions: actions,
