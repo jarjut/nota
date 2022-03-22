@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_native_splash: ^2.1.1
   flutter_quill: ^4.0.9
   flutter_staggered_grid_view: ^0.6.1
   font_awesome_flutter: ^9.2.0
@@ -53,7 +54,15 @@ flutter_icons:
   image_path: "assets/icons/nota-icon.png"
   android: true
   ios: true
-  # For information on the generic Dart part of this file, see the
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  #background_image: "assets/background.png"
+  image: assets/icons/nota-icon.png
+  color_dark: "#1B1A24"
+  image_dark: assets/icons/nota-icon.png
+
+# For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
