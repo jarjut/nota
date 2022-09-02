@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:vrouter/vrouter.dart';
 
 import '../../../../app/bloc/authentication_bloc.dart';
@@ -20,13 +19,12 @@ class _AddNotePageState extends State<AddNotePage> {
   final _addNoteFormKey = GlobalKey<FormState>();
   final _titleFieldController = TextEditingController();
   final _noteFieldController = TextEditingController();
-  final _noteQuillController = QuillController.basic();
 
   @override
   void dispose() {
     super.dispose();
     _titleFieldController.dispose();
-    _noteQuillController.dispose();
+    _noteFieldController.dispose();
   }
 
   @override
@@ -66,52 +64,30 @@ class _AddNotePageState extends State<AddNotePage> {
         drawer: false,
         body: Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Form(
-                  key: _addNoteFormKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
-                        controller: _titleFieldController,
-                        decoration: const InputDecoration(
-                          hintText: 'Title',
-                          border: InputBorder.none,
-                        ),
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      QuillEditor(
-                        controller: _noteQuillController,
-                        scrollController: ScrollController(),
-                        scrollable: true,
-                        focusNode: FocusNode(),
-                        autoFocus: true,
-                        readOnly: false,
-                        expands: false,
-                        padding: EdgeInsets.zero,
-                        placeholder: 'Write your notes here',
-                      ),
-                    ],
+          child: Form(
+            key: _addNoteFormKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: _titleFieldController,
+                  decoration: const InputDecoration(
+                    hintText: 'Title',
+                    border: InputBorder.none,
                   ),
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: QuillToolbar.basic(
-                    multiRowsDisplay: false,
-                    showCameraButton: false,
-                    showVideoButton: false,
-                    showCodeBlock: false,
-                    controller: _noteQuillController,
+                Expanded(
+                  child: TextFormField(
+                    controller: _noteFieldController,
+                    maxLines: null,
+                    decoration: const InputDecoration(
+                      hintText: 'Write your notes here',
+                      border: InputBorder.none,
+                    ),
                   ),
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
