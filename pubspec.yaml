@@ -26,16 +26,28 @@ dev_dependencies:
   very_good_analysis: ^3.1.0
 
 flutter_icons:
+  # Customize the parameters below, and run the following command in the terminal:
+  # flutter pub run flutter_launcher_icons:main
   image_path: "assets/icons/nota-icon.png"
   android: true
   ios: true
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/icons/nota-icon.png"
 
 flutter_native_splash:
+  # Customize the parameters below, and run the following command in the terminal:
+  # flutter pub run flutter_native_splash:create
+  # To restore Flutter's default white splash screen, run the following command in the terminal:
+  # flutter pub run flutter_native_splash:remove
   color: "#FFFFFF"
-  #background_image: "assets/background.png"
   image: assets/icons/nota-icon.png
   color_dark: "#1B1A24"
   image_dark: assets/icons/nota-icon.png
+  android: true
+  ios: true
+  web: true
 
 flutter:
   uses-material-design: true
