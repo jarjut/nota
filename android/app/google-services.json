@@ -1,0 +1,47 @@
+{
+	"project_info": {
+		"project_number": "421718850828",
+		"firebase_url": "https://nota-71534.firebaseio.com",
+		"project_id": "nota-71534",
+		"storage_bucket": "nota-71534.appspot.com"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:421718850828:android:c495b18ccf4f1a72e2dd29",
+				"android_client_info": {
+					"package_name": "dev.jarjut.nota"
+				}
+			},
+			"oauth_client": [
+				{
+					"client_id": "421718850828-glpsr886m0qvcq06uednojfqksseo9on.apps.googleusercontent.com",
+					"client_type": 3
+				}
+			],
+			"api_key": [
+				{
+					"current_key": "AIzaSyAQKVzkCpaHJ2sQRliR-yTv_jWwFr7SAoo"
+				}
+			],
+			"services": {
+				"appinvite_service": {
+					"other_platform_oauth_client": [
+						{
+							"client_id": "421718850828-glpsr886m0qvcq06uednojfqksseo9on.apps.googleusercontent.com",
+							"client_type": 3
+						},
+						{
+							"client_id": "421718850828-4sd7d8atnd56igrra49plg8nllrppf8r.apps.googleusercontent.com",
+							"client_type": 2,
+							"ios_info": {
+								"bundle_id": "dev.jarjut.nota"
+							}
+						}
+					]
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
+}

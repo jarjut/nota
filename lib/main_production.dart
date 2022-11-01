@@ -1,13 +1,11 @@
-// Copyright (c) 2022, Very Good Ventures
-// https://verygood.ventures
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file or at
-// https://opensource.org/licenses/MIT.
-
-import 'package:nota/app/app.dart';
+import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:nota/bootstrap.dart';
+import 'package:nota/injection.dart';
+import 'package:nota/presentation/app/app.dart';
 
-void main() {
-  bootstrap(() => const App());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureInjection(Environment.prod);
+  await bootstrap(() => const App());
 }
