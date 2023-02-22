@@ -3,7 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nota/domain/auth/auth_failure.dart';
-import 'package:nota/domain/auth/i_auth_repository.dart';
+import 'package:nota/domain/auth/i_auth_facade.dart';
 import 'package:nota/domain/auth/value_objects.dart';
 
 part 'login_event.dart';
@@ -83,5 +83,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
   }
 
-  final IAuthRepository _authFacade;
+  final IAuthFacade _authFacade;
 }

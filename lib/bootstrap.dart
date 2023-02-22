@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/firebase_options.dart';
+import 'package:nota/injection.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -32,7 +34,16 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = AppBlocObserver();
 
   await runZonedGuarded(
-    () async => runApp(await builder()),
+    () async {
+      final widget = await builder();
+
+      runApp(
+        BlocProvider(
+          create: (context) => getIt<AuthBloc>(),
+          child: widget,
+        ),
+      );
+    },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

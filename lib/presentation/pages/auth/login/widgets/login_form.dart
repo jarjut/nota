@@ -44,7 +44,9 @@ class LoginForm extends StatelessWidget {
       },
       builder: (context, state) {
         return Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: state.showErrorMessage
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

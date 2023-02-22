@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nota/domain/auth/i_auth_repository.dart';
+import 'package:nota/domain/auth/i_auth_facade.dart';
 import 'package:nota/injection.dart';
 
 class NotesPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class NotesPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                getIt<IAuthRepository>().signOut();
+                getIt<IAuthFacade>().signOut();
               },
               child: const Text('Logout'),
             ),

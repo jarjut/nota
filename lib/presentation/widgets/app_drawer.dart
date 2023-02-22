@@ -72,7 +72,7 @@ class AppDrawer extends StatelessWidget {
       elevation: mediaQuery.isDesktop() ? 0 : 16.0,
       child: SafeArea(
         child: ListTileTheme(
-          selectedColor: Theme.of(context).textTheme.bodyText1!.color,
+          selectedColor: Theme.of(context).textTheme.bodyLarge!.color,
           selectedTileColor: Theme.of(context).primaryColor,
           // selectedTileColor: Theme.of(context).brightness == Brightness.dark
           //     ? primaryColor.shade700.withAlpha(50)
@@ -103,7 +103,7 @@ class AppDrawer extends StatelessWidget {
                       const SizedBox(width: 12),
                       Text(
                         'Nota',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   ),

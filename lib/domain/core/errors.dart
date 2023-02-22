@@ -1,4 +1,4 @@
-import 'package:nota/domain/core/failures.dart';
+import 'package:nota/domain/core/value_failures.dart';
 
 class NotAuthenticatedError extends Error {}
 

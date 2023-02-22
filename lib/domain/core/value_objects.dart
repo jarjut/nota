@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:meta/meta.dart';
 import 'package:nota/domain/core/errors.dart';
-import 'package:nota/domain/core/failures.dart';
+import 'package:nota/domain/core/value_failures.dart';
 
 @immutable
 abstract class ValueObject<T> extends Equatable {
