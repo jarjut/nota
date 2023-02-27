@@ -51,6 +51,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
       );
     });
+
+    // Handle send email verification requested events
+    on<_SendEmailVerification>((event, emit) async {
+      await _authRepository.sendEmailVerification();
+    });
   }
 
   final IAuthFacade _authRepository;

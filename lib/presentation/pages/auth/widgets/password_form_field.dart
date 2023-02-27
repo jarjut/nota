@@ -8,12 +8,16 @@ class AuthPasswordFormField extends StatefulWidget {
     this.hintText = 'Password',
     this.onChanged,
     this.validator,
+    this.autovalidateMode,
+    this.onFieldSubmitted,
   });
 
   final TextEditingController? controller;
   final String hintText;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
+  final AutovalidateMode? autovalidateMode;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   State<AuthPasswordFormField> createState() => _AuthPasswordFormFieldState();
@@ -25,6 +29,8 @@ class _AuthPasswordFormFieldState extends State<AuthPasswordFormField> {
   @override
   Widget build(BuildContext context) {
     return AuthTextFormField(
+      onFieldSubmitted: widget.onFieldSubmitted,
+      autovalidateMode: widget.autovalidateMode,
       controller: widget.controller,
       obscureText: _obscurePassword,
       hintText: widget.hintText,

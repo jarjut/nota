@@ -1,7 +1,53 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+    "login": "Login",
+    "or": "or",
+    "register": "Register",
+
+    "authFormEmailLabel": "Email",
+    "@authFormEmailLabel": {
+        "description": "The label for the email field"
+    },
+    "authFormPasswordLabel": "Password",
+    "@authFormPasswordLabel": {
+        "description": "The label for the password field"
+    },
+    "authFormFullNameLabel": "Full Name",
+    "@authFormFullNameLabel": {
+        "description": "The label for the full name field"
+    },
+    "authValidationEmailInvalid": "Email is invalid",
+    "@authValidationEmailInvalid": {
+        "description": "The email address is invalid"
+    },
+    "authValidationPasswordTooShort": "Password is too short",
+    "@authValidationPasswordTooShort": {
+        "description": "The password is too short"
+    },
+    "authErrorCancelledByUser": "Login Cancelled",
+    "@authErrorCancelledByUser": {
+        "description": "The user cancelled the login process"
+    },
+    "authErrorServerError": "Server Error",
+    "@authErrorServerError": {
+        "description": "Unexpected server error"
+    },
+    "authErrorEmailAlreadyInUse": "Email Already In Use",
+    "@authErrorEmailAlreadyInUse": {
+        "description": "The email address is already in use by another account"
+    },
+    "authErrorInvalidEmailAndPasswordCombination": "Invalid Email and Password Combination",
+    "@authErrorInvalidEmailAndPasswordCombination": {
+        "description": "The email address and password combination is invalid"
+    },
+    "authToRegisterPageText": "Create new account",
+    "@authToRegisterPageText": {
+        "description": "Button Text to navigate to the register page"
+    },
+    "authToLoginPageText": "Already have an account?",
+    "@authToLoginPageText": {
+        "description": "Button Text to navigate to the login page"
+    },
+    
+    "end": "end"
 }

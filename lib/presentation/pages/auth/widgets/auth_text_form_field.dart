@@ -9,6 +9,8 @@ class AuthTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.validator,
+    this.autovalidateMode,
+    this.onFieldSubmitted,
   });
 
   final TextEditingController? controller;
@@ -17,15 +19,19 @@ class AuthTextFormField extends StatelessWidget {
   final bool obscureText;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
+  final AutovalidateMode? autovalidateMode;
+  final ValueChanged<String>? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: autovalidateMode,
       controller: controller,
       obscureText: obscureText,
       style: const TextStyle(color: Colors.white),
       onChanged: onChanged,
       validator: validator,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         isDense: true,
         filled: true,

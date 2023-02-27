@@ -21,6 +21,7 @@ mixin _$AuthEvent {
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function() userReloadRequested,
+    required TResult Function() sendEmailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AuthEvent {
     TResult? Function(User user)? userChanged,
     TResult? Function()? logoutRequested,
     TResult? Function()? userReloadRequested,
+    TResult? Function()? sendEmailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AuthEvent {
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function()? userReloadRequested,
+    TResult Function()? sendEmailVerification,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,8 @@ mixin _$AuthEvent {
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
     required TResult Function(_UserReloadRequested value) userReloadRequested,
+    required TResult Function(_SendEmailVerification value)
+        sendEmailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +55,7 @@ mixin _$AuthEvent {
     TResult? Function(_UserChanged value)? userChanged,
     TResult? Function(_LogoutRequested value)? logoutRequested,
     TResult? Function(_UserReloadRequested value)? userReloadRequested,
+    TResult? Function(_SendEmailVerification value)? sendEmailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +63,7 @@ mixin _$AuthEvent {
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
     TResult Function(_UserReloadRequested value)? userReloadRequested,
+    TResult Function(_SendEmailVerification value)? sendEmailVerification,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -156,6 +163,7 @@ class _$_UserChanged implements _UserChanged {
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function() userReloadRequested,
+    required TResult Function() sendEmailVerification,
   }) {
     return userChanged(user);
   }
@@ -166,6 +174,7 @@ class _$_UserChanged implements _UserChanged {
     TResult? Function(User user)? userChanged,
     TResult? Function()? logoutRequested,
     TResult? Function()? userReloadRequested,
+    TResult? Function()? sendEmailVerification,
   }) {
     return userChanged?.call(user);
   }
@@ -176,6 +185,7 @@ class _$_UserChanged implements _UserChanged {
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function()? userReloadRequested,
+    TResult Function()? sendEmailVerification,
     required TResult orElse(),
   }) {
     if (userChanged != null) {
@@ -190,6 +200,8 @@ class _$_UserChanged implements _UserChanged {
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
     required TResult Function(_UserReloadRequested value) userReloadRequested,
+    required TResult Function(_SendEmailVerification value)
+        sendEmailVerification,
   }) {
     return userChanged(this);
   }
@@ -200,6 +212,7 @@ class _$_UserChanged implements _UserChanged {
     TResult? Function(_UserChanged value)? userChanged,
     TResult? Function(_LogoutRequested value)? logoutRequested,
     TResult? Function(_UserReloadRequested value)? userReloadRequested,
+    TResult? Function(_SendEmailVerification value)? sendEmailVerification,
   }) {
     return userChanged?.call(this);
   }
@@ -210,6 +223,7 @@ class _$_UserChanged implements _UserChanged {
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
     TResult Function(_UserReloadRequested value)? userReloadRequested,
+    TResult Function(_SendEmailVerification value)? sendEmailVerification,
     required TResult orElse(),
   }) {
     if (userChanged != null) {
@@ -269,6 +283,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function() userReloadRequested,
+    required TResult Function() sendEmailVerification,
   }) {
     return logoutRequested();
   }
@@ -279,6 +294,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult? Function(User user)? userChanged,
     TResult? Function()? logoutRequested,
     TResult? Function()? userReloadRequested,
+    TResult? Function()? sendEmailVerification,
   }) {
     return logoutRequested?.call();
   }
@@ -289,6 +305,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function()? userReloadRequested,
+    TResult Function()? sendEmailVerification,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -303,6 +320,8 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
     required TResult Function(_UserReloadRequested value) userReloadRequested,
+    required TResult Function(_SendEmailVerification value)
+        sendEmailVerification,
   }) {
     return logoutRequested(this);
   }
@@ -313,6 +332,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult? Function(_UserChanged value)? userChanged,
     TResult? Function(_LogoutRequested value)? logoutRequested,
     TResult? Function(_UserReloadRequested value)? userReloadRequested,
+    TResult? Function(_SendEmailVerification value)? sendEmailVerification,
   }) {
     return logoutRequested?.call(this);
   }
@@ -323,6 +343,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
     TResult Function(_UserReloadRequested value)? userReloadRequested,
+    TResult Function(_SendEmailVerification value)? sendEmailVerification,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -377,6 +398,7 @@ class _$_UserReloadRequested implements _UserReloadRequested {
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function() userReloadRequested,
+    required TResult Function() sendEmailVerification,
   }) {
     return userReloadRequested();
   }
@@ -387,6 +409,7 @@ class _$_UserReloadRequested implements _UserReloadRequested {
     TResult? Function(User user)? userChanged,
     TResult? Function()? logoutRequested,
     TResult? Function()? userReloadRequested,
+    TResult? Function()? sendEmailVerification,
   }) {
     return userReloadRequested?.call();
   }
@@ -397,6 +420,7 @@ class _$_UserReloadRequested implements _UserReloadRequested {
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function()? userReloadRequested,
+    TResult Function()? sendEmailVerification,
     required TResult orElse(),
   }) {
     if (userReloadRequested != null) {
@@ -411,6 +435,8 @@ class _$_UserReloadRequested implements _UserReloadRequested {
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
     required TResult Function(_UserReloadRequested value) userReloadRequested,
+    required TResult Function(_SendEmailVerification value)
+        sendEmailVerification,
   }) {
     return userReloadRequested(this);
   }
@@ -421,6 +447,7 @@ class _$_UserReloadRequested implements _UserReloadRequested {
     TResult? Function(_UserChanged value)? userChanged,
     TResult? Function(_LogoutRequested value)? logoutRequested,
     TResult? Function(_UserReloadRequested value)? userReloadRequested,
+    TResult? Function(_SendEmailVerification value)? sendEmailVerification,
   }) {
     return userReloadRequested?.call(this);
   }
@@ -431,6 +458,7 @@ class _$_UserReloadRequested implements _UserReloadRequested {
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
     TResult Function(_UserReloadRequested value)? userReloadRequested,
+    TResult Function(_SendEmailVerification value)? sendEmailVerification,
     required TResult orElse(),
   }) {
     if (userReloadRequested != null) {
@@ -442,6 +470,121 @@ class _$_UserReloadRequested implements _UserReloadRequested {
 
 abstract class _UserReloadRequested implements AuthEvent {
   const factory _UserReloadRequested() = _$_UserReloadRequested;
+}
+
+/// @nodoc
+abstract class _$$_SendEmailVerificationCopyWith<$Res> {
+  factory _$$_SendEmailVerificationCopyWith(_$_SendEmailVerification value,
+          $Res Function(_$_SendEmailVerification) then) =
+      __$$_SendEmailVerificationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SendEmailVerificationCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$_SendEmailVerification>
+    implements _$$_SendEmailVerificationCopyWith<$Res> {
+  __$$_SendEmailVerificationCopyWithImpl(_$_SendEmailVerification _value,
+      $Res Function(_$_SendEmailVerification) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_SendEmailVerification implements _SendEmailVerification {
+  const _$_SendEmailVerification();
+
+  @override
+  String toString() {
+    return 'AuthEvent.sendEmailVerification()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_SendEmailVerification);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) userChanged,
+    required TResult Function() logoutRequested,
+    required TResult Function() userReloadRequested,
+    required TResult Function() sendEmailVerification,
+  }) {
+    return sendEmailVerification();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(User user)? userChanged,
+    TResult? Function()? logoutRequested,
+    TResult? Function()? userReloadRequested,
+    TResult? Function()? sendEmailVerification,
+  }) {
+    return sendEmailVerification?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? userChanged,
+    TResult Function()? logoutRequested,
+    TResult Function()? userReloadRequested,
+    TResult Function()? sendEmailVerification,
+    required TResult orElse(),
+  }) {
+    if (sendEmailVerification != null) {
+      return sendEmailVerification();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserChanged value) userChanged,
+    required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_UserReloadRequested value) userReloadRequested,
+    required TResult Function(_SendEmailVerification value)
+        sendEmailVerification,
+  }) {
+    return sendEmailVerification(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UserChanged value)? userChanged,
+    TResult? Function(_LogoutRequested value)? logoutRequested,
+    TResult? Function(_UserReloadRequested value)? userReloadRequested,
+    TResult? Function(_SendEmailVerification value)? sendEmailVerification,
+  }) {
+    return sendEmailVerification?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserChanged value)? userChanged,
+    TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_UserReloadRequested value)? userReloadRequested,
+    TResult Function(_SendEmailVerification value)? sendEmailVerification,
+    required TResult orElse(),
+  }) {
+    if (sendEmailVerification != null) {
+      return sendEmailVerification(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SendEmailVerification implements AuthEvent {
+  const factory _SendEmailVerification() = _$_SendEmailVerification;
 }
 
 /// @nodoc

@@ -18,7 +18,7 @@ class NotesPage extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                GoRouter.of(context).push('/login');
+                GoRouter.of(context).go('/login');
               },
               child: const Text('Login'),
             ),

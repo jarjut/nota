@@ -6,13 +6,22 @@ import 'package:nota/domain/auth/auth_failure.dart';
 import 'package:nota/domain/auth/i_auth_facade.dart';
 import 'package:nota/domain/auth/value_objects.dart';
 
-part 'login_event.dart';
-part 'login_state.dart';
-part 'login_bloc.freezed.dart';
+part 'register_event.dart';
+part 'register_state.dart';
+part 'register_bloc.freezed.dart';
 
 @injectable
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc(this._authFacade) : super(LoginState.initial()) {
+class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+  RegisterBloc(this._authFacade) : super(RegisterState.initial()) {
+    on<_FullNameChanged>((event, emit) {
+      emit(
+        state.copyWith(
+          fullName: FullName(event.value),
+          authFailureOrSuccessOption: none(),
+        ),
+      );
+    });
+
     on<_EmailChanged>((event, emit) {
       emit(
         state.copyWith(
@@ -31,13 +40,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     });
 
-    on<_LoginWithEmailAndPasswordPressed>((event, emit) async {
+    on<_RegisterWithEmailAndPasswordPressed>((event, emit) async {
       Either<AuthFailure, Unit>? failureOrSuccess;
 
+      final isFullNameValid = state.fullName.isValid();
       final isEmailValid = state.emailAddress.isValid();
       final isPasswordValid = state.password.isValid();
 
-      if (isEmailValid && isPasswordValid) {
+      if (isFullNameValid && isEmailValid && isPasswordValid) {
         emit(
           state.copyWith(
             isSubmitting: true,
@@ -45,7 +55,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           ),
         );
 
-        failureOrSuccess = await _authFacade.signInWithEmailAndPassword(
+        failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
+          fullName: state.fullName,
           emailAddress: state.emailAddress,
           password: state.password,
         );
@@ -67,13 +78,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
 
     on<_LoginWithGooglePressed>((event, emit) async {
+      Either<AuthFailure, Unit>? failureOrSuccess;
+
       emit(
         state.copyWith(
           isSubmitting: true,
           authFailureOrSuccessOption: none(),
         ),
       );
-      final failureOrSuccess = await _authFacade.signInWithGoogle();
+
+      failureOrSuccess = await _authFacade.signInWithGoogle();
+
       emit(
         state.copyWith(
           isSubmitting: false,
@@ -82,6 +97,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     });
   }
-
   final IAuthFacade _authFacade;
 }

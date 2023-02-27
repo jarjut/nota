@@ -8,6 +8,7 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nota/presentation/app/themes.dart';
 import 'package:nota/presentation/l10n/l10n.dart';
 import 'package:nota/presentation/router/router.dart';
@@ -20,7 +21,13 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final router = AppRouter.router;
+  late final GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+    _router = AppRouter.router(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class _AppState extends State<App> {
             GlobalMaterialLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          routerConfig: router,
+          routerConfig: _router,
         );
       },
     );
