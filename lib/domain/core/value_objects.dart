@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:meta/meta.dart';

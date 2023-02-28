@@ -12,7 +12,8 @@ dependencies:
   cloud_firestore: ^4.0.1
   dynamic_color: ^1.5.4
   equatable: ^2.0.5
-  firebase_auth: ^4.0.1
+  firebase_auth: ^4.2.9
+  firebase_auth_platform_interface: ^6.11.11
   firebase_core: ^2.0.0
   flutter:
     sdk: flutter
@@ -60,7 +61,6 @@ flutter_icons:
 flutter_gen:
   output: lib/core/gen/
   line_length: 80
-
   # integrations:
   #   flutter_svg: true
   #   flare_flutter: true

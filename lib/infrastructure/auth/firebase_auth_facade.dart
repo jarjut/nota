@@ -23,6 +23,9 @@ class FirebaseAuthFacade implements IAuthFacade {
   final GoogleSignIn _googleSignIn;
   final FirebaseFirestore _firestore;
 
+  @visibleForTesting
+  bool isWeb = kIsWeb;
+
   CollectionReference<Map<String, dynamic>> get userCollection =>
       _firestore.collection('users');
 
@@ -83,9 +86,11 @@ class FirebaseAuthFacade implements IAuthFacade {
     } on fb_auth.FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
-      } else {
-        return left(const AuthFailure.serverError());
       }
+      return left(const AuthFailure.serverError());
+    } catch (e) {
+      log('Register With Email And Password Error', error: e);
+      return left(const AuthFailure.serverError());
     }
   }
 
@@ -107,9 +112,11 @@ class FirebaseAuthFacade implements IAuthFacade {
     } on fb_auth.FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
-      } else {
-        return left(const AuthFailure.serverError());
       }
+      return left(const AuthFailure.serverError());
+    } catch (e) {
+      log('Sign In With Email And Password Error', error: e);
+      return left(const AuthFailure.serverError());
     }
   }
 
@@ -117,7 +124,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInWithGoogle() async {
     try {
       late fb_auth.UserCredential userCred;
-      if (kIsWeb) {
+      if (isWeb) {
         // Handle web google authentication
         final googleProvider = fb_auth.GoogleAuthProvider();
         userCred = await _firebaseAuth.signInWithPopup(googleProvider);
@@ -142,11 +149,11 @@ class FirebaseAuthFacade implements IAuthFacade {
 
       // Create user document in Firestore if it doesn't exist
       if (user != null) {
-        await userCollection.doc(user.id).get().then((doc) async {
-          if (!doc.exists) {
-            await userCollection.doc(user.id).set(user.toDocument());
-          }
-        });
+        final userDoc = await userCollection.doc(user.id).get();
+
+        if (!userDoc.exists) {
+          await userCollection.doc(user.id).set(user.toDocument());
+        }
       }
       return right(unit);
     } on fb_auth.FirebaseAuthException catch (e) {
@@ -161,11 +168,16 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<void> signOut() async {
-    await Future.wait([
-      _firebaseAuth.signOut(),
-      _googleSignIn.signOut(),
-    ]);
+  Future<Either<AuthFailure, Unit>> signOut() async {
+    try {
+      await Future.wait([
+        _firebaseAuth.signOut(),
+        _googleSignIn.signOut(),
+      ]);
+      return right(unit);
+    } catch (e) {
+      return left(const AuthFailure.serverError());
+    }
   }
 
   @override
