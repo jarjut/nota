@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/core/utils/mediaquery_util.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -25,7 +27,9 @@ class AppDrawer extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  // TODO: call logout
+                  context
+                      .read<AuthBloc>()
+                      .add(const AuthEvent.logoutRequested());
                   Navigator.pop(context);
                 },
                 child: const Text('Logout'),

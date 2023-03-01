@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
-import 'package:nota/firebase_options.dart';
+import 'package:nota/application/notes/bloc/notes_watch_bloc.dart';
 import 'package:nota/injection.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -27,10 +26,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
   Bloc.observer = AppBlocObserver();
 
   await runZonedGuarded(
@@ -38,8 +33,15 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       final widget = await builder();
 
       runApp(
-        BlocProvider(
-          create: (context) => getIt<AuthBloc>(),
+        MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => getIt<AuthBloc>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<NotesWatchBloc>(),
+            ),
+          ],
           child: widget,
         ),
       );

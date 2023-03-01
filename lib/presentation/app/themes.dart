@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+// <====== Light Colors ======>
+Color lightBackgroundColor = Colors.grey.shade50;
+// <====== Dark Colors ======>
+const Color darkBackgroundColor = Color(0xFF24232F);
+const Color darkCardColor = Color(0xFF1E1D26);
+const Color darkAppBarColor = Color(0xFF1B1A24);
+
 class AppTheme {
   static const double _appBarElevation = 1;
 
@@ -10,6 +17,7 @@ class AppTheme {
     Color color = Colors.white,
   }) {
     return CardTheme(
+      clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         side: BorderSide(
@@ -37,14 +45,15 @@ class AppTheme {
         );
 
     return ThemeData(
-      useMaterial3: true,
+      // useMaterial3: true,
+      scaffoldBackgroundColor: lightBackgroundColor,
       appBarTheme: AppBarTheme(
-        color: scheme.background,
+        color: lightBackgroundColor,
         elevation: _appBarElevation,
       ),
       cardTheme: _cardTheme(
-        borderColor: scheme.onBackground.withOpacity(0.12),
-        color: scheme.background,
+        borderColor: Colors.grey.shade400,
+        color: lightBackgroundColor,
       ),
       textTheme: _textTheme,
       colorScheme: scheme,
@@ -55,21 +64,72 @@ class AppTheme {
     final scheme = colorscheme ??
         ColorScheme.fromSwatch(
           primarySwatch: _defaultSwatch,
+          accentColor: _defaultSwatch,
           brightness: Brightness.dark,
         );
 
     return ThemeData(
-      useMaterial3: true,
-      appBarTheme: AppBarTheme(
-        color: scheme.background,
+      // useMaterial3: true,
+      scaffoldBackgroundColor: darkBackgroundColor,
+      appBarTheme: const AppBarTheme(
+        color: darkBackgroundColor,
         elevation: _appBarElevation,
       ),
       cardTheme: _cardTheme(
-        borderColor: scheme.onBackground.withOpacity(0.12),
-        color: scheme.background,
+        borderColor: Colors.grey,
+        color: darkBackgroundColor,
       ),
+      canvasColor: darkAppBarColor,
+      cardColor: darkCardColor,
+      dialogBackgroundColor: darkCardColor,
       textTheme: _textTheme,
       colorScheme: scheme,
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return _defaultSwatch[800];
+          }
+          return null;
+        }),
+        trackColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return _defaultSwatch[800];
+          }
+          return null;
+        }),
+      ),
+      radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return _defaultSwatch[800];
+          }
+          return null;
+        }),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return null;
+          }
+          if (states.contains(MaterialState.selected)) {
+            return _defaultSwatch[800];
+          }
+          return null;
+        }),
+      ),
     );
   }
 }

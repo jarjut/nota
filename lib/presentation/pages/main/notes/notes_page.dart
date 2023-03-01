@@ -1,53 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:nota/application/auth/auth_bloc.dart';
-import 'package:nota/domain/auth/i_auth_facade.dart';
-import 'package:nota/domain/notes/i_note_repository.dart';
-import 'package:nota/injection.dart';
+import 'package:nota/application/notes/bloc/notes_watch_bloc.dart';
+import 'package:nota/presentation/pages/main/main_wrapper.dart';
+import 'package:nota/presentation/pages/main/search_app_bar.dart';
+import 'package:nota/presentation/pages/main/widgets/list_notes.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Notes'),
+    return MainWrapper(
+      appBar: const SearchAppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {}, // TODO: Add new note
+        child: const Icon(Icons.add),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                final uid = state.user.id;
-                final notes = getIt<INoteRepository>().watchAll(uid);
-                return StreamBuilder(
-                  stream: notes,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Text(snapshot.data.toString());
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                );
-              },
+      body: BlocBuilder<NotesWatchBloc, NotesWatchState>(
+        builder: (context, state) {
+          return state.map(
+            initial: (_) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+            loadInProgress: (_) => const Center(
+              child: CircularProgressIndicator(),
             ),
-            TextButton(
-              onPressed: () {
-                GoRouter.of(context).go('/login');
-              },
-              child: const Text('Login'),
-            ),
-            TextButton(
-              onPressed: () {
-                getIt<IAuthFacade>().signOut();
-              },
-              child: const Text('Logout'),
-            ),
-          ],
-        ),
+            loaded: (state) {
+              final notes = state.notes
+                  .where((note) => !note.isArchived && !note.isDeleted)
+                  .toList();
+
+              return ListNotes(
+                notes: notes,
+              );
+            },
+          );
+        },
       ),
     );
   }
