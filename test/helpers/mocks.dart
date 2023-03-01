@@ -25,6 +25,49 @@ class MockDocumentReference extends Mock
 class MockDocumentSnapshot extends Mock
     implements DocumentSnapshot<Map<String, dynamic>> {}
 
+class MockDocumentSnapshotWithData extends Mock
+    implements DocumentSnapshot<Map<String, dynamic>> {
+  MockDocumentSnapshotWithData({
+    required String id,
+    required Map<String, dynamic> data,
+  })  : _id = id,
+        _data = data;
+
+  final String _id;
+
+  final Map<String, dynamic> _data;
+
+  @override
+  String get id => _id;
+
+  @override
+  Map<String, dynamic> data() => _data;
+}
+
+class MockQuery extends Mock implements Query<Map<String, dynamic>> {}
+
+class MockQuerySnapshot extends Mock
+    implements QuerySnapshot<Map<String, dynamic>> {}
+
+class MockQueryDocumentSnapshotWithData extends Mock
+    implements QueryDocumentSnapshot<Map<String, dynamic>> {
+  MockQueryDocumentSnapshotWithData({
+    required String id,
+    required Map<String, dynamic> data,
+  })  : _id = id,
+        _data = data;
+
+  final String _id;
+
+  final Map<String, dynamic> _data;
+
+  @override
+  String get id => _id;
+
+  @override
+  Map<String, dynamic> data() => _data;
+}
+
 class MockUserCredential extends Mock implements UserCredential {}
 
 class MockFirebaseUser extends Mock implements User {

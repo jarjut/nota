@@ -12,6 +12,7 @@ dependencies:
   cloud_firestore: ^4.0.1
   dynamic_color: ^1.5.4
   equatable: ^2.0.5
+  fast_immutable_collections: ^9.0.0
   firebase_auth: ^4.2.9
   firebase_auth_platform_interface: ^6.11.11
   firebase_core: ^2.0.0
@@ -32,6 +33,7 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.7.0
   meta: ^1.8.0
+  rxdart: ^0.27.7
   shared_preferences: ^2.0.15
 
 dev_dependencies:
