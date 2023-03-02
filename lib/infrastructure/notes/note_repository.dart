@@ -18,7 +18,7 @@ class NoteRepository implements INoteRepository {
   @override
   Future<Either<NoteFailure, Unit>> create(Note note) async {
     try {
-      await noteCollection.add(note.toDocument(create: true));
+      await noteCollection.doc(note.id).set(note.toDocument());
       return right(unit);
     } catch (e) {
       return left(const NoteFailure.unexpected());

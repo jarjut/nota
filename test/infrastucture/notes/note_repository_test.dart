@@ -32,8 +32,9 @@ void main() {
 
     group('create', () {
       test('succeds', () async {
-        when(() => mockCollectionReference.add(any()))
-            .thenAnswer((_) async => mockDocumentReference);
+        when(() => mockCollectionReference.doc(any()))
+            .thenReturn(mockDocumentReference);
+        when(() => mockDocumentReference.set(any())).thenAnswer((_) async {});
 
         final result = await noteRepository.create(dummyNote);
 

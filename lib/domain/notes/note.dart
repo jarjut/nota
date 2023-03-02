@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'note.freezed.dart';
 
@@ -29,6 +30,7 @@ class Note with _$Note {
     required String note,
   }) =>
       Note(
+        id: const Uuid().v4(),
         uid: uid,
         title: title,
         note: note,
