@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/application/notes/bloc/notes_watch_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
 import 'package:nota/presentation/pages/main/main_wrapper.dart';
 import 'package:nota/presentation/pages/main/search_app_bar.dart';
 import 'package:nota/presentation/pages/main/widgets/list_notes.dart';
@@ -13,7 +14,7 @@ class NotesPage extends StatelessWidget {
     return MainWrapper(
       appBar: const SearchAppBar(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {}, // TODO: Add new note
+        onPressed: () => context.push('/note'),
         child: const Icon(Icons.add),
       ),
       body: BlocBuilder<NotesWatchBloc, NotesWatchState>(

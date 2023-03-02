@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nota/core/constants/breakpoints.dart';
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -28,7 +29,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () {
-                        // TODO: Navigate to notes page
+                        context.go('/notes');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.min,

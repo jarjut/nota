@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
-import 'package:nota/application/notes/bloc/notes_watch_bloc.dart';
+import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
 import 'package:nota/injection.dart';
 
 class AppBlocObserver extends BlocObserver {

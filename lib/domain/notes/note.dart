@@ -25,15 +25,15 @@ class Note with _$Note {
 
   /// Create a new note.
   factory Note.create({
-    required String uid,
-    required String title,
-    required String note,
+    String? uid,
+    String? title,
+    String? note,
   }) =>
       Note(
         id: const Uuid().v4(),
-        uid: uid,
-        title: title,
-        note: note,
+        uid: uid ?? '',
+        title: title ?? '',
+        note: note ?? '',
         createdOn: Timestamp.now(),
         updatedOn: Timestamp.now(),
       );

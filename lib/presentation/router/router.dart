@@ -8,6 +8,7 @@ import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/presentation/pages/auth/login/login_page.dart';
 import 'package:nota/presentation/pages/auth/register/register_page.dart';
 import 'package:nota/presentation/pages/auth/verify/verify_page.dart';
+import 'package:nota/presentation/pages/main/note/note_page.dart';
 import 'package:nota/presentation/pages/main/notes/notes_page.dart';
 import 'package:nota/presentation/pages/not_found_page.dart';
 
@@ -18,7 +19,7 @@ class AppRouter {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const NotesPage(),
+          redirect: (context, state) => '/notes',
         ),
         GoRoute(
           path: '/login',
@@ -32,6 +33,17 @@ class AppRouter {
           path: '/verify',
           builder: (context, state) => const VerifyPage(),
         ),
+        GoRoute(
+          path: '/notes',
+          builder: (context, state) => const NotesPage(),
+        ),
+        GoRoute(
+          path: '/note',
+          builder: (context, state) {
+            final noteId = state.queryParams['id'];
+            return NotePage(noteId: noteId);
+          },
+        ),
       ],
       errorBuilder: (context, state) => const NotFoundPage(),
       refreshListenable: GoRouterRefreshStream(context.read<AuthBloc>().stream),
@@ -43,7 +55,7 @@ class AppRouter {
         const loginPath = '/login';
         const registerPath = '/register';
         const verifyPath = '/verify';
-        const homePath = '/';
+        const homePath = '/notes';
 
         final isOnAuthPage = subloc == loginPath || subloc == registerPath;
         final isOnVerifyPage = subloc == verifyPath;

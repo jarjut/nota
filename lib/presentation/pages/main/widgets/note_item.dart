@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nota/domain/notes/note.dart';
 
 class NoteItem extends StatelessWidget {
@@ -15,7 +16,7 @@ class NoteItem extends StatelessWidget {
       child: InkWell(
         splashColor: Theme.of(context).primaryColor.withAlpha(30),
         onTap: () {
-          // TODO: Navigate to note page
+          context.push('/note?id=${note.id}');
         },
         child: Padding(
           padding: const EdgeInsets.all(12),

@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
-import 'package:nota/application/notes/bloc/notes_watch_bloc.dart';
+import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
 import 'package:nota/presentation/app/themes.dart';
 import 'package:nota/presentation/l10n/l10n.dart';
 import 'package:nota/presentation/router/router.dart';

@@ -13,7 +13,8 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:nota/application/auth/auth_bloc.dart' as _i13;
 import 'package:nota/application/auth/login/login_bloc.dart' as _i10;
 import 'package:nota/application/auth/register/register_bloc.dart' as _i12;
-import 'package:nota/application/notes/bloc/notes_watch_bloc.dart' as _i11;
+import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart'
+    as _i11;
 import 'package:nota/domain/auth/i_auth_facade.dart' as _i6;
 import 'package:nota/domain/notes/i_note_repository.dart' as _i8;
 import 'package:nota/infrastructure/auth/firebase_auth_facade.dart' as _i7;

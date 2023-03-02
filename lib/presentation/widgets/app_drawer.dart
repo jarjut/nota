@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/core/utils/mediaquery_util.dart';
 
@@ -126,7 +127,7 @@ class AppDrawer extends StatelessWidget {
                 leading: const Icon(Icons.article),
                 title: const Text('Notes'),
                 onTap: () {
-                  // context.vRouter.toNamed(AppRoute.NotesRoute);
+                  context.go('/notes');
                 },
                 // selected: isSelected(AppRoute.NotesRoute),
               ),
@@ -134,6 +135,7 @@ class AppDrawer extends StatelessWidget {
                 leading: const Icon(Icons.archive),
                 title: const Text('Archive'),
                 onTap: () {
+                  // TODO: navigate to archive route
                   // context.vRouter.toNamed(AppRoute.ArchiveRoute);
                 },
                 // selected: isSelected(AppRoute.ArchiveRoute),
@@ -142,6 +144,7 @@ class AppDrawer extends StatelessWidget {
                 leading: const Icon(Icons.delete),
                 title: const Text('Trash'),
                 onTap: () {
+                  // TODO: navigate to trash route
                   // context.vRouter.toNamed(AppRoute.TrashRoute);
                 },
                 // selected: isSelected(AppRoute.TrashRoute),
@@ -157,6 +160,7 @@ class AppDrawer extends StatelessWidget {
                 leading: const Icon(Icons.settings),
                 title: const Text('Settings'),
                 onTap: () {
+                  // TODO: Setting dialog or page
                   if (!mediaQuery.isMobile()) {
                     showSettingsDialog();
                   } else {
