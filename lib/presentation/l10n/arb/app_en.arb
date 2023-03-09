@@ -1,0 +1,136 @@
+{
+    "@@locale": "en",
+
+    "appName": "Nota",
+
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "ok": "OK",
+    "or": "or",
+    "login": "Login",
+    "register": "Register",
+
+    "authFormEmailLabel": "Email",
+    "@authFormEmailLabel": {
+        "description": "The label for the email field"
+    },
+    "authFormPasswordLabel": "Password",
+    "@authFormPasswordLabel": {
+        "description": "The label for the password field"
+    },
+    "authFormFullNameLabel": "Full Name",
+    "@authFormFullNameLabel": {
+        "description": "The label for the full name field"
+    },
+    "authValidationEmailInvalid": "Email is invalid",
+    "@authValidationEmailInvalid": {
+        "description": "The email address is invalid"
+    },
+    "authValidationPasswordTooShort": "Password is too short",
+    "@authValidationPasswordTooShort": {
+        "description": "The password is too short"
+    },
+    "authErrorCancelledByUser": "Login Cancelled",
+    "@authErrorCancelledByUser": {
+        "description": "The user cancelled the login process"
+    },
+    "authErrorServerError": "Server Error",
+    "@authErrorServerError": {
+        "description": "Unexpected server error"
+    },
+    "authErrorEmailAlreadyInUse": "Email Already In Use",
+    "@authErrorEmailAlreadyInUse": {
+        "description": "The email address is already in use by another account"
+    },
+    "authErrorInvalidEmailAndPasswordCombination": "Invalid Email and Password Combination",
+    "@authErrorInvalidEmailAndPasswordCombination": {
+        "description": "The email address and password combination is invalid"
+    },
+    "authToRegisterPageText": "Create new account",
+    "@authToRegisterPageText": {
+        "description": "Button Text to navigate to the register page"
+    },
+    "authToLoginPageText": "Already have an account?",
+    "@authToLoginPageText": {
+        "description": "Button Text to navigate to the login page"
+    },
+
+    "listNotesDefaultEmptyText": "You don't have any Note",
+    "@listNotesDefaultEmptyText": {
+        "description": "The default empty text for the list of notes"
+    },
+    "notePageNotFound": "Note Not Found",
+    "@notePageNotFound": {
+        "description": "The message when the note is not found"
+    },
+    "notePageFormTitleHint": "Title",
+    "@notePageFormTitleHint": {
+        "description": "The hint for the title field"
+    },
+    "notePageFormContentHint": "Write your note here",
+    "@notePageFormContentHint": {
+        "description": "The hint for the content field"
+    },
+
+    "noteActionDelete": "Delete",
+    "@noteActionDelete": {
+        "description": "The action to delete a note to the trash"
+    },
+    "noteActionDeletePermanently": "Delete Forever",
+    "@noteActionDeletePermanently": {
+        "description": "The action to delete a note permanently"
+    },
+    "noteActionDeletePermanentlyTitleDialog": "Delete Note Permanently",
+    "@noteActionDeletePermanentlyTitleDialog": {
+        "description": "The title of the dialog to delete a note permanently"
+    },
+    "noteActionDeletePermanentlyContentDialog": "You can't restore this note after deleting permanently",
+    "@noteActionDeletePermanentlyContentDialog": {
+        "description": "The content of the dialog to delete a note permanently"
+    },
+    "noteActionRestore": "Restore",
+    "@noteActionRestore": {
+        "description": "The action to restore a note from the trash"
+    },
+    "noteActionArchive": "Archive",
+    "@noteActionArchive": {
+        "description": "The action to archive a note"
+    },
+    "noteActionUnarchive": "Unarchive",
+    "@noteActionUnarchive": {
+        "description": "The action to unarchive a note"
+    },
+
+    "searchNotesPageTitle": "Search",
+    "@searchNotesPageTitle": {
+        "description": "The title of the search page"
+    },
+    "searchNotesPageInitialEmptyText": "Search for notes",
+    "@searchNotesPageInitialEmptyText": {
+        "description": "The initial empty text for the search page"
+    },
+    "searchNotesPageNotFoundText": "No notes found",
+    "@searchNotesPageNotFoundText": {
+        "description": "The text when no notes are found"
+    },
+    "searchNotesBarHint": "Search notes",
+    "@searchNotesBarHint": {
+        "description": "The hint for the search bar"
+    },
+
+    "settingsPageTitle": "Settings",
+    "@settingsPageTitle": {
+        "description": "The title of the settings page"
+    },
+    "settingsThemeTitle": "App Theme",
+    "@settingsThemeTitle": {
+        "description": "The title of the theme setting"
+    },
+
+    "errorUnexpected": "Unexpected Error",
+    "@errorUnexpected": {
+        "description": "Error message when an unexpected error occurs"
+    },
+    
+    "end": "end"
+}
