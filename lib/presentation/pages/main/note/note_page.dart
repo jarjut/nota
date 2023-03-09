@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
-import 'package:nota/application/notes/bloc/note_form_bloc.dart';
+import 'package:nota/application/notes/note_form/note_form_bloc.dart';
 import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
 import 'package:nota/domain/notes/i_note_repository.dart';
 import 'package:nota/injection.dart';

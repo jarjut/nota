@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nota/application/notes/bloc/note_form_bloc.dart';
+import 'package:nota/application/notes/note_form/note_form_bloc.dart';
 import 'package:nota/presentation/l10n/l10n.dart';
 
 class NoteForm extends StatelessWidget {
