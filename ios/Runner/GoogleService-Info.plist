@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>421718850828-4sd7d8atnd56igrra49plg8nllrppf8r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.421718850828-4sd7d8atnd56igrra49plg8nllrppf8r</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>421718850828-204arohss2rlqndu1vrsoum3th3akfjp.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCA9uX-dRU5ehato2ME4owsZglqJZZiMqE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>421718850828</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dev.jarjut.nota</string>
+	<key>PROJECT_ID</key>
+	<string>nota-71534</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nota-71534.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:421718850828:ios:97d2cd77ffbce9ede2dd29</string>
+	<key>DATABASE_URL</key>
+	<string>https://nota-71534.firebaseio.com</string>
+</dict>
+</plist>
