@@ -11,8 +11,9 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQueryUtil(context);
 
-    // TODO: check is selected from route
-    // bool isSelected(String routeName) => false;
+    bool isSelected(String routeName) {
+      return GoRouter.of(context).location == routeName;
+    }
 
     Future<void> showLogoutDialog() async {
       return showDialog(
@@ -78,7 +79,7 @@ class AppDrawer extends StatelessWidget {
       child: SafeArea(
         child: ListTileTheme(
           selectedColor: Theme.of(context).textTheme.bodyLarge!.color,
-          selectedTileColor: Theme.of(context).primaryColor,
+          selectedTileColor: Theme.of(context).primaryColor.withOpacity(0.25),
           // selectedTileColor: Theme.of(context).brightness == Brightness.dark
           //     ? primaryColor.shade700.withAlpha(50)
           //     : primaryColor.shade200.withAlpha(100),
@@ -129,25 +130,23 @@ class AppDrawer extends StatelessWidget {
                 onTap: () {
                   context.go('/notes');
                 },
-                // selected: isSelected(AppRoute.NotesRoute),
+                selected: isSelected('/notes'),
               ),
               ListTile(
                 leading: const Icon(Icons.archive),
                 title: const Text('Archive'),
                 onTap: () {
-                  // TODO: navigate to archive route
-                  // context.vRouter.toNamed(AppRoute.ArchiveRoute);
+                  context.go('/archive');
                 },
-                // selected: isSelected(AppRoute.ArchiveRoute),
+                selected: isSelected('/archive'),
               ),
               ListTile(
                 leading: const Icon(Icons.delete),
                 title: const Text('Trash'),
                 onTap: () {
-                  // TODO: navigate to trash route
-                  // context.vRouter.toNamed(AppRoute.TrashRoute);
+                  context.go('/trash');
                 },
-                // selected: isSelected(AppRoute.TrashRoute),
+                selected: isSelected('/trash'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

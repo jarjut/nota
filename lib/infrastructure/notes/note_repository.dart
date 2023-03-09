@@ -18,7 +18,7 @@ class NoteRepository implements INoteRepository {
   @override
   Future<Either<NoteFailure, Unit>> create(Note note) async {
     try {
-      await noteCollection.doc(note.id).set(note.toDocument());
+      await noteCollection.doc(note.id).set(note.toDocument(create: true));
       return right(unit);
     } catch (e) {
       return left(const NoteFailure.unexpected());
@@ -60,7 +60,9 @@ class NoteRepository implements INoteRepository {
   @override
   Future<Either<NoteFailure, Unit>> delete(Note note) async {
     try {
-      await noteCollection.doc(note.id).update(note.toDocument(delete: true));
+      await noteCollection.doc(note.id).update(
+            note.copyWith(archivedOn: null).toDocument(delete: true),
+          );
       return right(unit);
     } catch (e) {
       return left(const NoteFailure.unexpected());
@@ -94,7 +96,7 @@ class NoteRepository implements INoteRepository {
     final userNoteDoc = noteCollection.where('uid', isEqualTo: uid);
     return userNoteDoc
         .orderBy(
-          'createdOn',
+          'updatedOn',
           descending: true,
         )
         .snapshots()

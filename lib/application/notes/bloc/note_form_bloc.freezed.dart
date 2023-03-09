@@ -23,6 +23,12 @@ mixin _$NoteFormEvent {
     required TResult Function() notFound,
     required TResult Function(String title) titleChanged,
     required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +38,12 @@ mixin _$NoteFormEvent {
     TResult? Function()? notFound,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +53,12 @@ mixin _$NoteFormEvent {
     TResult Function()? notFound,
     TResult Function(String title)? titleChanged,
     TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +69,12 @@ mixin _$NoteFormEvent {
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +84,12 @@ mixin _$NoteFormEvent {
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +99,12 @@ mixin _$NoteFormEvent {
     TResult Function(_NotFound value)? notFound,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +169,12 @@ class _$_Start implements _Start {
     required TResult Function() notFound,
     required TResult Function(String title) titleChanged,
     required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
   }) {
     return start();
   }
@@ -145,6 +187,12 @@ class _$_Start implements _Start {
     TResult? Function()? notFound,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
   }) {
     return start?.call();
   }
@@ -157,6 +205,12 @@ class _$_Start implements _Start {
     TResult Function()? notFound,
     TResult Function(String title)? titleChanged,
     TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -173,6 +227,12 @@ class _$_Start implements _Start {
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
   }) {
     return start(this);
   }
@@ -185,6 +245,12 @@ class _$_Start implements _Start {
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
   }) {
     return start?.call(this);
   }
@@ -197,6 +263,12 @@ class _$_Start implements _Start {
     TResult Function(_NotFound value)? notFound,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -287,6 +359,12 @@ class _$_Loaded implements _Loaded {
     required TResult Function() notFound,
     required TResult Function(String title) titleChanged,
     required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
   }) {
     return loaded(note);
   }
@@ -299,6 +377,12 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? notFound,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
   }) {
     return loaded?.call(note);
   }
@@ -311,6 +395,12 @@ class _$_Loaded implements _Loaded {
     TResult Function()? notFound,
     TResult Function(String title)? titleChanged,
     TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -327,6 +417,12 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
   }) {
     return loaded(this);
   }
@@ -339,6 +435,12 @@ class _$_Loaded implements _Loaded {
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
   }) {
     return loaded?.call(this);
   }
@@ -351,6 +453,12 @@ class _$_Loaded implements _Loaded {
     TResult Function(_NotFound value)? notFound,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -412,6 +520,12 @@ class _$_NotFound implements _NotFound {
     required TResult Function() notFound,
     required TResult Function(String title) titleChanged,
     required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
   }) {
     return notFound();
   }
@@ -424,6 +538,12 @@ class _$_NotFound implements _NotFound {
     TResult? Function()? notFound,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
   }) {
     return notFound?.call();
   }
@@ -436,6 +556,12 @@ class _$_NotFound implements _NotFound {
     TResult Function()? notFound,
     TResult Function(String title)? titleChanged,
     TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -452,6 +578,12 @@ class _$_NotFound implements _NotFound {
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
   }) {
     return notFound(this);
   }
@@ -464,6 +596,12 @@ class _$_NotFound implements _NotFound {
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
   }) {
     return notFound?.call(this);
   }
@@ -476,6 +614,12 @@ class _$_NotFound implements _NotFound {
     TResult Function(_NotFound value)? notFound,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -558,6 +702,12 @@ class _$_TitleChanged implements _TitleChanged {
     required TResult Function() notFound,
     required TResult Function(String title) titleChanged,
     required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
   }) {
     return titleChanged(title);
   }
@@ -570,6 +720,12 @@ class _$_TitleChanged implements _TitleChanged {
     TResult? Function()? notFound,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
   }) {
     return titleChanged?.call(title);
   }
@@ -582,6 +738,12 @@ class _$_TitleChanged implements _TitleChanged {
     TResult Function()? notFound,
     TResult Function(String title)? titleChanged,
     TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
     required TResult orElse(),
   }) {
     if (titleChanged != null) {
@@ -598,6 +760,12 @@ class _$_TitleChanged implements _TitleChanged {
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
   }) {
     return titleChanged(this);
   }
@@ -610,6 +778,12 @@ class _$_TitleChanged implements _TitleChanged {
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
   }) {
     return titleChanged?.call(this);
   }
@@ -622,6 +796,12 @@ class _$_TitleChanged implements _TitleChanged {
     TResult Function(_NotFound value)? notFound,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
     required TResult orElse(),
   }) {
     if (titleChanged != null) {
@@ -709,6 +889,12 @@ class _$_BodyChanged implements _BodyChanged {
     required TResult Function() notFound,
     required TResult Function(String title) titleChanged,
     required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
   }) {
     return bodyChanged(body);
   }
@@ -721,6 +907,12 @@ class _$_BodyChanged implements _BodyChanged {
     TResult? Function()? notFound,
     TResult? Function(String title)? titleChanged,
     TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
   }) {
     return bodyChanged?.call(body);
   }
@@ -733,6 +925,12 @@ class _$_BodyChanged implements _BodyChanged {
     TResult Function()? notFound,
     TResult Function(String title)? titleChanged,
     TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
     required TResult orElse(),
   }) {
     if (bodyChanged != null) {
@@ -749,6 +947,12 @@ class _$_BodyChanged implements _BodyChanged {
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_TitleChanged value) titleChanged,
     required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
   }) {
     return bodyChanged(this);
   }
@@ -761,6 +965,12 @@ class _$_BodyChanged implements _BodyChanged {
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_TitleChanged value)? titleChanged,
     TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
   }) {
     return bodyChanged?.call(this);
   }
@@ -773,6 +983,12 @@ class _$_BodyChanged implements _BodyChanged {
     TResult Function(_NotFound value)? notFound,
     TResult Function(_TitleChanged value)? titleChanged,
     TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
     required TResult orElse(),
   }) {
     if (bodyChanged != null) {
@@ -792,11 +1008,974 @@ abstract class _BodyChanged implements NoteFormEvent {
 }
 
 /// @nodoc
+abstract class _$$_SaveCopyWith<$Res> {
+  factory _$$_SaveCopyWith(_$_Save value, $Res Function(_$_Save) then) =
+      __$$_SaveCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String uid});
+}
+
+/// @nodoc
+class __$$_SaveCopyWithImpl<$Res>
+    extends _$NoteFormEventCopyWithImpl<$Res, _$_Save>
+    implements _$$_SaveCopyWith<$Res> {
+  __$$_SaveCopyWithImpl(_$_Save _value, $Res Function(_$_Save) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? uid = null,
+  }) {
+    return _then(_$_Save(
+      null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Save implements _Save {
+  const _$_Save(this.uid);
+
+  @override
+  final String uid;
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.save(uid: $uid)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Save &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, uid);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SaveCopyWith<_$_Save> get copyWith =>
+      __$$_SaveCopyWithImpl<_$_Save>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Note note) loaded,
+    required TResult Function() notFound,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
+  }) {
+    return save(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function(Note note)? loaded,
+    TResult? Function()? notFound,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
+  }) {
+    return save?.call(uid);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Note note)? loaded,
+    TResult Function()? notFound,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (save != null) {
+      return save(uid);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
+  }) {
+    return save(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Start value)? start,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
+  }) {
+    return save?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (save != null) {
+      return save(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Save implements NoteFormEvent {
+  const factory _Save(final String uid) = _$_Save;
+
+  String get uid;
+  @JsonKey(ignore: true)
+  _$$_SaveCopyWith<_$_Save> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ArchiveCopyWith<$Res> {
+  factory _$$_ArchiveCopyWith(
+          _$_Archive value, $Res Function(_$_Archive) then) =
+      __$$_ArchiveCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ArchiveCopyWithImpl<$Res>
+    extends _$NoteFormEventCopyWithImpl<$Res, _$_Archive>
+    implements _$$_ArchiveCopyWith<$Res> {
+  __$$_ArchiveCopyWithImpl(_$_Archive _value, $Res Function(_$_Archive) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Archive implements _Archive {
+  const _$_Archive();
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.archive()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Archive);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Note note) loaded,
+    required TResult Function() notFound,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
+  }) {
+    return archive();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function(Note note)? loaded,
+    TResult? Function()? notFound,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
+  }) {
+    return archive?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Note note)? loaded,
+    TResult Function()? notFound,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (archive != null) {
+      return archive();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
+  }) {
+    return archive(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Start value)? start,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
+  }) {
+    return archive?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (archive != null) {
+      return archive(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Archive implements NoteFormEvent {
+  const factory _Archive() = _$_Archive;
+}
+
+/// @nodoc
+abstract class _$$_UnarchiveCopyWith<$Res> {
+  factory _$$_UnarchiveCopyWith(
+          _$_Unarchive value, $Res Function(_$_Unarchive) then) =
+      __$$_UnarchiveCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UnarchiveCopyWithImpl<$Res>
+    extends _$NoteFormEventCopyWithImpl<$Res, _$_Unarchive>
+    implements _$$_UnarchiveCopyWith<$Res> {
+  __$$_UnarchiveCopyWithImpl(
+      _$_Unarchive _value, $Res Function(_$_Unarchive) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Unarchive implements _Unarchive {
+  const _$_Unarchive();
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.unarchive()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Unarchive);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Note note) loaded,
+    required TResult Function() notFound,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
+  }) {
+    return unarchive();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function(Note note)? loaded,
+    TResult? Function()? notFound,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
+  }) {
+    return unarchive?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Note note)? loaded,
+    TResult Function()? notFound,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (unarchive != null) {
+      return unarchive();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
+  }) {
+    return unarchive(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Start value)? start,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
+  }) {
+    return unarchive?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (unarchive != null) {
+      return unarchive(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unarchive implements NoteFormEvent {
+  const factory _Unarchive() = _$_Unarchive;
+}
+
+/// @nodoc
+abstract class _$$_DeleteCopyWith<$Res> {
+  factory _$$_DeleteCopyWith(_$_Delete value, $Res Function(_$_Delete) then) =
+      __$$_DeleteCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeleteCopyWithImpl<$Res>
+    extends _$NoteFormEventCopyWithImpl<$Res, _$_Delete>
+    implements _$$_DeleteCopyWith<$Res> {
+  __$$_DeleteCopyWithImpl(_$_Delete _value, $Res Function(_$_Delete) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Delete implements _Delete {
+  const _$_Delete();
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.delete()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Delete);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Note note) loaded,
+    required TResult Function() notFound,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
+  }) {
+    return delete();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function(Note note)? loaded,
+    TResult? Function()? notFound,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
+  }) {
+    return delete?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Note note)? loaded,
+    TResult Function()? notFound,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Start value)? start,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Delete implements NoteFormEvent {
+  const factory _Delete() = _$_Delete;
+}
+
+/// @nodoc
+abstract class _$$_RestoreCopyWith<$Res> {
+  factory _$$_RestoreCopyWith(
+          _$_Restore value, $Res Function(_$_Restore) then) =
+      __$$_RestoreCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_RestoreCopyWithImpl<$Res>
+    extends _$NoteFormEventCopyWithImpl<$Res, _$_Restore>
+    implements _$$_RestoreCopyWith<$Res> {
+  __$$_RestoreCopyWithImpl(_$_Restore _value, $Res Function(_$_Restore) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Restore implements _Restore {
+  const _$_Restore();
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.restore()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Restore);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Note note) loaded,
+    required TResult Function() notFound,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
+  }) {
+    return restore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function(Note note)? loaded,
+    TResult? Function()? notFound,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
+  }) {
+    return restore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Note note)? loaded,
+    TResult Function()? notFound,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (restore != null) {
+      return restore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
+  }) {
+    return restore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Start value)? start,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
+  }) {
+    return restore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (restore != null) {
+      return restore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Restore implements NoteFormEvent {
+  const factory _Restore() = _$_Restore;
+}
+
+/// @nodoc
+abstract class _$$_DeletePermanentCopyWith<$Res> {
+  factory _$$_DeletePermanentCopyWith(
+          _$_DeletePermanent value, $Res Function(_$_DeletePermanent) then) =
+      __$$_DeletePermanentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_DeletePermanentCopyWithImpl<$Res>
+    extends _$NoteFormEventCopyWithImpl<$Res, _$_DeletePermanent>
+    implements _$$_DeletePermanentCopyWith<$Res> {
+  __$$_DeletePermanentCopyWithImpl(
+      _$_DeletePermanent _value, $Res Function(_$_DeletePermanent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_DeletePermanent implements _DeletePermanent {
+  const _$_DeletePermanent();
+
+  @override
+  String toString() {
+    return 'NoteFormEvent.deletePermanent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_DeletePermanent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Note note) loaded,
+    required TResult Function() notFound,
+    required TResult Function(String title) titleChanged,
+    required TResult Function(String body) bodyChanged,
+    required TResult Function(String uid) save,
+    required TResult Function() archive,
+    required TResult Function() unarchive,
+    required TResult Function() delete,
+    required TResult Function() restore,
+    required TResult Function() deletePermanent,
+  }) {
+    return deletePermanent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function(Note note)? loaded,
+    TResult? Function()? notFound,
+    TResult? Function(String title)? titleChanged,
+    TResult? Function(String body)? bodyChanged,
+    TResult? Function(String uid)? save,
+    TResult? Function()? archive,
+    TResult? Function()? unarchive,
+    TResult? Function()? delete,
+    TResult? Function()? restore,
+    TResult? Function()? deletePermanent,
+  }) {
+    return deletePermanent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Note note)? loaded,
+    TResult Function()? notFound,
+    TResult Function(String title)? titleChanged,
+    TResult Function(String body)? bodyChanged,
+    TResult Function(String uid)? save,
+    TResult Function()? archive,
+    TResult Function()? unarchive,
+    TResult Function()? delete,
+    TResult Function()? restore,
+    TResult Function()? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (deletePermanent != null) {
+      return deletePermanent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Start value) start,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_TitleChanged value) titleChanged,
+    required TResult Function(_BodyChanged value) bodyChanged,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Archive value) archive,
+    required TResult Function(_Unarchive value) unarchive,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Restore value) restore,
+    required TResult Function(_DeletePermanent value) deletePermanent,
+  }) {
+    return deletePermanent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Start value)? start,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_TitleChanged value)? titleChanged,
+    TResult? Function(_BodyChanged value)? bodyChanged,
+    TResult? Function(_Save value)? save,
+    TResult? Function(_Archive value)? archive,
+    TResult? Function(_Unarchive value)? unarchive,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Restore value)? restore,
+    TResult? Function(_DeletePermanent value)? deletePermanent,
+  }) {
+    return deletePermanent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Start value)? start,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_TitleChanged value)? titleChanged,
+    TResult Function(_BodyChanged value)? bodyChanged,
+    TResult Function(_Save value)? save,
+    TResult Function(_Archive value)? archive,
+    TResult Function(_Unarchive value)? unarchive,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Restore value)? restore,
+    TResult Function(_DeletePermanent value)? deletePermanent,
+    required TResult orElse(),
+  }) {
+    if (deletePermanent != null) {
+      return deletePermanent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeletePermanent implements NoteFormEvent {
+  const factory _DeletePermanent() = _$_DeletePermanent;
+}
+
+/// @nodoc
 mixin _$NoteFormState {
   Note get note => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isNew => throw _privateConstructorUsedError;
+  bool get isUpdating => throw _privateConstructorUsedError;
   bool get notFound => throw _privateConstructorUsedError;
+  Either<NoteFailure, Unit>? get actionFailureOrSuccess =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteFormStateCopyWith<NoteFormState> get copyWith =>
@@ -809,7 +1988,13 @@ abstract class $NoteFormStateCopyWith<$Res> {
           NoteFormState value, $Res Function(NoteFormState) then) =
       _$NoteFormStateCopyWithImpl<$Res, NoteFormState>;
   @useResult
-  $Res call({Note note, bool isLoading, bool isNew, bool notFound});
+  $Res call(
+      {Note note,
+      bool isLoading,
+      bool isNew,
+      bool isUpdating,
+      bool notFound,
+      Either<NoteFailure, Unit>? actionFailureOrSuccess});
 
   $NoteCopyWith<$Res> get note;
 }
@@ -830,7 +2015,9 @@ class _$NoteFormStateCopyWithImpl<$Res, $Val extends NoteFormState>
     Object? note = null,
     Object? isLoading = null,
     Object? isNew = null,
+    Object? isUpdating = null,
     Object? notFound = null,
+    Object? actionFailureOrSuccess = freezed,
   }) {
     return _then(_value.copyWith(
       note: null == note
@@ -845,10 +2032,18 @@ class _$NoteFormStateCopyWithImpl<$Res, $Val extends NoteFormState>
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUpdating: null == isUpdating
+          ? _value.isUpdating
+          : isUpdating // ignore: cast_nullable_to_non_nullable
+              as bool,
       notFound: null == notFound
           ? _value.notFound
           : notFound // ignore: cast_nullable_to_non_nullable
               as bool,
+      actionFailureOrSuccess: freezed == actionFailureOrSuccess
+          ? _value.actionFailureOrSuccess
+          : actionFailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Either<NoteFailure, Unit>?,
     ) as $Val);
   }
 
@@ -869,7 +2064,13 @@ abstract class _$$_NoteFormStateCopyWith<$Res>
       __$$_NoteFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Note note, bool isLoading, bool isNew, bool notFound});
+  $Res call(
+      {Note note,
+      bool isLoading,
+      bool isNew,
+      bool isUpdating,
+      bool notFound,
+      Either<NoteFailure, Unit>? actionFailureOrSuccess});
 
   @override
   $NoteCopyWith<$Res> get note;
@@ -889,7 +2090,9 @@ class __$$_NoteFormStateCopyWithImpl<$Res>
     Object? note = null,
     Object? isLoading = null,
     Object? isNew = null,
+    Object? isUpdating = null,
     Object? notFound = null,
+    Object? actionFailureOrSuccess = freezed,
   }) {
     return _then(_$_NoteFormState(
       note: null == note
@@ -904,10 +2107,18 @@ class __$$_NoteFormStateCopyWithImpl<$Res>
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUpdating: null == isUpdating
+          ? _value.isUpdating
+          : isUpdating // ignore: cast_nullable_to_non_nullable
+              as bool,
       notFound: null == notFound
           ? _value.notFound
           : notFound // ignore: cast_nullable_to_non_nullable
               as bool,
+      actionFailureOrSuccess: freezed == actionFailureOrSuccess
+          ? _value.actionFailureOrSuccess
+          : actionFailureOrSuccess // ignore: cast_nullable_to_non_nullable
+              as Either<NoteFailure, Unit>?,
     ));
   }
 }
@@ -919,7 +2130,9 @@ class _$_NoteFormState implements _NoteFormState {
       {required this.note,
       required this.isLoading,
       required this.isNew,
-      this.notFound = false});
+      this.isUpdating = false,
+      this.notFound = false,
+      this.actionFailureOrSuccess});
 
   @override
   final Note note;
@@ -929,11 +2142,16 @@ class _$_NoteFormState implements _NoteFormState {
   final bool isNew;
   @override
   @JsonKey()
+  final bool isUpdating;
+  @override
+  @JsonKey()
   final bool notFound;
+  @override
+  final Either<NoteFailure, Unit>? actionFailureOrSuccess;
 
   @override
   String toString() {
-    return 'NoteFormState(note: $note, isLoading: $isLoading, isNew: $isNew, notFound: $notFound)';
+    return 'NoteFormState(note: $note, isLoading: $isLoading, isNew: $isNew, isUpdating: $isUpdating, notFound: $notFound, actionFailureOrSuccess: $actionFailureOrSuccess)';
   }
 
   @override
@@ -945,13 +2163,17 @@ class _$_NoteFormState implements _NoteFormState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isNew, isNew) || other.isNew == isNew) &&
+            (identical(other.isUpdating, isUpdating) ||
+                other.isUpdating == isUpdating) &&
             (identical(other.notFound, notFound) ||
-                other.notFound == notFound));
+                other.notFound == notFound) &&
+            (identical(other.actionFailureOrSuccess, actionFailureOrSuccess) ||
+                other.actionFailureOrSuccess == actionFailureOrSuccess));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, note, isLoading, isNew, notFound);
+  int get hashCode => Object.hash(runtimeType, note, isLoading, isNew,
+      isUpdating, notFound, actionFailureOrSuccess);
 
   @JsonKey(ignore: true)
   @override
@@ -962,10 +2184,13 @@ class _$_NoteFormState implements _NoteFormState {
 
 abstract class _NoteFormState implements NoteFormState {
   const factory _NoteFormState(
-      {required final Note note,
-      required final bool isLoading,
-      required final bool isNew,
-      final bool notFound}) = _$_NoteFormState;
+          {required final Note note,
+          required final bool isLoading,
+          required final bool isNew,
+          final bool isUpdating,
+          final bool notFound,
+          final Either<NoteFailure, Unit>? actionFailureOrSuccess}) =
+      _$_NoteFormState;
 
   @override
   Note get note;
@@ -974,7 +2199,11 @@ abstract class _NoteFormState implements NoteFormState {
   @override
   bool get isNew;
   @override
+  bool get isUpdating;
+  @override
   bool get notFound;
+  @override
+  Either<NoteFailure, Unit>? get actionFailureOrSuccess;
   @override
   @JsonKey(ignore: true)
   _$$_NoteFormStateCopyWith<_$_NoteFormState> get copyWith =>

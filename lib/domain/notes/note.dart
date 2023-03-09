@@ -52,8 +52,8 @@ class Note with _$Note {
       title: data?['title'] as String? ?? '',
       note: data?['note'] as String? ?? '',
       uid: data?['uid'] as String,
-      createdOn: data?['createdOn'] as Timestamp,
-      updatedOn: data?['updatedOn'] as Timestamp,
+      createdOn: data?['createdOn'] as Timestamp? ?? Timestamp.now(),
+      updatedOn: data?['updatedOn'] as Timestamp? ?? Timestamp.now(),
       archivedOn: data?['archivedOn'] as Timestamp?,
       deletedOn: data?['deletedOn'] as Timestamp?,
     );

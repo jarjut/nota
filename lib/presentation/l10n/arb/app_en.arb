@@ -1,7 +1,13 @@
 {
     "@@locale": "en",
-    "login": "Login",
+    
+    "appName": "Nota",
+
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "ok": "OK",
     "or": "or",
+    "login": "Login",
     "register": "Register",
 
     "authFormEmailLabel": "Email",
@@ -47,6 +53,62 @@
     "authToLoginPageText": "Already have an account?",
     "@authToLoginPageText": {
         "description": "Button Text to navigate to the login page"
+    },
+
+    "listNotesDefaultEmptyText": "You don't have any Note",
+    "@listNotesDefaultEmptyText": {
+        "description": "The default empty text for the list of notes"
+    },
+    "notePageNotFound": "Note Not Found",
+    "@notePageNotFound": {
+        "description": "The message when the note is not found"
+    },
+    "notePageFormTitleHint": "Title",
+    "@notePageFormTitleHint": {
+        "description": "The hint for the title field"
+    },
+    "notePageFormContentHint": "Write your note here",
+    "@notePageFormContentHint": {
+        "description": "The hint for the content field"
+    },
+
+    "noteActionDelete": "Delete",
+    "@noteActionDelete": {
+        "description": "The action to delete a note to the trash"
+    },
+    "noteActionDeletePermanently": "Delete Forever",
+    "@noteActionDeletePermanently": {
+        "description": "The action to delete a note permanently"
+    },
+    "noteActionDeletePermanentlyTitleDialog": "Delete Note Permanently",
+    "@noteActionDeletePermanentlyTitleDialog": {
+        "description": "The title of the dialog to delete a note permanently"
+    },
+    "noteActionDeletePermanentlyContentDialog": "You can't restore this note after deleting permanently",
+    "@noteActionDeletePermanentlyContentDialog": {
+        "description": "The content of the dialog to delete a note permanently"
+    },
+    "noteActionRestore": "Restore",
+    "@noteActionRestore": {
+        "description": "The action to restore a note from the trash"
+    },
+    "noteActionArchive": "Archive",
+    "@noteActionArchive": {
+        "description": "The action to archive a note"
+    },
+    "noteActionUnarchive": "Unarchive",
+    "@noteActionUnarchive": {
+        "description": "The action to unarchive a note"
+    },
+
+    "searchNotesBarHint": "Search notes",
+    "@searchNotesBarHint": {
+        "description": "The hint for the search bar"
+    },
+
+    "errorUnexpected": "Unexpected Error",
+    "@errorUnexpected": {
+        "description": "Error message when an unexpected error occurs"
     },
     
     "end": "end"

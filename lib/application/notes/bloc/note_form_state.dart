@@ -6,7 +6,9 @@ class NoteFormState with _$NoteFormState {
     required Note note,
     required bool isLoading,
     required bool isNew,
+    @Default(false) bool isUpdating,
     @Default(false) bool notFound,
+    Either<NoteFailure, Unit>? actionFailureOrSuccess,
   }) = _NoteFormState;
 
   factory NoteFormState.initial() => NoteFormState(

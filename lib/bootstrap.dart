@@ -9,21 +9,42 @@ import 'package:nota/injection.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
+  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+    log(
+      'onEvent(${bloc.runtimeType}, $event)',
+      name: 'BlocObserver',
+    );
+    super.onEvent(bloc, event);
+  }
+
+  @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
     super.onChange(bloc, change);
-    debugPrint('onChange(${bloc.runtimeType}, $change)');
+    log(
+      'onChange(${bloc.runtimeType}, $change)',
+      name: 'BlocObserver',
+    );
   }
 
   @override
   void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    debugPrint('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    log(
+      'onError(${bloc.runtimeType})',
+      error: error.toString(),
+      stackTrace: stackTrace,
+      name: 'BlocObserver',
+    );
     super.onError(bloc, error, stackTrace);
   }
 }
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
+    log(
+      details.exceptionAsString(),
+      stackTrace: details.stack,
+      name: 'FlutterError',
+    );
   };
 
   Bloc.observer = AppBlocObserver();

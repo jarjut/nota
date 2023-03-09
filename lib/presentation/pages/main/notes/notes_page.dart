@@ -6,8 +6,15 @@ import 'package:nota/presentation/pages/main/main_wrapper.dart';
 import 'package:nota/presentation/pages/main/search_app_bar.dart';
 import 'package:nota/presentation/pages/main/widgets/list_notes.dart';
 
+enum NotesPageType { general, archive, trash }
+
 class NotesPage extends StatelessWidget {
-  const NotesPage({super.key});
+  const NotesPage({
+    super.key,
+    this.type = NotesPageType.general,
+  });
+
+  final NotesPageType type;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +36,16 @@ class NotesPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
             loaded: (state) {
-              final notes = state.notes
-                  .where((note) => !note.isArchived && !note.isDeleted)
-                  .toList();
+              final notes = state.notes.where((note) {
+                switch (type) {
+                  case NotesPageType.general:
+                    return !note.isArchived && !note.isDeleted;
+                  case NotesPageType.archive:
+                    return note.isArchived;
+                  case NotesPageType.trash:
+                    return note.isDeleted;
+                }
+              }).toList();
 
               return ListNotes(
                 notes: notes,

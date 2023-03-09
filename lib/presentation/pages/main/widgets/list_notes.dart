@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nota/core/constants/breakpoints.dart';
 import 'package:nota/domain/notes/note.dart';
+import 'package:nota/presentation/l10n/l10n.dart';
 import 'package:nota/presentation/pages/main/widgets/note_item.dart';
 
 class ListNotes extends StatelessWidget {
@@ -10,7 +11,7 @@ class ListNotes extends StatelessWidget {
     super.key,
     required this.notes,
     this.emptyIconData = Icons.article,
-    this.emptyText = "You don't have any Note",
+    this.emptyText,
   });
 
   final List<Note> notes;
@@ -18,12 +19,14 @@ class ListNotes extends StatelessWidget {
   /// Icon for empty note
   final IconData emptyIconData;
 
-  final String emptyText;
+  final String? emptyText;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isMobile = size.width <= kMobileBreakpoint;
+    final emptyText = this.emptyText ?? context.l10n.listNotesDefaultEmptyText;
+
     if (notes.isEmpty) {
       return Center(
         child: Column(

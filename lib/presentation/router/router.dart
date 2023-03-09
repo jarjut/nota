@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
@@ -23,25 +23,47 @@ class AppRouter {
         ),
         GoRoute(
           path: '/login',
-          builder: (context, state) => const LoginPage(),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: LoginPage()),
         ),
         GoRoute(
           path: '/register',
-          builder: (context, state) => const RegisterPage(),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: RegisterPage()),
         ),
         GoRoute(
           path: '/verify',
-          builder: (context, state) => const VerifyPage(),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: VerifyPage()),
         ),
         GoRoute(
           path: '/notes',
-          builder: (context, state) => const NotesPage(),
+          pageBuilder: (context, state) =>
+              const NoTransitionPage(child: NotesPage()),
+        ),
+        GoRoute(
+          path: '/archive',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: NotesPage(type: NotesPageType.archive),
+          ),
+        ),
+        GoRoute(
+          path: '/trash',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: NotesPage(type: NotesPageType.trash),
+          ),
         ),
         GoRoute(
           path: '/note',
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final noteId = state.queryParams['id'];
-            return NotePage(noteId: noteId);
+            final notePage = NotePage(noteId: noteId);
+            // final width = window.physicalSize.width / window.devicePixelRatio;
+            // final isDesktop = width > kDesktopBreakpoint;
+            // if (isDesktop) {
+            //   return DialogPage(key: state.pageKey, child: notePage);
+            // }
+            return NoTransitionPage(key: state.pageKey, child: notePage);
           },
         ),
       ],

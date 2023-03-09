@@ -39,37 +39,40 @@ class AppTheme {
   );
 
   static ThemeData light(ColorScheme? colorscheme) {
-    final scheme = colorscheme ??
-        ColorScheme.fromSwatch(
-          primarySwatch: _defaultSwatch,
-        );
+    // final scheme = colorscheme ??
+    //     ColorScheme.fromSwatch(
+    //       primarySwatch: _defaultSwatch,
+    //     );
 
     return ThemeData(
       // useMaterial3: true,
+      primarySwatch: _defaultSwatch,
       scaffoldBackgroundColor: lightBackgroundColor,
       appBarTheme: AppBarTheme(
         color: lightBackgroundColor,
         elevation: _appBarElevation,
       ),
       cardTheme: _cardTheme(
-        borderColor: Colors.grey.shade400,
         color: lightBackgroundColor,
+        borderColor: Colors.grey.shade400,
       ),
       textTheme: _textTheme,
-      colorScheme: scheme,
+      // colorScheme: scheme,
     );
   }
 
   static ThemeData dark(ColorScheme? colorscheme) {
-    final scheme = colorscheme ??
-        ColorScheme.fromSwatch(
-          primarySwatch: _defaultSwatch,
-          accentColor: _defaultSwatch,
-          brightness: Brightness.dark,
-        );
+    // final scheme = colorscheme ??
+    //     ColorScheme.fromSwatch(
+    //       primarySwatch: _defaultSwatch,
+    //       accentColor: _defaultSwatch,
+    //       brightness: Brightness.dark,
+    //     );
 
     return ThemeData(
+      brightness: Brightness.dark,
       // useMaterial3: true,
+      primaryColor: _defaultSwatch,
       scaffoldBackgroundColor: darkBackgroundColor,
       appBarTheme: const AppBarTheme(
         color: darkBackgroundColor,
@@ -83,7 +86,11 @@ class AppTheme {
       cardColor: darkCardColor,
       dialogBackgroundColor: darkCardColor,
       textTheme: _textTheme,
-      colorScheme: scheme,
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: _defaultSwatch,
+        accentColor: _defaultSwatch,
+        brightness: Brightness.dark,
+      ),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.resolveWith<Color?>(
             (Set<MaterialState> states) {

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/application/notes/bloc/note_form_bloc.dart';
 import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
 import 'package:nota/domain/notes/i_note_repository.dart';
 import 'package:nota/injection.dart';
+import 'package:nota/presentation/l10n/l10n.dart';
 import 'package:nota/presentation/pages/main/main_app_bar.dart';
 import 'package:nota/presentation/pages/main/main_wrapper.dart';
+import 'package:nota/presentation/pages/main/note/widgets/note_form.dart';
 
 enum NoteMenuPopUp {
   archive,
@@ -30,19 +33,31 @@ class NotePage extends StatelessWidget {
         noteRepository: getIt<INoteRepository>(),
         noteId: noteId,
       )..add(const NoteFormEvent.start()),
-      child: const NoteForm(),
+      child: const NoteBody(),
     );
   }
 }
 
-class NoteForm extends StatelessWidget {
-  const NoteForm({super.key});
+class NoteBody extends StatelessWidget {
+  const NoteBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     final noteFormBloc = context.read<NoteFormBloc>();
 
-    return BlocBuilder<NoteFormBloc, NoteFormState>(
+    return BlocConsumer<NoteFormBloc, NoteFormState>(
+      listener: (context, state) {
+        state.actionFailureOrSuccess?.fold(
+          (failure) => failure.map(
+            unexpected: (_) => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(context.l10n.errorUnexpected),
+              ),
+            ),
+          ),
+          (_) => context.pop(),
+        );
+      },
       builder: (context, state) {
         return MainWrapper(
           appBar: MainAppBar(
@@ -55,33 +70,29 @@ class NoteForm extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {
-                  // TODO: Save note
+                  final uid = context.read<AuthBloc>().state.user.id;
+                  noteFormBloc.add(NoteFormEvent.save(uid));
                 },
                 icon: const Icon(Icons.done),
               ),
               PopupMenuButton(
                 onSelected: (NoteMenuPopUp selected) {
                   if (!state.isNew) {
-                    // TODO: Add logic to delete, archive, unarchive, etc.
                     switch (selected) {
-                      case NoteMenuPopUp.delete:
-                        // BlocProvider.of<NotesBloc>(context)
-                        //     .add(TrashNote(note!));
-                        break;
                       case NoteMenuPopUp.archive:
-                        // BlocProvider.of<NotesBloc>(context)
-                        //     .add(ArchiveNote(note!));
+                        noteFormBloc.add(const NoteFormEvent.archive());
                         break;
                       case NoteMenuPopUp.unarchive:
-                        // BlocProvider.of<NotesBloc>(context)
-                        //     .add(UnArchiveNote(note!));
+                        noteFormBloc.add(const NoteFormEvent.unarchive());
                         break;
-                      case NoteMenuPopUp.deletePermanent:
-                        // _showDeletePermanentDialog(note!);
+                      case NoteMenuPopUp.delete:
+                        noteFormBloc.add(const NoteFormEvent.delete());
                         break;
                       case NoteMenuPopUp.restore:
-                        // BlocProvider.of<NotesBloc>(context)
-                        //     .add(RestoreNote(note!));
+                        noteFormBloc.add(const NoteFormEvent.restore());
+                        break;
+                      case NoteMenuPopUp.deletePermanent:
+                        showDeletePermanentDialog(context);
                         break;
                     }
                   }
@@ -93,10 +104,10 @@ class NoteForm extends StatelessWidget {
                         PopupMenuItem(
                           value: NoteMenuPopUp.restore,
                           child: Row(
-                            children: const [
-                              Icon(Icons.restore_from_trash),
-                              SizedBox(width: 4),
-                              Text('Restore Note'),
+                            children: [
+                              const Icon(Icons.restore_from_trash),
+                              const SizedBox(width: 4),
+                              Text(context.l10n.noteActionRestore),
                             ],
                           ),
                         )
@@ -105,20 +116,20 @@ class NoteForm extends StatelessWidget {
                             ? PopupMenuItem(
                                 value: NoteMenuPopUp.unarchive,
                                 child: Row(
-                                  children: const [
-                                    Icon(Icons.unarchive),
-                                    SizedBox(width: 4),
-                                    Text('Unarchive Note'),
+                                  children: [
+                                    const Icon(Icons.unarchive),
+                                    const SizedBox(width: 4),
+                                    Text(context.l10n.noteActionUnarchive),
                                   ],
                                 ),
                               )
                             : PopupMenuItem(
                                 value: NoteMenuPopUp.archive,
                                 child: Row(
-                                  children: const [
-                                    Icon(Icons.archive),
-                                    SizedBox(width: 4),
-                                    Text('Archive Note'),
+                                  children: [
+                                    const Icon(Icons.archive),
+                                    const SizedBox(width: 4),
+                                    Text(context.l10n.noteActionArchive),
                                   ],
                                 ),
                               ),
@@ -126,10 +137,10 @@ class NoteForm extends StatelessWidget {
                         PopupMenuItem(
                           value: NoteMenuPopUp.delete,
                           child: Row(
-                            children: const [
-                              Icon(Icons.delete),
-                              SizedBox(width: 4),
-                              Text('Delete Note'),
+                            children: [
+                              const Icon(Icons.delete),
+                              const SizedBox(width: 4),
+                              Text(context.l10n.noteActionDelete),
                             ],
                           ),
                         )
@@ -137,10 +148,10 @@ class NoteForm extends StatelessWidget {
                         PopupMenuItem(
                           value: NoteMenuPopUp.deletePermanent,
                           child: Row(
-                            children: const [
-                              Icon(Icons.delete_forever),
-                              SizedBox(width: 4),
-                              Text('Delete Forever'),
+                            children: [
+                              const Icon(Icons.delete_forever),
+                              const SizedBox(width: 4),
+                              Text(context.l10n.noteActionDeletePermanently),
                             ],
                           ),
                         ),
@@ -153,52 +164,35 @@ class NoteForm extends StatelessWidget {
             ],
           ),
           showDrawer: false,
-          body: Builder(
-            builder: (context) {
-              if (state.isLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (state.notFound) {
-                return const Center(
-                  child: Text('Note not found'),
-                );
-              }
-              return Container(
-                constraints: const BoxConstraints(maxWidth: 600),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        initialValue: state.note.title,
-                        onChanged: (value) =>
-                            noteFormBloc.add(NoteFormEvent.titleChanged(value)),
-                        decoration: const InputDecoration(
-                          hintText: 'Title',
-                          border: InputBorder.none,
-                        ),
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          initialValue: state.note.note,
-                          onChanged: (value) => noteFormBloc
-                              .add(NoteFormEvent.bodyChanged(value)),
-                          maxLines: null,
-                          decoration: const InputDecoration(
-                            hintText: 'Write your notes here',
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            },
+          body: const NoteForm(),
+        );
+      },
+    );
+  }
+
+  Future<void> showDeletePermanentDialog(BuildContext context) async {
+    final noteFormBloc = context.read<NoteFormBloc>();
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(context.l10n.noteActionDeletePermanentlyTitleDialog),
+          content: Text(
+            context.l10n.noteActionDeletePermanentlyContentDialog,
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () {
+                noteFormBloc.add(const NoteFormEvent.deletePermanent());
+                Navigator.pop(context);
+              },
+              child: Text(context.l10n.delete),
+            ),
+          ],
         );
       },
     );

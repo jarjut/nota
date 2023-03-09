@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/core/constants/breakpoints.dart';
+import 'package:nota/presentation/l10n/l10n.dart';
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SearchAppBar({super.key, this.title, this.actions});
@@ -40,7 +41,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                           ),
                           const SizedBox(width: 12),
                           Text(
-                            'Nota',
+                            context.l10n.appName,
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                         ],
@@ -90,7 +91,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                       width: 12,
                     ),
                     Text(
-                      'Search notes',
+                      context.l10n.searchNotesBarHint,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontSize: 18,
                             color: Theme.of(context).hintColor,
