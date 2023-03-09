@@ -54,7 +54,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
           Expanded(
             child: InkWell(
               onTap: () {
-                // TODO: Navigate to search page
+                context.push('/search');
               },
               child: Container(
                 height: toolbarHeight - 12.0,

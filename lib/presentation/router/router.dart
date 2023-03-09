@@ -10,6 +10,7 @@ import 'package:nota/presentation/pages/auth/register/register_page.dart';
 import 'package:nota/presentation/pages/auth/verify/verify_page.dart';
 import 'package:nota/presentation/pages/main/note/note_page.dart';
 import 'package:nota/presentation/pages/main/notes/notes_page.dart';
+import 'package:nota/presentation/pages/main/search_notes/search_notes_page.dart';
 import 'package:nota/presentation/pages/not_found_page.dart';
 
 class AppRouter {
@@ -51,6 +52,12 @@ class AppRouter {
           path: '/trash',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: NotesPage(type: NotesPageType.trash),
+          ),
+        ),
+        GoRoute(
+          path: '/search',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: SearchNotesPage(),
           ),
         ),
         GoRoute(
