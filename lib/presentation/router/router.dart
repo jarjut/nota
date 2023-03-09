@@ -12,6 +12,7 @@ import 'package:nota/presentation/pages/main/note/note_page.dart';
 import 'package:nota/presentation/pages/main/notes/notes_page.dart';
 import 'package:nota/presentation/pages/main/search_notes/search_notes_page.dart';
 import 'package:nota/presentation/pages/not_found_page.dart';
+import 'package:nota/presentation/pages/settings/settings_page.dart';
 
 class AppRouter {
   static GoRouter router(BuildContext context) {
@@ -58,6 +59,12 @@ class AppRouter {
           path: '/search',
           pageBuilder: (context, state) => const NoTransitionPage(
             child: SearchNotesPage(),
+          ),
+        ),
+        GoRoute(
+          path: '/settings',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: SettingsPage(),
           ),
         ),
         GoRoute(

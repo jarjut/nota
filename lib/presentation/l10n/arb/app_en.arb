@@ -118,6 +118,15 @@
         "description": "The hint for the search bar"
     },
 
+    "settingsPageTitle": "Settings",
+    "@settingsPageTitle": {
+        "description": "The title of the settings page"
+    },
+    "settingsThemeTitle": "App Theme",
+    "@settingsThemeTitle": {
+        "description": "The title of the theme setting"
+    },
+
     "errorUnexpected": "Unexpected Error",
     "@errorUnexpected": {
         "description": "Error message when an unexpected error occurs"

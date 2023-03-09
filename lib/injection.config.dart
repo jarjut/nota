@@ -10,18 +10,19 @@ import 'package:firebase_auth/firebase_auth.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:nota/application/auth/auth_bloc.dart' as _i14;
+import 'package:nota/application/auth/auth_bloc.dart' as _i15;
 import 'package:nota/application/auth/login/login_bloc.dart' as _i10;
 import 'package:nota/application/auth/register/register_bloc.dart' as _i12;
 import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart'
     as _i11;
 import 'package:nota/application/notes/search_notes/search_notes_bloc.dart'
     as _i13;
+import 'package:nota/application/theme/theme_cubit.dart' as _i14;
 import 'package:nota/domain/auth/i_auth_facade.dart' as _i6;
 import 'package:nota/domain/notes/i_note_repository.dart' as _i8;
 import 'package:nota/infrastructure/auth/firebase_auth_facade.dart' as _i7;
 import 'package:nota/infrastructure/core/firebase_injectable_module.dart'
-    as _i15;
+    as _i16;
 import 'package:nota/infrastructure/notes/note_repository.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
@@ -57,10 +58,11 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i12.RegisterBloc>(
         () => _i12.RegisterBloc(gh<_i6.IAuthFacade>()));
     gh.factory<_i13.SearchNotesBloc>(() => _i13.SearchNotesBloc());
-    gh.factory<_i14.AuthBloc>(
-        () => _i14.AuthBloc(authRepository: gh<_i6.IAuthFacade>()));
+    gh.factory<_i14.ThemeCubit>(() => _i14.ThemeCubit());
+    gh.factory<_i15.AuthBloc>(
+        () => _i15.AuthBloc(authRepository: gh<_i6.IAuthFacade>()));
     return this;
   }
 }
 
-class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i16.FirebaseInjectableModule {}

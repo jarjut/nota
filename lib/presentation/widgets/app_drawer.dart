@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/core/utils/mediaquery_util.dart';
+import 'package:nota/presentation/l10n/l10n.dart';
+import 'package:nota/presentation/pages/settings/settings_column.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -56,16 +58,16 @@ class AppDrawer extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Center(
                     child: Text(
-                      'Settings',
-                      style: TextStyle(
+                      context.l10n.settingsPageTitle,
+                      style: const TextStyle(
                         fontSize: 24,
                       ),
                     ),
                   ),
-                  // SettingsColumn(),
+                  const SettingsColumn(),
                 ],
               ),
             ),
@@ -129,6 +131,9 @@ class AppDrawer extends StatelessWidget {
                 title: const Text('Notes'),
                 onTap: () {
                   context.go('/notes');
+                  if (mediaQuery.isMobile()) {
+                    Navigator.pop(context);
+                  }
                 },
                 selected: isSelected('/notes'),
               ),
@@ -137,6 +142,9 @@ class AppDrawer extends StatelessWidget {
                 title: const Text('Archive'),
                 onTap: () {
                   context.go('/archive');
+                  if (mediaQuery.isMobile()) {
+                    Navigator.pop(context);
+                  }
                 },
                 selected: isSelected('/archive'),
               ),
@@ -145,6 +153,9 @@ class AppDrawer extends StatelessWidget {
                 title: const Text('Trash'),
                 onTap: () {
                   context.go('/trash');
+                  if (mediaQuery.isMobile()) {
+                    Navigator.pop(context);
+                  }
                 },
                 selected: isSelected('/trash'),
               ),
@@ -159,11 +170,10 @@ class AppDrawer extends StatelessWidget {
                 leading: const Icon(Icons.settings),
                 title: const Text('Settings'),
                 onTap: () {
-                  // TODO: Setting dialog or page
                   if (!mediaQuery.isMobile()) {
                     showSettingsDialog();
                   } else {
-                    // VRouter.of(context).toNamed(AppRoute.SettingsRoute);
+                    context.push('/settings');
                   }
                 },
               ),

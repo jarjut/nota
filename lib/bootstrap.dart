@@ -1,11 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
+import 'package:nota/application/theme/theme_cubit.dart';
 import 'package:nota/injection.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -49,6 +54,16 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   Bloc.observer = AppBlocObserver();
 
+  // Hydrated Bloc Setup
+  Directory storageDirectory;
+  if (kIsWeb) {
+    storageDirectory = HydratedStorage.webStorageDirectory;
+  } else {
+    storageDirectory = await getApplicationDocumentsDirectory();
+  }
+  HydratedBloc.storage =
+      await HydratedStorage.build(storageDirectory: storageDirectory);
+
   await runZonedGuarded(
     () async {
       final widget = await builder();
@@ -61,6 +76,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
             ),
             BlocProvider(
               create: (context) => getIt<NotesWatchBloc>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<ThemeCubit>(),
             ),
           ],
           child: widget,

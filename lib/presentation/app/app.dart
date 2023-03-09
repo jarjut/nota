@@ -12,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/application/auth/auth_bloc.dart';
 import 'package:nota/application/notes/notes_watch/notes_watch_bloc.dart';
+import 'package:nota/application/theme/theme_cubit.dart';
 import 'package:nota/presentation/app/themes.dart';
 import 'package:nota/presentation/l10n/l10n.dart';
 import 'package:nota/presentation/router/router.dart';
@@ -43,15 +44,20 @@ class _AppState extends State<App> {
       },
       child: DynamicColorBuilder(
         builder: (lightColorScheme, darkColorScheme) {
-          return MaterialApp.router(
-            theme: AppTheme.light(lightColorScheme),
-            darkTheme: AppTheme.dark(darkColorScheme),
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-            ],
-            supportedLocales: AppLocalizations.supportedLocales,
-            routerConfig: _router,
+          return BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, state) {
+              return MaterialApp.router(
+                theme: AppTheme.light(lightColorScheme),
+                darkTheme: AppTheme.dark(darkColorScheme),
+                themeMode: state,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                ],
+                supportedLocales: AppLocalizations.supportedLocales,
+                routerConfig: _router,
+              );
+            },
           );
         },
       ),
