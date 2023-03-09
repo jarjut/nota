@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    
+
     "appName": "Nota",
 
     "cancel": "Cancel",
@@ -101,6 +101,18 @@
         "description": "The action to unarchive a note"
     },
 
+    "searchNotesPageTitle": "Search",
+    "@searchNotesPageTitle": {
+        "description": "The title of the search page"
+    },
+    "searchNotesPageInitialEmptyText": "Search for notes",
+    "@searchNotesPageInitialEmptyText": {
+        "description": "The initial empty text for the search page"
+    },
+    "searchNotesPageNotFoundText": "No notes found",
+    "@searchNotesPageNotFoundText": {
+        "description": "The text when no notes are found"
+    },
     "searchNotesBarHint": "Search notes",
     "@searchNotesBarHint": {
         "description": "The hint for the search bar"

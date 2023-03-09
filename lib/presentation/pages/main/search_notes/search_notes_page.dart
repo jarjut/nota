@@ -6,6 +6,7 @@ import 'package:nota/application/notes/search_notes/search_notes_bloc.dart';
 import 'package:nota/core/constants/constants.dart';
 import 'package:nota/core/utils/mediaquery_util.dart';
 import 'package:nota/injection.dart';
+import 'package:nota/presentation/l10n/l10n.dart';
 import 'package:nota/presentation/pages/main/main_wrapper.dart';
 import 'package:nota/presentation/pages/main/widgets/list_notes.dart';
 
@@ -59,7 +60,7 @@ class _SearchNotesBodyState extends State<SearchNotesBody> {
                                 ),
                                 const SizedBox(width: 12),
                                 Text(
-                                  'Search',
+                                  context.l10n.searchNotesPageTitle,
                                   style:
                                       Theme.of(context).textTheme.headlineSmall,
                                 ),
@@ -87,7 +88,7 @@ class _SearchNotesBodyState extends State<SearchNotesBody> {
                                       fontSize: 18,
                                     ),
                                 decoration: InputDecoration(
-                                  hintText: 'Search notes',
+                                  hintText: context.l10n.searchNotesBarHint,
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.only(
                                       right: 12,
@@ -147,7 +148,7 @@ class _SearchNotesBodyState extends State<SearchNotesBody> {
                               fontSize: 18,
                             ),
                         decoration: InputDecoration(
-                          hintText: 'Search notes',
+                          hintText: context.l10n.searchNotesBarHint,
                           border: InputBorder.none,
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -170,14 +171,15 @@ class _SearchNotesBodyState extends State<SearchNotesBody> {
                 builder: (context, state) {
                   return state.map(
                     initial: (_) {
-                      return const Center(
-                        child: Text('Search notes'),
+                      return Center(
+                        child:
+                            Text(context.l10n.searchNotesPageInitialEmptyText),
                       );
                     },
                     loaded: (state) {
                       if (state.notes.isEmpty) {
-                        return const Center(
-                          child: Text('Notes not found'),
+                        return Center(
+                          child: Text(context.l10n.searchNotesPageNotFoundText),
                         );
                       } else {
                         return ListNotes(notes: state.notes.toList());
