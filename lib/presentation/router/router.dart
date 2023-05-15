@@ -70,7 +70,7 @@ class AppRouter {
         GoRoute(
           path: '/note',
           pageBuilder: (context, state) {
-            final noteId = state.queryParams['id'];
+            final noteId = state.queryParameters['id'];
             final notePage = NotePage(noteId: noteId);
             // final width = window.physicalSize.width / window.devicePixelRatio;
             // final isDesktop = width > kDesktopBreakpoint;
@@ -87,7 +87,7 @@ class AppRouter {
         final authBloc = context.read<AuthBloc>();
         final user = authBloc.state.user;
 
-        final subloc = state.subloc;
+        final subloc = state.matchedLocation;
         const loginPath = '/login';
         const registerPath = '/register';
         const verifyPath = '/verify';

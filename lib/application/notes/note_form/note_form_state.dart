@@ -15,6 +15,5 @@ class NoteFormState with _$NoteFormState {
         note: Note.create(),
         isLoading: true,
         isNew: true,
-        notFound: false,
       );
 }
