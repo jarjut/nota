@@ -86,12 +86,12 @@ android {
         }
         staging {
             dimension "default"
-            applicationIdSuffix ""
+            applicationIdSuffix ".stg"
             manifestPlaceholders = [appName: "[STG] Nota"]
         }
         development {
             dimension "default"
-            applicationIdSuffix ""
+            applicationIdSuffix ".dev"
             manifestPlaceholders = [appName: "[DEV] Nota"]
         }
     }

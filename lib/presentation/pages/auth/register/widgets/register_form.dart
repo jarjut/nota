@@ -121,10 +121,10 @@ class RegisterForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Row(
-                  children: const [
+                  children: [
                     Expanded(
                       child: Divider(
                         thickness: 1,
