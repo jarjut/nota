@@ -61,7 +61,7 @@ class ListNotes extends StatelessWidget {
               childCount: notes.length,
               itemBuilder: (context, index) => NoteItem(note: notes[index]),
             ),
-          )
+          ),
         ],
       );
     }

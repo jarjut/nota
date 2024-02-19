@@ -185,7 +185,7 @@ void main() {
         await expectLater(
           notesStream,
           emitsInOrder([
-            IList([dummyNote])
+            IList([dummyNote]),
           ]),
         );
       });

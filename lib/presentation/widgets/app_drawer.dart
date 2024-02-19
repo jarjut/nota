@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
     final mediaQuery = MediaQueryUtil(context);
 
     bool isSelected(String routeName) {
-      return GoRouter.of(context).location == routeName;
+      return GoRouterState.of(context).uri.toString() == routeName;
     }
 
     Future<void> showLogoutDialog() async {

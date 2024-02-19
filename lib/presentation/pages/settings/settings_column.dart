@@ -37,7 +37,7 @@ class _SettingsColumnState extends State<SettingsColumn> {
                   items: <ThemeMode>[
                     ThemeMode.system,
                     ThemeMode.light,
-                    ThemeMode.dark
+                    ThemeMode.dark,
                   ]
                       .map(
                         (value) => DropdownMenuItem(

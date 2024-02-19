@@ -49,7 +49,7 @@ class NoteForm extends StatelessWidget {
                       border: InputBorder.none,
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

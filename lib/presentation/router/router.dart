@@ -70,7 +70,7 @@ class AppRouter {
         GoRoute(
           path: '/note',
           pageBuilder: (context, state) {
-            final noteId = state.queryParameters['id'];
+            final noteId = state.uri.queryParameters['id'];
             final notePage = NotePage(noteId: noteId);
             // final width = window.physicalSize.width / window.devicePixelRatio;
             // final isDesktop = width > kDesktopBreakpoint;

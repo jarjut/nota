@@ -15,7 +15,7 @@ abstract class ValueObject<T> extends Equatable {
   /// Throws [UnexpectedValueError] containing the [ValueFailure]
   T getOrCrash() {
     // id = identity - same as writing (right) => right
-    return value.fold((f) => throw UnexpectedValueError(f), id);
+    return value.fold((f) => throw UnexpectedValueError(f), identity);
   }
 
   bool isValid() {
