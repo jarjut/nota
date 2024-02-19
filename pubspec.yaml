@@ -51,7 +51,7 @@ dev_dependencies:
   mocktail: ^1.0.3
   very_good_analysis: ^5.1.0
 
-flutter_icons:
+flutter_launcher_icons:
   # Customize the parameters below, and run the following command in the terminal:
   # flutter pub run flutter_launcher_icons:main
   image_path: "assets/icons/nota-icon.png"
